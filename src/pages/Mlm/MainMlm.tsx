@@ -9,6 +9,7 @@ const MainMlm: React.FC = () => {
   return (
     <>
       <div className="flex flex-col gap-3 justify-center items-center">
+        <AddMlmCompany setLoading={setLoading} loading={loading} />
         {loading === true ? (
           <Spinner />
         ) : (
