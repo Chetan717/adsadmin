@@ -21,12 +21,17 @@ export default function DataSupplierContext({
 }: DataSupplierContextProps) {
   useEffect(() => {
     GetAllCompany();
+    GetAllGraphics();
   }, []);
 
   const [companyData, setCompanyData] = useState([]);
+  const [graphData, setGraphData] = useState([]);
   const [templateData, setTemplateData] = useState([]);
   const [tempLoading, setTempLoading] = useState(false);
   const [compLoading, setCompLoading] = useState(false);
+  const [grpLoading, setGrpLoading] = useState(false);
+
+  console.log(graphData, 'grp');
 
   const GetAllCompany = () => {
     setCompLoading(true);
@@ -50,6 +55,29 @@ export default function DataSupplierContext({
       console.log(error, 'error');
     }
   };
+  const GetAllGraphics = () => {
+    setGrpLoading(true);
+    try {
+      var ApiKey = 'ADS360KEY';
+
+      axios
+        .get(
+          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/GrpAll/?API_KEY=${ApiKey}`,
+        )
+        .then(
+          (res) => setGraphData(res?.data),
+          //  console.log(res)
+        )
+        .catch((err) => console.log(err))
+        .finally(() => {
+          console.log('done');
+          setGrpLoading(false);
+        });
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  };
+
   const GetAllCompanyTemplate = (Comapany: any) => {
     setTempLoading(true);
     try {
@@ -87,7 +115,10 @@ export default function DataSupplierContext({
           tempLoading,
           setTempLoading,
           compLoading,
-          
+          GetAllGraphics,
+          grpLoading,
+          setGrpLoading,
+          graphData
         }}
       >
         {children}

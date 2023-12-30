@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
-import { ScrollShadow } from '@nextui-org/react';
+import { Button, ScrollShadow } from '@nextui-org/react';
 import ShowGraphics from './ShowGraphics';
 import EditGraphics from './EditGraphic';
-
+import { DataSupplier } from '../../../DataContaxt/FetchData';
+import { Image } from '@nextui-org/react';
 interface FormData {
   id: number;
   url: string;
   suggestionImage: string;
   nameImageUrl: string;
-  bannerId: number;
+  bannerId: string;
   position: 'left' | 'right';
-  incmNameId: number;
+  incmNameId: string;
   active: boolean;
 }
 
 interface propGraphic {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  formData: FormData[];
+  setFormData: React.Dispatch<React.SetStateAction<FormData[]>>;
   bannerIdOptions: any[];
   incmNameIdOptions: any[];
-  handleSaveData: () => void;
   error: string | null;
-  savedData: FormData[];
+  selSubType: string | null;
+  selType: string | null;
 }
 
 const GraphicsLinkSingle: React.FC<propGraphic> = ({
@@ -29,139 +30,226 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
   setFormData,
   bannerIdOptions,
   incmNameIdOptions,
-  handleSaveData,
+  selSubType,
   error,
-  savedData,
+  selType,
 }) => {
-  const handleInputChange = (field: keyof FormData, value: string | number) => {
-    setFormData((prevData: any) => ({
-      ...prevData,
-      [field]: value,
-    }));
+  const handleInputChange = (
+    index: number,
+    field: keyof FormData,
+    value: string | number,
+  ) => {
+    setFormData((prevData: FormData[]) => {
+      const newData = [...prevData];
+      newData[index] = {
+        ...newData[index],
+        [field]: value,
+      };
+      return newData;
+    });
   };
 
-  return (
-    <div className="flex flex-row gap-3 w-full justify-center items-center">
-      <div className=" grid grid-cols-2 gap-3 w-full justify-center items-center">
-        {/* Your form input fields */}
-        {/* <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">ID</label>
-          <input
-            type="text"
-            placeholder="ID"
-            disabled
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={formData.id}
-            onChange={(e) => handleInputChange('id', parseInt(e.target.value))}
-          />
-        </div> */}
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Suggetion Image Url
-          </label>
-          <input
-            type="text"
-            placeholder="Suggetion Image Url"
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={formData.url}
-            onChange={(e) => handleInputChange('url', e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Background Image Url
-          </label>
-          <input
-            type="text"
-            placeholder="Background Image Url"
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={formData.suggestionImage}
-            onChange={(e) =>
-              handleInputChange('suggestionImage', e.target.value)
-            }
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Name Image Url
-          </label>
-          <input
-            type="text"
-            placeholder="Name Image Url"
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={formData.nameImageUrl}
-            onChange={(e) => handleInputChange('nameImageUrl', e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Select Banner For Image
-          </label>
-          <select
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={formData.bannerId}
-            onChange={(e) =>
-              handleInputChange('bannerId', parseInt(e.target.value))
-            }
-          >
-            {/* Options for bannerId */}
-            {bannerIdOptions.map((option) => (
-              <option key={option} value={option}>
-                Banner {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Image Placement
-          </label>
-          <select
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={formData.position}
-            onChange={(e) => handleInputChange('position', e.target.value)}
-          >
-            {/* Options for position */}
-            <option value="left">Left</option>
-            <option value="right">Right</option>
-          </select>
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Income Name Graphic
-          </label>
-          <select
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={formData.incmNameId}
-            onChange={(e) =>
-              handleInputChange('incmNameId', parseInt(e.target.value))
-            }
-          >
-            {/* Options for incmNameId */}
-            {incmNameIdOptions.map((option) => (
-              <option key={option} value={option}>
-                Option {option}
-              </option>
-            ))}
-          </select>
-        </div>
+  const handleDelete = (index: number) => {
+    setFormData((prevData: FormData[]) =>
+      prevData.filter((_, i) => i !== index),
+    );
+  };
 
-        <div className="w-full">
-          <div className="h-5"></div>
-          <button
-            className="bg-black w-full text-white font-semibold p-2 rounded"
-            onClick={handleSaveData}
-          >
-            Save Data
-          </button>
+  const handleAdd = () => {
+    setFormData((prevData: FormData[]) => [
+      ...prevData,
+      {
+        id: 0,
+        url: '',
+        suggestionImage: '',
+        nameImageUrl: '',
+        bannerId: '',
+        position: 'left',
+        incmNameId: '',
+        active: false,
+      },
+    ]);
+  };
+
+  console.log(selType, 'gfgh');
+
+  return (
+    <div className="flex flex-col gap-3 w-full justify-start items-start">
+      {formData?.map((entry, index) => (
+        <div
+          key={index}
+          className="flex flex-row w-full justify-center items-center gap-3"
+        >
+          <div className="flex w-full justify-center items-center  flex-row border  rounded-lg border-black p-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 w-3/4 mt-5 justify-center items-center">
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-semibold text-black">
+                  Suggetion Image Url
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Suggetion Image Url"
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  value={entry.suggestionImage}
+                  onChange={(e) =>
+                    handleInputChange(index, 'suggestionImage', e.target.value)
+                  }
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-semibold text-black">
+                  Background Image Url
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Background Image Url"
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  value={entry.url}
+                  onChange={(e) =>
+                    handleInputChange(index, 'url', e.target.value)
+                  }
+                />
+              </div>
+              {selType === 'Festival' ||
+              selType === 'Quate-Banner' ||
+              selType === 'ThankYou-Banner' ? null : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Name Image Url
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Name Image Url"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.nameImageUrl}
+                    onChange={(e) =>
+                      handleInputChange(index, 'nameImageUrl', e.target.value)
+                    }
+                  />
+                </div>
+              )}
+              {selType === 'Festival' ||
+              selType === 'Quate-Banner' ||
+              selType === 'ThankYou-Banner' ? null : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Select Badge For Image
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Badge For Image.."
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.bannerId}
+                    onChange={(e) =>
+                      handleInputChange(index, 'bannerId', e.target.value)
+                    }
+                  />
+                </div>
+              )}
+
+              {selType === 'Festival' ||
+              selType === 'Quate-Banner' ||
+              selType === 'ThankYou-Banner' ||
+              selType === 'Wish-Banner' ? null : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Income Name Graphic
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="income Name Graphics "
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.incmNameId}
+                    onChange={(e) =>
+                      handleInputChange(index, 'incmNameId', e.target.value)
+                    }
+                  />
+                </div>
+              )}
+
+              {selType === 'Festival' ? null : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Image Placement
+                  </label>
+                  <select
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.position}
+                    onChange={(e) =>
+                      handleInputChange(index, 'position', e.target.value)
+                    }
+                  >
+                    {/* Options for position */}
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                  </select>
+                </div>
+              )}
+
+              <Button
+                size="sm"
+                className=" bg-danger w-[100px] text-white font-semibold"
+                onClick={() => handleDelete(index)}
+              >
+                Delete
+              </Button>
+            </div>
+
+            <div className="flex flex-col  w-1/3  border border-black p-2 rounded-lg ">
+              <div className="flex flex-col w-full gap-1 justify-center items-center">
+                <Image src={entry?.suggestionImage} className="w-[200px] " />
+                <p className="text-xs font-semibold text-black">
+                  Suggetion Image
+                </p>
+              </div>
+              <div className="flex  w-full  gap-3 rounded-lg p-2 grid grid-cols-2 justify-center items-center   ">
+                <div className="flex flex-col w-full gap-1 justify-center items-center">
+                  <Image src={entry?.url} className="w-[120px] " />
+                  <p className="text-xs font-semibold text-black">
+                    Background Image
+                  </p>
+                </div>
+                {selType === 'Festival' ||
+                selType === 'Quate-Banner' ||
+                selType === 'ThankYou-Banner' ? null : (
+                  <div className="flex flex-col w-full gap-1 justify-center items-center">
+                    <Image src={entry?.nameImageUrl} className="w-[120px] " />
+                    <p className="text-xs font-semibold text-black">
+                      {selSubType} Graphics Name
+                    </p>
+                  </div>
+                )}
+                {selType === 'Festival' ||
+                selType === 'Quate-Banner' ||
+                selType === 'ThankYou-Banner' ? null : (
+                  <div className="flex flex-col gap-1 w-full justify-center items-center">
+                    <Image src={entry?.bannerId} className="w-[120px] " />
+                    <p className="text-xs font-semibold text-black">Banner</p>
+                  </div>
+                )}
+                {selType === 'Festival' ||
+                selType === 'Quate-Banner' ||
+                selType === 'ThankYou-Banner' ||
+                selType === 'Wish-Banner' ? null : (
+                  <div className="flex flex-col w-full gap-1 justify-center items-center">
+                    <Image src={entry?.incmNameId} className="w-[120px] " />
+                    <p className="text-xs font-semibold text-black">
+                      Income Name
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      {/* {error && <p className="text-danger">{error}</p>} */}
-      {/* <ScrollShadow hideScrollBar className="w-[300px] h-[400px]">
-        <div className="flex flex-col gap-3 justify-center items-center">
-          <EditGraphics design={savedData} />
-        </div>
-      </ScrollShadow> */}
+      ))}
+
+      <Button
+        className="bg-black  text-white font-semibold p-2"
+        onClick={handleAdd}
+      >
+        Add Template +
+      </Button>
     </div>
   );
 };
