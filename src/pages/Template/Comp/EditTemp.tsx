@@ -159,11 +159,19 @@ export default function EditTemplate({
         </div>
       </div>
       {loading === true ? (
-        <Button isLoading={true} size="lg">
+        <Button
+          isLoading={true}
+          size="lg"
+          className="bg-black text-white font-semibold"
+        >
           Wait....
         </Button>
       ) : (
-        <Button onPress={() => handleSaveCompany(Data.id)} size="lg">
+        <Button
+          className="bg-black text-white font-semibold"
+          onPress={() => handleSaveCompany(Data.id)}
+          size="lg"
+        >
           Save Template
         </Button>
       )}

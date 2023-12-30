@@ -88,13 +88,13 @@ export default function AddTemplate({
           .then((res) => console.log(res))
           .catch((err) => console.log(err))
           .finally(() => {
-           setTimeout(()=>{
-            GetAllCompanyTemplate(selectComp);
-            setLoading(false);
-            onClose();
-            setSwich('temp');
-            setSelectTemp(selType);
-           },1000)
+            setTimeout(() => {
+              GetAllCompanyTemplate(selectComp);
+              setLoading(false);
+              onClose();
+              setSwich('temp');
+              setSelectTemp(selType);
+            }, 1000);
           });
       } catch (error) {
         console.log(error, 'error');
@@ -164,9 +164,23 @@ export default function AddTemplate({
           />
         </div>
       </div>
-      <Button onPress={handleSaveCompany} size="lg">
-        Save Template
-      </Button>
+      {loading === true ? (
+        <Button
+          isLoading={true}
+          size="lg"
+          className="bg-black text-white font-semibold"
+        >
+          Wait....
+        </Button>
+      ) : (
+        <Button
+          className="bg-black text-white font-semibold"
+          onPress={handleSaveCompany}
+          size="lg"
+        >
+          Save Template
+        </Button>
+      )}
     </div>
   );
 }
