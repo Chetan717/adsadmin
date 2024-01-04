@@ -330,7 +330,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 }}
               </SidebarLinkGroup>
               {/* <!-- Menu Item Templates --> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/temp/Template"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -365,9 +365,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Template
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Forms --> */}
-              {/* <SidebarLinkGroup
+              <SidebarLinkGroup
                 activeCondition={
                   pathname === '/temp' || pathname.includes('temp')
                 }
@@ -451,18 +451,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Templates
+                              MLM Templates
                             </NavLink>
                           </li>
                           <li>
                             <NavLink
-                              to="/forms/form-layout"
+                              to="/temp/GenaralTemp"
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
-                              MLM User
+                              Genaral Template
                             </NavLink>
                           </li>
                         </ul>
@@ -470,7 +470,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     </React.Fragment>
                   );
                 }}
-              </SidebarLinkGroup> */}
+              </SidebarLinkGroup>
 
               <li>
                 <NavLink
@@ -553,13 +553,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       fill=""
                     />
                   </svg>
-                  Profile
+                  Account
                 </NavLink>
               </li>
               {/* <!-- Menu Item Profile --> */}
               {/* <!-- Menu Item Settings --> */}
 
-              <li>
+              {/* <li>
                 <NavLink
                   to="/settings"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -598,7 +598,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Settings
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
 

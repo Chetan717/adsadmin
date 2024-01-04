@@ -31,7 +31,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
   companydata,
   id,
 }) => {
-  const { GetAllCompany } = DataSupplier();
+  const { GetAllCompany,apiId } = DataSupplier();
 
   // Use useEffect to update the state when companydata changes
   useEffect(() => {
@@ -69,7 +69,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
     try {
       axios
         .put(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
           companyData,
         )
         .then((res) => console.log(res))

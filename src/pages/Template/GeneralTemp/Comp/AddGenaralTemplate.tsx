@@ -9,65 +9,38 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import axios from 'axios';
-import GraphicsLinkMultiple from './GrahicsLinkMultiple';
-import { DataSupplier } from '../../../DataContaxt/FetchData';
-import ShowGraphics from './ShowGraphics';
-
-export default function AddTemplate({
-  selectComp,
-  TemplateType,
-  setSwich,
-  setSelectTemp,
-}) {
+import { DataSupplier } from '../../../../DataContaxt/FetchData';
+import GenarlMultipleGraphics from './GenarlMultipleGraphics';
+export default function AddGenaralTemplate({}) {
   const [loading, setLoading] = useState(false);
-  const { GetAllCompanyTemplate, apiId } = DataSupplier();
-  const bannerIdOptions = [1, 3, 4, 5];
-  // Options for incmNameId
-  const incmNameIdOptions = [1, 3, 4, 5];
+  const { apiId, GetAllGeneralTemplate } = DataSupplier();
 
   interface FormData {
     id: number;
     url: string;
     suggestionImage: string;
-    nameImageUrl: string;
-    bannerId: number;
+
     position: 'left' | 'right';
-    incmNameId: number;
+
     active: boolean;
   }
-  const [selType, setSelType] = useState(TemplateType[0]);
+  const [selType, setSelType] = useState('Festival');
   const [showcase, setShowcase] = useState('');
   const [selSubType, setSelSubType] = useState('');
+  const [date, setDate] = useState('');
 
   const [formData, setFormData] = useState<FormData[]>([]);
-
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
-  const [savedData, setSavedData] = useState<FormData[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  const validateForm = (): boolean => {
-    const { url, suggestionImage, nameImageUrl } = formData;
-    if (!url || !suggestionImage || !nameImageUrl) {
-      setError('All fields are required.');
-      return false;
-    }
-    setError(null);
-    return true;
-  };
 
   const DataOfTemplate = {
     Type: selType,
     SubType: selSubType,
     ShowCase: showcase,
-    APPTYPE: 'mlm',
-    Company: selectComp,
+    APPTYPE: 'Genaral',
+    Date: date,
     GraphicsLink: formData,
     Active: true,
     Launched: true,
   };
-
-  console.log(DataOfTemplate, 'temp');
 
   const handleSaveCompany = () => {
     if (!selType || !selSubType || !showcase) {
@@ -88,11 +61,8 @@ export default function AddTemplate({
           .catch((err) => console.log(err))
           .finally(() => {
             setTimeout(() => {
-              GetAllCompanyTemplate(selectComp);
               setLoading(false);
-              onClose();
-              setSwich('temp');
-              setSelectTemp(selType);
+              GetAllGeneralTemplate('Genaral');
             }, 1000);
           });
       } catch (error) {
@@ -113,11 +83,9 @@ export default function AddTemplate({
             onChange={(e) => setSelType(e.target.value)}
           >
             {/* Options for bannerId */}
-            {TemplateType?.map((option: any) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
+
+            <option value="Festival">Festival</option>
+            <option value="Quate-Banner">Quate-Banner</option>
           </select>
         </div>
 
@@ -133,6 +101,20 @@ export default function AddTemplate({
             onChange={(e) => setSelSubType(e.target.value)}
           />
         </div>
+        {selType === 'Festival' ? (
+          <div className="flex flex-col gap-1">
+            <label className="text-xs font-semibold text-black">
+              Date Of {selType}
+            </label>
+            <input
+              type="date"
+              placeholder="Date"
+              className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+        ) : null}
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-black">
             Showcase Image Url
@@ -151,7 +133,7 @@ export default function AddTemplate({
           Add Template And Their Graphics
         </label>
         <div className="flex flex-row gap-1 justify-center w-full items-center">
-          <GraphicsLinkMultiple
+          {/* <GraphicsLinkMultiple
             // handleSaveData={handleSaveData}
             error={error}
             formData={formData}
@@ -159,6 +141,12 @@ export default function AddTemplate({
             incmNameIdOptions={incmNameIdOptions}
             setFormData={setFormData}
             selSubType={selSubType}
+            selType={selType}
+          /> */}
+          <GenarlMultipleGraphics
+            formData={formData}
+            selSubType={selSubType}
+            setFormData={setFormData}
             selType={selType}
           />
         </div>

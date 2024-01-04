@@ -19,7 +19,7 @@ interface AddmlmProps {
 }
 
 const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
-  const { GetAllCompany } = DataSupplier();
+  const { GetAllCompany,apiId } = DataSupplier();
 
   const [companyData, setCompanyData] = useState({
     companyName: '',
@@ -57,7 +57,7 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
       var ApiKey = 'ADS360KEY';
       axios
         .put(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/CreateMlm/?API_KEY=${ApiKey}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/CreateMlm/?API_KEY=${ApiKey}`,
           companyData,
         )
         .then((res) => console.log(res))

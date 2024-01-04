@@ -8,10 +8,9 @@ interface FormData {
   id: number;
   url: string;
   suggestionImage: string;
-  nameImageUrl: string;
-  bannerId: string;
+
   position: 'left' | 'right';
-  incmNameId: string;
+
   active: boolean;
 }
 
@@ -25,7 +24,7 @@ interface propGraphic {
   selType: string | null;
 }
 
-const GraphicsLinkSingle: React.FC<propGraphic> = ({
+const GenarlMultipleGraphics: React.FC<propGraphic> = ({
   formData,
   setFormData,
   bannerIdOptions,
@@ -62,10 +61,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
         id: 0,
         url: '',
         suggestionImage: '',
-        nameImageUrl: '',
-        bannerId: '',
         position: 'left',
-        incmNameId: '',
         active: false,
       },
     ]);
@@ -110,68 +106,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   }
                 />
               </div>
-              {selType === 'Festival' ||
-              selType === 'Quate-Banner' ||
-              selType === 'ThankYou-Banner' ? null : (
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-black">
-                    {selType === 'Achievements'
-                      ? 'Name Graphics For Achivement'
-                      : `${selType} Graphic Name`}
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="Name Image Url"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    value={entry.nameImageUrl}
-                    onChange={(e) =>
-                      handleInputChange(index, 'nameImageUrl', e.target.value)
-                    }
-                  />
-                </div>
-              )}
-              {selType === 'Festival' ||
-              selType === 'Quate-Banner' ||
-              selType === 'ThankYou-Banner' ? null : (
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-black">
-                    {selType === 'Achievements'
-                      ? 'Select Background Image For Name'
-                      : 'Select Badge For Image'}
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="Badge For Image.."
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    value={entry.bannerId}
-                    onChange={(e) =>
-                      handleInputChange(index, 'bannerId', e.target.value)
-                    }
-                  />
-                </div>
-              )}
-
-              {selType === 'Festival' ||
-              selType === 'Quate-Banner' ||
-              selType === 'ThankYou-Banner' ||
-              selType === 'Wish-Banner' ? null : (
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-black">
-                    {selType === 'Achievements'
-                      ? `Upper Graphics of Income for ${selType}`
-                      : `Income Name Graphic`}
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="income Name Graphics "
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    value={entry.incmNameId}
-                    onChange={(e) =>
-                      handleInputChange(index, 'incmNameId', e.target.value)
-                    }
-                  />
-                </div>
-              )}
 
               {selType === 'Festival' ? null : (
                 <div className="flex flex-col gap-1">
@@ -215,42 +149,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     Background Image
                   </p>
                 </div>
-                {selType === 'Festival' ||
-                selType === 'Quate-Banner' ||
-                selType === 'ThankYou-Banner' ? null : (
-                  <div className="flex flex-col w-full gap-1 justify-center items-center">
-                    <Image src={entry?.nameImageUrl} className="w-[120px] " />
-                    <p className="text-xs font-semibold text-black">
-                      {selSubType} Graphics Name
-                    </p>
-                  </div>
-                )}
-                {selType === 'Festival' ||
-                selType === 'Quate-Banner' ||
-                selType === 'ThankYou-Banner' ? null : (
-                  <div className="flex flex-col gap-1 w-full justify-center items-center">
-                    <Image src={entry?.bannerId} className="w-[120px] " />
-                    <p className="text-xs font-semibold text-black">
-                      {selType === 'Achievements'
-                        ? 'Background Image For Name'
-                        : 'Select Badge For Image'}
-                   
-                    </p>
-                  </div>
-                )}
-                {selType === 'Festival' ||
-                selType === 'Quate-Banner' ||
-                selType === 'ThankYou-Banner' ||
-                selType === 'Wish-Banner' ? null : (
-                  <div className="flex flex-col w-full gap-1 justify-center items-center">
-                    <Image src={entry?.incmNameId} className="w-[120px] " />
-                    <p className="text-xs font-semibold text-black">
-                      {selType === 'Achievements'
-                        ? `Upper Graphics Income`
-                        : `Income Name Graphic`}
-                    </p>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -267,4 +165,4 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
   );
 };
 
-export default GraphicsLinkSingle;
+export default GenarlMultipleGraphics;

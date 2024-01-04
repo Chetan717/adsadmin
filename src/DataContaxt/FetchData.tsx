@@ -27,12 +27,14 @@ export default function DataSupplierContext({
   const [companyData, setCompanyData] = useState([]);
   const [graphData, setGraphData] = useState([]);
   const [templateData, setTemplateData] = useState([]);
+  const [genTemplateData, setGenTemplateData] = useState([]);
+  const [genTempLoading, setGenTempLoading] = useState(false);
   const [tempLoading, setTempLoading] = useState(false);
   const [compLoading, setCompLoading] = useState(false);
   const [grpLoading, setGrpLoading] = useState(false);
 
   console.log(graphData, 'grp');
-
+  const apiId = 'lk8epatoge';
   const GetAllCompany = () => {
     setCompLoading(true);
     try {
@@ -40,7 +42,7 @@ export default function DataSupplierContext({
 
       axios
         .get(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/mlmCom/?API_KEY=${ApiKey}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlmCom/?API_KEY=${ApiKey}`,
         )
         .then(
           (res) => setCompanyData(res?.data),
@@ -62,7 +64,7 @@ export default function DataSupplierContext({
 
       axios
         .get(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/GrpAll/?API_KEY=${ApiKey}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/GrpAll/?API_KEY=${ApiKey}`,
         )
         .then(
           (res) => setGraphData(res?.data),
@@ -82,7 +84,7 @@ export default function DataSupplierContext({
     setTempLoading(true);
     try {
       // Set the API endpoint and query parameters
-      const endpoint = `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/tempByCompany/?COMPANY_ID=${Comapany}`;
+      const endpoint = `https://${apiId}.execute-api.ap-south-1.amazonaws.com/tempByCompany/?COMPANY_ID=${Comapany}`;
 
       axios
         .get(endpoint)
@@ -96,6 +98,29 @@ export default function DataSupplierContext({
         })
         .finally(() => {
           setTempLoading(false);
+        });
+    } catch (error) {
+      console.error('Error in GetAllTemplate:', error);
+    }
+  };
+
+  const GetAllGeneralTemplate = (APPTYPE: any) => {
+    setGenTempLoading(true);
+    try {
+      // Set the API endpoint and query parameters
+      const endpoint = `https://${apiId}.execute-api.ap-south-1.amazonaws.com/TempGen/?APPTYPE=${APPTYPE}`;
+      axios
+        .get(endpoint)
+        .then((res) => {
+          setGenTemplateData(res?.data);
+        })
+        .catch((err) => {
+          if (err) {
+            setGenTemplateData([]);
+          }
+        })
+        .finally(() => {
+          setGenTempLoading(false);
         });
     } catch (error) {
       console.error('Error in GetAllTemplate:', error);
@@ -118,7 +143,11 @@ export default function DataSupplierContext({
           GetAllGraphics,
           grpLoading,
           setGrpLoading,
-          graphData
+          graphData,
+          apiId,
+          GetAllGeneralTemplate,
+          genTempLoading,
+          genTemplateData,
         }}
       >
         {children}

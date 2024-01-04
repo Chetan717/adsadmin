@@ -7,7 +7,13 @@ const MainGraphics: React.FC = () => {
   const [loading, setLoading] =
     useState<React.Dispatch<React.SetStateAction<boolean>>>(false);
 
-  const grptype = ['Banner', 'Frame', 'Gems', 'Footers', 'IncomeName', 'other'];
+  const grptype = [
+    'PhotoFrames',
+    'TopUplineFrames',
+    'Gems',
+    'Footers',
+    'other',
+  ];
   const [selType, setSelType] = useState(grptype[0]);
   return (
     <>

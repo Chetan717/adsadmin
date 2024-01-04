@@ -10,8 +10,8 @@ import EditTemplate from './Comp/EditTemp';
 
 export default function MainTemplate() {
   const TemplateType = [
-    'Festival',
-    'Quate-Banner',
+    // 'Festival',
+    // 'Quate-Banner',
     'Achievements',
     'Rank-Promotion',
     'Wish-Banner',
@@ -19,7 +19,7 @@ export default function MainTemplate() {
     'BonPromotion-Banner',
     'General-Banner',
     'ThankYou-Banner',
-    'Meeting',
+    // 'Meeting',
   ];
 
   const { GetAllCompanyTemplate } = DataSupplier();

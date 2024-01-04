@@ -10,7 +10,7 @@ interface AddmlmProps {
 }
 
 const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
-  const { companyData, GetAllCompany } = DataSupplier();
+  const { companyData, GetAllCompany,apiId } = DataSupplier();
 
   console.log(companyData);
   const HandleDelete = (id: any) => {
@@ -18,7 +18,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     try {
       axios
         .delete(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
         )
         .then((res) => {
           console.log(res.data);

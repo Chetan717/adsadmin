@@ -23,7 +23,7 @@ const AddGraphics: React.FC<AddmlmProps> = ({
   setLoading,
   grptype,
 }) => {
-  const { GetAllGraphics } = DataSupplier();
+  const { GetAllGraphics,apiId } = DataSupplier();
 
   const [graphicsData, setGraphicsData] = useState({
     GraphicName: '',
@@ -62,7 +62,7 @@ const AddGraphics: React.FC<AddmlmProps> = ({
       var ApiKey = 'ADS360KEY';
       axios
         .put(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/CreateGRP/?API_KEY=${ApiKey}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/CreateGRP/?API_KEY=${ApiKey}`,
           graphicsData,
         )
         .then((res) => console.log(res))

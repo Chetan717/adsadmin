@@ -27,7 +27,7 @@ const EditGraphics: React.FC<AddmlmProps> = ({
   dataAll,
   id,
 }) => {
-  const { GetAllGraphics } = DataSupplier();
+  const { GetAllGraphics,apiId } = DataSupplier();
 
   const [graphicsData, setGraphicsData] = useState({
     GraphicName: '',
@@ -69,7 +69,7 @@ const EditGraphics: React.FC<AddmlmProps> = ({
     try {
       axios
         .put(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
           graphicsData,
         )
         .then((res) => console.log(res))

@@ -11,7 +11,7 @@ export default function EditTemplate({
   setSwich,
 }) {
   const [loading, setLoading] = useState(false);
-  const { GetAllCompanyTemplate } = DataSupplier();
+  const { GetAllCompanyTemplate, apiId } = DataSupplier();
   const bannerIdOptions = [1, 3, 4, 5];
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function EditTemplate({
       try {
         axios
           .put(
-            `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
+            `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
             DataOfTemplate,
           )
           .then((res) => console.log(res))

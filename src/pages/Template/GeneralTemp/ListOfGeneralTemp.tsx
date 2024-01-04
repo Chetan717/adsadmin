@@ -12,7 +12,7 @@ export default function ListOfTemplate({
   setSwich,
   selectTemp,
 }) {
-  const { templateData, tempLoading, GetAllCompanyTemplate, apiId } =
+  const { GetAllGeneralTemplate, genTempLoading, genTemplateData, apiId } =
     DataSupplier();
 
   const handleDelete = (id: any) => {
@@ -24,7 +24,7 @@ export default function ListOfTemplate({
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
         .finally(() => {
-          GetAllCompanyTemplate(selectComp);
+          GetAllGeneralTemplate('Genaral');
         });
     } catch (error) {
       console.log(error, 'error');
@@ -33,10 +33,10 @@ export default function ListOfTemplate({
 
   const hangoEdit = (data: any, id: any) => {
     setDataEdit({ data, id });
-    setSwich('update');
+    setSwich('Edit');
   };
 
-  const filteredGrp = templateData?.filter((i: any) => {
+  const filteredGrp = genTemplateData?.filter((i: any) => {
     if (i?.attributeToBeUpdated) {
       // If attributeToBeUpdated exists, filter based on its properties
       return i.attributeToBeUpdated.Type === `${selectTemp}`;
@@ -46,6 +46,7 @@ export default function ListOfTemplate({
     }
   });
 
+  console.log(filteredGrp, 'gen');
   return (
     <>
       <div className="flex flex-col justify-start w-full items-start">
@@ -81,7 +82,7 @@ export default function ListOfTemplate({
             hideScrollBar
             className="w-full h-full flex flex-col gap-3"
           >
-            {tempLoading === true ? (
+            {genTempLoading === true ? (
               <Spinner />
             ) : (
               filteredGrp?.map((i: any, index: any) => {
@@ -106,6 +107,13 @@ export default function ListOfTemplate({
                       </p>
                     </div>
 
+                    {selectTemp === 'Festival' ? (
+                      <div className="flex items-center justify-center p-2.5 xl:p-5">
+                        <p className="text-black dark:text-white">
+                          {displayData?.Date}
+                        </p>
+                      </div>
+                    ) : null}
                     <div className="flex items-center justify-center p-2.5 xl:p-5">
                       <p className="text-black dark:text-white">
                         {displayData?.Type}

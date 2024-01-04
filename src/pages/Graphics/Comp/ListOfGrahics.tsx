@@ -17,14 +17,14 @@ const GraphicsList: React.FC<AddmlmProps> = ({
   grptype = { grptype },
   selType,
 }) => {
-  const { GetAllGraphics, graphData } = DataSupplier();
+  const { GetAllGraphics, graphData,apiId } = DataSupplier();
 
   const HandleDelete = (id: any) => {
     setLoading(true);
     try {
       axios
         .delete(
-          `https://q5gogikuke.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
         )
         .then((res) => {
           console.log(res.data);
