@@ -110,7 +110,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   }
                 />
               </div>
-              {selType === 'Festival' ||
+              {/* {selType === 'Festival' ||
               selType === 'Quate-Banner' ||
               selType === 'ThankYou-Banner' ? null : (
                 <div className="flex flex-col gap-1">
@@ -129,7 +129,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     }
                   />
                 </div>
-              )}
+              )} */}
               {selType === 'Festival' ||
               selType === 'Quate-Banner' ||
               selType === 'ThankYou-Banner' ? null : (
@@ -151,7 +151,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )}
 
-              {selType === 'Festival' ||
+              {/* {selType === 'Festival' ||
               selType === 'Quate-Banner' ||
               selType === 'ThankYou-Banner' ||
               selType === 'Wish-Banner' ? null : (
@@ -171,7 +171,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     }
                   />
                 </div>
-              )}
+              )} */}
 
               {selType === 'Festival' ? null : (
                 <div className="flex flex-col gap-1">
@@ -215,7 +215,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     Background Image
                   </p>
                 </div>
-                {selType === 'Festival' ||
+                {/* {selType === 'Festival' ||
                 selType === 'Quate-Banner' ||
                 selType === 'ThankYou-Banner' ? null : (
                   <div className="flex flex-col w-full gap-1 justify-center items-center">
@@ -224,7 +224,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                       {selSubType} Graphics Name
                     </p>
                   </div>
-                )}
+                )} */}
                 {selType === 'Festival' ||
                 selType === 'Quate-Banner' ||
                 selType === 'ThankYou-Banner' ? null : (
@@ -238,7 +238,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     </p>
                   </div>
                 )}
-                {selType === 'Festival' ||
+                {/* {selType === 'Festival' ||
                 selType === 'Quate-Banner' ||
                 selType === 'ThankYou-Banner' ||
                 selType === 'Wish-Banner' ? null : (
@@ -250,7 +250,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                         : `Income Name Graphic`}
                     </p>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
