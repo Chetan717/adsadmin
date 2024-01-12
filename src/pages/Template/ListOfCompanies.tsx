@@ -17,7 +17,7 @@ const ListOfCompanies: React.FC<list> = ({
   setLoad,
   load,
 }) => {
-  const { companyData, GetAllCompanyTemplate } = DataSupplier();
+  const { companyData } = DataSupplier();
   const GotoListTemplate = (swich: any, Company: any) => {
     setLoad(true);
     setTimeout(() => {
@@ -34,7 +34,7 @@ const ListOfCompanies: React.FC<list> = ({
           List Of Companies {`>`}
         </h1>
         <div className="grid grid-cols-3 justify-center items-center gap-6">
-          {companyData?.LimitedData?.map((i: any, index: any) => {
+          {companyData?.LimitedData?.Items?.map((i: any, index: any) => {
             const displayData = i.attributeToBeUpdated || i;
             return (
               <Card
