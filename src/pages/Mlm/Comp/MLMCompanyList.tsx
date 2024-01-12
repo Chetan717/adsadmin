@@ -41,7 +41,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     try {
       if (totalData > compLimit) {
         setCompLimit(compLimit + 10);
-      } 
+      }
     } catch (error) {}
   };
   return (
@@ -53,7 +53,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
           </h1>
         </div>
         <div className="grid grid-cols-3 justify-start items-start gap-10">
-          {companyData?.LimitedData?.map((i: any, index: number) => {
+          {companyData?.LimitedData?.Items.map((i: any, index: number) => {
             const displayData = i.attributeToBeUpdated || i;
             const id = i?.id;
             return (
