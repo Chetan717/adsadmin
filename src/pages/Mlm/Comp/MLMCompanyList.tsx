@@ -53,7 +53,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
           </h1>
         </div>
         <div className="grid grid-cols-3 justify-start items-start gap-10">
-          {companyData?.LimitedData?.Items.map((i: any, index: number) => {
+          {companyData?.LimitedData?.Items?.map((i: any, index: number) => {
             const displayData = i.attributeToBeUpdated || i;
             const id = i?.id;
             return (
