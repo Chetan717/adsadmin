@@ -19,7 +19,7 @@ export default function MainTemplate() {
     'BonPromotion-Banner',
     'General-Banner',
     'ThankYou-Banner',
-    // 'Meeting',
+    'Meeting',
   ];
 
   const { GetAllCompanyTemplate } = DataSupplier();
@@ -30,9 +30,9 @@ export default function MainTemplate() {
   const [load, setLoad] = useState(false);
   const [loadGr, setLoadGr] = useState(false);
 
-  useEffect(() => {
-    GetAllCompanyTemplate(`${selectComp}`);
-  }, [selectComp]);
+  // useEffect(() => {
+  //   GetAllCompanyTemplate(`${selectComp}`);
+  // }, [selectComp]);
 
   const SwitchToedit = () => {
     setLoad(true);

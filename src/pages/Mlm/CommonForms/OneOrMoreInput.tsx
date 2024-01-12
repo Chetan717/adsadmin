@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@nextui-org/react';
+import { Button, Image } from '@nextui-org/react';
 
 interface MultiInputFormProps {
   inputs: { id: number; value: string }[];
@@ -11,9 +11,14 @@ interface MultiInputFormProps {
       }[]
     >
   >;
+  namebtn: string;
 }
 
-const MultiInputForm: React.FC<MultiInputFormProps> = ({ inputs, setInputs }) => {
+const MultiInputForm: React.FC<MultiInputFormProps> = ({
+  inputs,
+  setInputs,
+  namebtn,
+}) => {
   const handleChange = (id: number, value: any) => {
     const updatedInputs = inputs.map((input) =>
       input.id === id ? { ...input, value } : input,
@@ -38,27 +43,34 @@ const MultiInputForm: React.FC<MultiInputFormProps> = ({ inputs, setInputs }) =>
     <div className="flex flex-col gap-2 w-full">
       {inputs.map((input) => (
         <div className="flex flex-row gap-2" key={input.id}>
-          <input
-            type="text"
-            className="w-full rounded-lg border-[1px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+          <textarea
+            className="w-full rounded-lg text-xs text-black border-[1px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             value={input.value}
             onChange={(e) => handleChange(input.id, e.target.value)}
           />
-
-          <Button
-            color="danger"
-            variant="light"
-            onPress={() => handleDeleteInput(input.id)}
-          >
-            Delete
-          </Button>
+          <div className="flex flex-col justify-center items-center gap-2">
+            {namebtn === 'Logos' ? (
+              <Image
+                src={`${input?.value}`}
+                className="w-[100px]  rounded-lg h-[50px]"
+              />
+            ) : null}
+            <Button
+              color="danger"
+              size={`sm`}
+              variant="light"
+              onPress={() => handleDeleteInput(input.id)}
+            >
+              Delete
+            </Button>
+          </div>
         </div>
       ))}
       <button
         className="flex justify-center rounded bg-[#000000] rounded-lg p-2 font-medium dark:bg-white dark:text-black text-white"
         onClick={handleAddInput}
       >
-        {inputs.length === 0 ? `Add Designations` : `Add +`}
+        {inputs.length === 0 ? `${'Add' + namebtn}` : `Add +`}
       </button>
     </div>
   );

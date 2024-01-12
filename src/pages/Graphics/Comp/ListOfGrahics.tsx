@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Card, CardHeader, CardBody, Image, Button } from '@nextui-org/react';
 import axios from 'axios';
@@ -17,7 +17,22 @@ const GraphicsList: React.FC<AddmlmProps> = ({
   grptype = { grptype },
   selType,
 }) => {
-  const { GetAllGraphics, graphData,apiId } = DataSupplier();
+  const { GetAllGraphics, graphData, apiId,} =
+    DataSupplier();
+
+  useEffect(() => {
+    GetAllGraphics();
+  }, []);
+
+  // const HandleLoadMore = (totalData, setTempLimit, tempLimit) => {
+  //   try {
+  //     if (totalData > tempLimit) {
+  //       setTempLimit(tempLimit + 10);
+  //     } else {
+  //       setTempLimit(tempLimit);
+  //     }
+  //   } catch (error) {}
+  // };
 
   const HandleDelete = (id: any) => {
     setLoading(true);

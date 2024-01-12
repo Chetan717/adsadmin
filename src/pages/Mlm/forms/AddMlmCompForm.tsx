@@ -19,7 +19,7 @@ interface AddmlmProps {
 }
 
 const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
-  const { GetAllCompany,apiId } = DataSupplier();
+  const { GetAllCompany, apiId } = DataSupplier();
 
   const [companyData, setCompanyData] = useState({
     companyName: '',
@@ -27,6 +27,7 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     Active: true,
     Launched: true,
     designations: [{ id: 1, value: '' }],
+    logos: [{ id: 1, value: '' }],
   });
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -42,6 +43,12 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     setCompanyData((prevData) => ({
       ...prevData,
       designations: inputs,
+    }));
+  };
+  const handleLogosChange = (inputs: any) => {
+    setCompanyData((prevData) => ({
+      ...prevData,
+      logos: inputs,
     }));
   };
 
@@ -123,15 +130,31 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                       />
                     </div>
                   </div>
-                  <div className="flex w-full flex-col justify-start items-center">
-                    <label className="mb-3 block text-black font-semibold dark:text-white">
-                      Add Company Designations
-                    </label>
-                    <div className="flex justify-start w-3/4 items-start">
-                      <MultiInputForm
-                        setInputs={handleDesignationsChange}
-                        inputs={companyData.designations}
-                      />
+                  <div className="flex w-full flex-row justify-start items-center">
+                    <div className="flex w-full flex-col justify-start items-center">
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Add Company Designations
+                      </label>
+                      <div className="flex justify-start w-3/4 items-start">
+                        <MultiInputForm
+                          setInputs={handleDesignationsChange}
+                          inputs={companyData.designations}
+                          namebtn={`Designations`}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex w-full flex-col justify-start items-center">
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Add Company Designations
+                      </label>
+                      <div className="flex justify-start w-3/4 items-start">
+                        <MultiInputForm
+                          setInputs={handleLogosChange}
+                          inputs={companyData.logos}
+                          namebtn={`Logos`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -11,7 +11,7 @@ export default function EditTemplate({
   setSwich,
 }) {
   const [loading, setLoading] = useState(false);
-  const { GetAllCompanyTemplate, apiId } = DataSupplier();
+  const { GetAllCompanyTemplate, apiId, tempLimit } = DataSupplier();
   const bannerIdOptions = [1, 3, 4, 5];
 
   useEffect(() => {
@@ -22,7 +22,6 @@ export default function EditTemplate({
   }, [Data]);
   // Options for incmNameId
   const incmNameIdOptions = [1, 3, 4, 5];
-  console.log(Data, 'dgvdfg');
 
   interface FormData {
     id: number;
@@ -65,9 +64,8 @@ export default function EditTemplate({
     Launched: true,
   };
 
-  console.log(DataOfTemplate, 'temp');
 
-  const handleSaveCompany = (id: any) => {
+  const handleSaveCompany = (id: any, tempLimit: any) => {
     if (!selType || !selSubType || !showcase) {
       console.log('Please fill in all required fields.');
       return;
@@ -169,7 +167,7 @@ export default function EditTemplate({
       ) : (
         <Button
           className="bg-black text-white font-semibold"
-          onPress={() => handleSaveCompany(Data.id)}
+          onPress={() => handleSaveCompany(Data.id, tempLimit)}
           size="lg"
         >
           Save Template

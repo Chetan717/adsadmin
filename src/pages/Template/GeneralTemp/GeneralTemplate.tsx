@@ -6,11 +6,7 @@ import { Button } from '@nextui-org/react';
 import ListOfTemplate from './ListOfGeneralTemp';
 import EditGenTemplate from './Comp/EditGenTemplate';
 export default function GeneralTemplate() {
-  const { GetAllGeneralTemplate, genTempLoading, genTemplateData } =
-    DataSupplier();
-  useEffect(() => {
-    GetAllGeneralTemplate('Genaral');
-  }, []);
+  const { genTempLoading, GetAllGeneralTemplate } = DataSupplier();
 
   const [swich, setSwich] = useState('Home');
   const [selectTemp, setSelectTemp] = useState('Festival');
@@ -39,14 +35,6 @@ export default function GeneralTemplate() {
             </div>
             <div className="flex flex-row gap-1 justify-center items-start">
               <div className="flex flex-row gap-3 rounded-lg h-full w-full justify-start items-center">
-                {/* <ListOfTemplate
-                  selectComp={selectComp}
-                  TemplateType={TemplateType}
-                  setSwich={setSwich}
-                  setDataEdit={setDataEdit}
-                  dataEdit={dataEdit}
-                  selectTemp={selectTemp}
-                /> */}
                 <ListOfTemplate
                   setDataEdit={setDataEdit}
                   dataEdit={dataEdit}

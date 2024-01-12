@@ -136,8 +136,8 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     {selType === 'Achievements'
-                      ? 'Select Background Image For Name'
-                      : 'Select Badge For Image'}
+                      ? 'Add Frame For Middle Image'
+                      : 'Add Badge For Image'}
                   </label>
                   <textarea
                     rows={3}
@@ -173,7 +173,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )} */}
 
-              {selType === 'Festival' ? null : (
+              {selType === 'Festival' || selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Image Placement
@@ -232,9 +232,8 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     <Image src={entry?.bannerId} className="w-[120px] " />
                     <p className="text-xs font-semibold text-black">
                       {selType === 'Achievements'
-                        ? 'Background Image For Name'
-                        : 'Select Badge For Image'}
-                   
+                        ? 'Frame For Image'
+                        : 'Badge For Image'}
                     </p>
                   </div>
                 )}

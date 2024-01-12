@@ -21,6 +21,7 @@ interface EditCompanyProps {
     Active: boolean;
     Launched: boolean;
     designations: Array<{ id: number; value: string }>;
+    logos: Array<{ id: number; value: string }>;
   };
   id: any;
 }
@@ -31,7 +32,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
   companydata,
   id,
 }) => {
-  const { GetAllCompany,apiId } = DataSupplier();
+  const { GetAllCompany, apiId, compLimit } = DataSupplier();
 
   // Use useEffect to update the state when companydata changes
   useEffect(() => {
@@ -57,8 +58,14 @@ const EditCompany: React.FC<EditCompanyProps> = ({
       designations: inputs,
     }));
   };
+  const handleLogosChange = (inputs: any) => {
+    setCompanyData((prevData) => ({
+      ...prevData,
+      logos: inputs,
+    }));
+  };
 
-  const handleSaveCompany = (id: any) => {
+  const handleSaveCompany = (id: any, compLimit: any) => {
     // Check if any required field is empty
     if (!companyData.companyName || !companyData.companyAddress) {
       console.log('Please fill in all required fields.');
@@ -87,7 +94,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
   return (
     <>
       <Button
-      size='sm'
+        size="sm"
         className="bg-black dark:bg-white text-white font-semibold dark:text-black "
         onPress={onOpen}
       >
@@ -136,15 +143,31 @@ const EditCompany: React.FC<EditCompanyProps> = ({
                       />
                     </div>
                   </div>
-                  <div className="flex w-full flex-col justify-start items-center">
-                    <label className="mb-3 block text-black font-semibold dark:text-white">
-                      Add Company Designations
-                    </label>
-                    <div className="flex justify-start w-3/4 items-start">
-                      <MultiInputForm
-                        setInputs={handleDesignationsChange}
-                        inputs={companyData.designations}
-                      />
+                  <div className="flex w-full flex-row justify-start items-start">
+                    <div className="flex w-full flex-col justify-start items-start">
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Add Company Designations
+                      </label>
+                      <div className="flex justify-start w-3/4 items-start">
+                        <MultiInputForm
+                          setInputs={handleDesignationsChange}
+                          inputs={companyData?.designations || []}
+                          namebtn={`Designations`}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex w-full flex-col justify-start items-start">
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Add Company logos & Topupline
+                      </label>
+                      <div className="flex justify-start w-3/4 items-start">
+                        <MultiInputForm
+                          setInputs={handleLogosChange}
+                          inputs={companyData?.logos || []}
+                          namebtn={`Logos`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -165,7 +188,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
                   <Button
                     color={`default`}
                     className="bg-black text-white dark:bg-white dark:text-black"
-                    onPress={() => handleSaveCompany(id)}
+                    onPress={() => handleSaveCompany(id, compLimit)}
                   >
                     Update Company
                   </Button>

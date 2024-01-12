@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Button, ScrollShadow, Spinner } from '@nextui-org/react';
 import ShowGraphics from './ShowGraphics';
@@ -12,10 +12,19 @@ export default function ListOfTemplate({
   setSwich,
   selectTemp,
 }) {
-  const { GetAllGeneralTemplate, genTempLoading, genTemplateData, apiId } =
-    DataSupplier();
+  const {
+    GetAllGeneralTemplate,
+    genTempLoading,
+    genTemplateData,
+    apiId,
+    genLimit,
+    setGenLimit,
+  } = DataSupplier();
+  useEffect(() => {
+    GetAllGeneralTemplate(genLimit);
+  }, [genLimit]);
 
-  const handleDelete = (id: any) => {
+  const handleDelete = (id: any, genLimit: any) => {
     try {
       axios
         .delete(
@@ -24,7 +33,7 @@ export default function ListOfTemplate({
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
         .finally(() => {
-          GetAllGeneralTemplate('Genaral');
+          GetAllGeneralTemplate(genLimit);
         });
     } catch (error) {
       console.log(error, 'error');
@@ -36,7 +45,7 @@ export default function ListOfTemplate({
     setSwich('Edit');
   };
 
-  const filteredGrp = genTemplateData?.filter((i: any) => {
+  const filteredGrp = genTemplateData?.LimitedData?.filter((i: any) => {
     if (i?.attributeToBeUpdated) {
       // If attributeToBeUpdated exists, filter based on its properties
       return i.attributeToBeUpdated.Type === `${selectTemp}`;
@@ -46,38 +55,19 @@ export default function ListOfTemplate({
     }
   });
 
-  console.log(filteredGrp, 'gen');
+  const totalData = genTemplateData?.TotalCount;
+  const HandleLoadMore = (totalData, setGenLimit, genLimit) => {
+    try {
+      if (totalData > genLimit) {
+        setGenLimit(genLimit + 10);
+      }
+    } catch (error) {}
+  };
+
   return (
     <>
-      <div className="flex flex-col justify-start w-full items-start">
+      <div className="flex flex-col gap-5 justify-center w-full items-center">
         <div className="flex flex-col w-full">
-          {/* <div className="grid grid-cols-3 w-full rounded-xl border rounded-lg  dark:bg-white sm:grid-cols-5">
-            <div className="p-2.5 xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Company
-              </h5>
-            </div>
-            <div className="p-2.5 text-center xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Type
-              </h5>
-            </div>
-            <div className="p-2.5 text-center xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Sub Type
-              </h5>
-            </div>
-            <div className="hidden p-2.5 text-center sm:block xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Category
-              </h5>
-            </div>
-            <div className="hidden p-2.5 text-center sm:block xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Action
-              </h5>
-            </div>
-          </div> */}
           <ScrollShadow
             hideScrollBar
             className="w-full h-full flex flex-col gap-3"
@@ -133,7 +123,7 @@ export default function ListOfTemplate({
                     <div className="hidden items-center flex flex-row gap-2 justify-center p-2.5 sm:flex xl:p-5">
                       <Button
                         size="sm"
-                        onClick={() => handleDelete(id)}
+                        onClick={() => handleDelete(id, genLimit)}
                         className="bg-black dark:bg-white dark:text-black text-white text-xs"
                       >
                         delete
@@ -153,6 +143,23 @@ export default function ListOfTemplate({
             )}
           </ScrollShadow>
         </div>
+        {genTempLoading === true ? (
+          <Button
+            isLoading={true}
+            size={`md`}
+            className="bg-black text-white font-semibold"
+          >
+            Wait...
+          </Button>
+        ) : (
+          <Button
+            onPress={() => HandleLoadMore(totalData, setGenLimit, genLimit)}
+            size={`md`}
+            className="bg-black text-white font-semibold"
+          >
+            Load More
+          </Button>
+        )}
       </div>
     </>
   );

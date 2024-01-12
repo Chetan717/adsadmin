@@ -62,7 +62,7 @@ export default function AddGenaralTemplate({}) {
           .finally(() => {
             setTimeout(() => {
               setLoading(false);
-              GetAllGeneralTemplate('Genaral');
+              GetAllGeneralTemplate(10);
             }, 1000);
           });
       } catch (error) {

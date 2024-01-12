@@ -34,7 +34,8 @@ const ListOfCompanies: React.FC<list> = ({
           List Of Companies {`>`}
         </h1>
         <div className="grid grid-cols-3 justify-center items-center gap-6">
-          {companyData?.map((i: any, index: any) => {
+          {companyData?.LimitedData?.map((i: any, index: any) => {
+            const displayData = i.attributeToBeUpdated || i;
             return (
               <Card
                 key={index}
@@ -42,11 +43,15 @@ const ListOfCompanies: React.FC<list> = ({
               >
                 {/* <CardHeader className="pb-0  flex-col items-start"></CardHeader> */}
                 <CardBody
-                  onClick={() => GotoListTemplate('temp', i?.companyName)}
+                  onClick={() =>
+                    GotoListTemplate('temp', displayData?.companyName)
+                  }
                   className="overflow-visible py-2"
                 >
-                  <h4 className="font-bold text-large">{i?.companyName}</h4>
-                  <small className="text-">{i?.companyAddress}</small>
+                  <h4 className="font-bold text-large">
+                    {displayData?.companyName}
+                  </h4>
+                  <small className="text-">{displayData?.companyAddress}</small>
                 </CardBody>
               </Card>
             );

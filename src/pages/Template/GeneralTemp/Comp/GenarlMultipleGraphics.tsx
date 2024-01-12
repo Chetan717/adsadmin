@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ScrollShadow } from '@nextui-org/react';
-import ShowGraphics from './ShowGraphics';
-import EditGraphics from './EditGraphic';
-import { DataSupplier } from '../../../DataContaxt/FetchData';
+
 import { Image } from '@nextui-org/react';
 interface FormData {
   id: number;
@@ -27,10 +25,6 @@ interface propGraphic {
 const GenarlMultipleGraphics: React.FC<propGraphic> = ({
   formData,
   setFormData,
-  bannerIdOptions,
-  incmNameIdOptions,
-  selSubType,
-  error,
   selType,
 }) => {
   const handleInputChange = (
@@ -66,8 +60,6 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
       },
     ]);
   };
-
-  console.log(selType, 'gfgh');
 
   return (
     <div className="flex flex-col gap-3 w-full justify-start items-start">

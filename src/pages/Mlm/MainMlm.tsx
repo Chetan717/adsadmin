@@ -10,11 +10,8 @@ const MainMlm: React.FC = () => {
     <>
       <div className="flex flex-col gap-3 justify-center items-center">
         <AddMlmCompany setLoading={setLoading} loading={loading} />
-        {loading === true ? (
-          <Spinner />
-        ) : (
-          <MLMCompanyList loading={loading} setLoading={setLoading} />
-        )}
+
+        <MLMCompanyList loading={loading} setLoading={setLoading} />
       </div>
     </>
   );

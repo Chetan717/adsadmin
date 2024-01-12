@@ -13,7 +13,7 @@ import { DataSupplier } from '../../../../DataContaxt/FetchData';
 import GenarlMultipleGraphics from './GenarlMultipleGraphics';
 export default function EditGenTemplate({ dataEdit, setSwich }) {
   const [loading, setLoading] = useState(false);
-  const { apiId, GetAllGeneralTemplate } = DataSupplier();
+  const { apiId, GetAllGeneralTemplate, genLimit } = DataSupplier();
 
   interface FormData {
     id: number;
@@ -50,7 +50,7 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
     Launched: true,
   };
 
-  const handleSaveCompany = (id: any) => {
+  const handleSaveCompany = (id: any, genLimit: any) => {
     if (!selType || !selSubType || !showcase) {
       console.log('Please fill in all required fields.');
       return;
@@ -69,7 +69,7 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
           .finally(() => {
             setTimeout(() => {
               setLoading(false);
-              GetAllGeneralTemplate('Genaral');
+              GetAllGeneralTemplate(genLimit);
             }, 1000);
           });
       } catch (error) {
@@ -167,7 +167,7 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
         ) : (
           <Button
             className="bg-black text-white font-semibold"
-            onPress={() => handleSaveCompany(dataEdit?.id)}
+            onPress={() => handleSaveCompany(dataEdit?.id, genLimit)}
             size="lg"
           >
             Update Template

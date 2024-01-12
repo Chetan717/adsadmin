@@ -8,7 +8,6 @@ const MainGraphics: React.FC = () => {
     useState<React.Dispatch<React.SetStateAction<boolean>>>(false);
 
   const grptype = [
-    'PhotoFrames',
     'TopUplineFrames',
     'Gems',
     'Footers',
