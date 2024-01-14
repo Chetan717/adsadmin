@@ -1,4 +1,7 @@
 import { lazy } from 'react';
+import MainSubscription from '../pages/Subscription/MainSubscription';
+import MainPlans from '../pages/Plans/MainPlans';
+import MainPayments from '../pages/PaymentLog/MainPayments';
 const Calendar = lazy(() => import('../pages/Calendar'));
 const Chart = lazy(() => import('../pages/Chart'));
 const FormElements = lazy(() => import('../pages/Form/FormElements'));
@@ -12,7 +15,9 @@ const MlmCompany = lazy(() => import('../pages/Mlm/MainMlm'));
 const Mlmuser = lazy(() => import('../pages/Mlm/MainMlmUser'));
 const MainTemplate = lazy(() => import('./../pages/Template/MainTemplate'));
 const MainGraphics = lazy(() => import('../pages/Graphics/MainGarphics'));
-const GeneralTemplate = lazy(() => import('../pages/Template/GeneralTemp/GeneralTemplate'));
+const GeneralTemplate = lazy(
+  () => import('../pages/Template/GeneralTemp/GeneralTemplate'),
+);
 
 const coreRoutes = [
   {
@@ -49,6 +54,21 @@ const coreRoutes = [
     path: '/Grp',
     title: 'Graphics',
     component: MainGraphics,
+  },
+  {
+    path: '/Sub/Subs',
+    title: 'Subs',
+    component: MainSubscription,
+  },
+  {
+    path: '/Sub/Plan',
+    title: 'Plan',
+    component: MainPlans,
+  },
+  {
+    path: '/Sub/Payment',
+    title: 'Payment',
+    component: MainPayments,
   },
   {
     path: '/tables',

@@ -8,6 +8,7 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
 import routes from './routes';
+import MainMlm from './pages/Mlm/MainMlm';
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
@@ -33,7 +34,7 @@ function App() {
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout />}>
-          <Route index element={<ECommerce />} />
+          <Route index element={<MainMlm />} />
           {routes.map((routes, index) => {
             const { path, component: Component } = routes;
             return (

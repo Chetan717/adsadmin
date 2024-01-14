@@ -24,7 +24,7 @@ export default function EditTemplate({
   const incmNameIdOptions = [1, 3, 4, 5];
 
   interface FormData {
-    id: number;
+    id: any;
     url: string;
     suggestionImage: string;
     nameImageUrl: string;
@@ -63,7 +63,6 @@ export default function EditTemplate({
     Active: true,
     Launched: true,
   };
-
 
   const handleSaveCompany = (id: any, tempLimit: any) => {
     if (!selType || !selSubType || !showcase) {

@@ -15,6 +15,22 @@ export default function AddGenaralTemplate({}) {
   const [loading, setLoading] = useState(false);
   const { apiId, GetAllGeneralTemplate } = DataSupplier();
 
+  const typeGenaral = [
+    { name: 'Festival', value: 'Festival' },
+    { name: 'Motivational Quate', value: 'Quate-Banner' },
+    { name: 'Today Trending', value: 'Today_Trend' },
+    { name: 'Good Morning', value: 'Good_Morning' },
+    { name: 'Health Tips', value: 'Health_Tip' },
+    { name: 'Greeting And Wishes', value: 'Greeting_And_Wishes' },
+    { name: 'Good Night', value: 'Good Night' },
+    { name: 'Devotional', value: 'Devotional' },
+    { name: 'Daily Post Collection', value: 'Daily_Post_Collection' },
+    { name: 'Birthday', value: 'Birthday' },
+    { name: 'Aniversary', value: 'Aniversary' },
+    { name: 'Thank You Birthday', value: 'Thank_You_Birthday' },
+    { name: 'Thank You Aniversary', value: 'Thank_You_Aniversary' },
+  ];
+
   interface FormData {
     id: number;
     url: string;
@@ -70,6 +86,7 @@ export default function AddGenaralTemplate({}) {
       }
     }, 1000);
   };
+
   return (
     <div className="flex flex-col w-full  gap-2 justify-center items-center">
       <div className="grid grid-cols-2 w-full gap-3">
@@ -84,8 +101,13 @@ export default function AddGenaralTemplate({}) {
           >
             {/* Options for bannerId */}
 
-            <option value="Festival">Festival</option>
-            <option value="Quate-Banner">Quate-Banner</option>
+            {typeGenaral?.map((i, index) => {
+              return (
+                <option key={index} value={i?.value}>
+                  {i?.name}
+                </option>
+              );
+            })}
           </select>
         </div>
 

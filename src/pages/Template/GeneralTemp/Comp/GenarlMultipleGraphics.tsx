@@ -3,10 +3,10 @@ import { Button, ScrollShadow } from '@nextui-org/react';
 
 import { Image } from '@nextui-org/react';
 interface FormData {
-  id: number;
+  id: any;
   url: string;
   suggestionImage: string;
-
+  incmNameId: string;
   position: 'left' | 'right';
 
   active: boolean;
@@ -16,7 +16,7 @@ interface propGraphic {
   formData: FormData[];
   setFormData: React.Dispatch<React.SetStateAction<FormData[]>>;
   bannerIdOptions: any[];
-  incmNameIdOptions: any[];
+  incmNameId: any[];
   error: string | null;
   selSubType: string | null;
   selType: string | null;
@@ -52,9 +52,10 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
     setFormData((prevData: FormData[]) => [
       ...prevData,
       {
-        id: 0,
+        id: new Date(),
         url: '',
         suggestionImage: '',
+        incmNameId: '',
         position: 'left',
         active: false,
       },
@@ -95,6 +96,21 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
                   value={entry.url}
                   onChange={(e) =>
                     handleInputChange(index, 'url', e.target.value)
+                  }
+                />
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-semibold text-black">
+                  Footer Banner Image
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Footer Banner Image "
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  value={entry.incmNameId}
+                  onChange={(e) =>
+                    handleInputChange(index, 'incmNameId', e.target.value)
                   }
                 />
               </div>
@@ -141,6 +157,12 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
                     Background Image
                   </p>
                 </div>
+              </div>
+              <div className="flex flex-col w-full gap-1 justify-center items-center">
+                <Image src={entry?.incmNameId} className="w-[120px] " />
+                <p className="text-xs font-semibold text-black">
+                  Footer Graphics Image
+                </p>
               </div>
             </div>
           </div>

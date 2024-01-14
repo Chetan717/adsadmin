@@ -16,7 +16,7 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
   const { apiId, GetAllGeneralTemplate, genLimit } = DataSupplier();
 
   interface FormData {
-    id: number;
+    id: any;
     url: string;
     suggestionImage: string;
 
@@ -77,6 +77,23 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
       }
     }, 1000);
   };
+
+  const typeGenaral = [
+    { name: 'Festival', value: 'Festival' },
+    { name: 'Motivational Quate', value: 'Quate-Banner' },
+    { name: 'Today Trending', value: 'Today_Trend' },
+    { name: 'Good Morning', value: 'Good_Morning' },
+    { name: 'Health Tips', value: 'Health_Tip' },
+    { name: 'Greeting And Wishes', value: 'Greeting_And_Wishes' },
+    { name: 'Good Night', value: 'Good Night' },
+    { name: 'Devotional', value: 'Devotional' },
+    { name: 'Daily Post Collection', value: 'Daily_Post_Collection' },
+    { name: 'Birthday', value: 'Birthday' },
+    { name: 'Aniversary', value: 'Aniversary' },
+    { name: 'Thank You Birthday', value: 'Thank_You_Birthday' },
+    { name: 'Thank You Aniversary', value: 'Thank_You_Aniversary' },
+  ];
+
   return (
     <>
       <p
@@ -97,10 +114,13 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
               value={selType}
               onChange={(e) => setSelType(e.target.value)}
             >
-              {/* Options for bannerId */}
-
-              <option value="Festival">Festival</option>
-              <option value="Quate-Banner">Quate-Banner</option>
+              {typeGenaral?.map((i, index) => {
+                return (
+                  <option key={index} value={i?.value}>
+                    {i?.name}
+                  </option>
+                );
+              })}
             </select>
           </div>
 

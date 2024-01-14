@@ -41,14 +41,12 @@ const ListOfMlmUsers: React.FC<AddmlmProps> = () => {
     }
   };
 
-  console.log(mlmUser);
-
   const HandleDelete = async (id: any, userLimit: Number) => {
     setLoading(true);
     try {
       axios
         .delete(
-          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlmUser?MLM_USER_ID=${id}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlmUser/?MLM_USER_ID=${id}`,
         )
         .then((res) => {
           console.log(res.data);
@@ -104,11 +102,10 @@ const ListOfMlmUsers: React.FC<AddmlmProps> = () => {
         <div className="flex flex-col mt-20  justify-start items-start gap-6">
           {mlmUser?.LimitedData?.map((i: any, index: number) => {
             const displayData = i.attributeToBeUpdated || i;
-            const id = i?.id;
             return (
               <div
                 key={index}
-                className="grid grid-cols-5 border border-black rounded-lg"
+                className="grid grid-cols-5 border w-full border-black rounded-lg"
               >
                 <div className="flex items-center gap-3 p-2.5 xl:p-5">
                   <p className="hidden text-black text-sm font-semibold dark:text-white sm:block">
@@ -144,7 +141,7 @@ const ListOfMlmUsers: React.FC<AddmlmProps> = () => {
                         key="delete"
                         className="text-danger"
                         color="danger"
-                        onPress={() => HandleDelete(id, userLimit)}
+                        onPress={() => HandleDelete(i?.id, userLimit)}
                       >
                         Confirm Delete User
                       </DropdownItem>

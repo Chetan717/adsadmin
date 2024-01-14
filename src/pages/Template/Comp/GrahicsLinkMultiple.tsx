@@ -5,7 +5,7 @@ import EditGraphics from './EditGraphic';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Image } from '@nextui-org/react';
 interface FormData {
-  id: number;
+  id: any;
   url: string;
   suggestionImage: string;
   nameImageUrl: string;
@@ -59,7 +59,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
     setFormData((prevData: FormData[]) => [
       ...prevData,
       {
-        id: 0,
+        id: new Date(),
         url: '',
         suggestionImage: '',
         nameImageUrl: '',
@@ -151,27 +151,20 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )}
 
-              {/* {selType === 'Festival' ||
-              selType === 'Quate-Banner' ||
-              selType === 'ThankYou-Banner' ||
-              selType === 'Wish-Banner' ? null : (
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-black">
-                    {selType === 'Achievements'
-                      ? `Upper Graphics of Income for ${selType}`
-                      : `Income Name Graphic`}
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="income Name Graphics "
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    value={entry.incmNameId}
-                    onChange={(e) =>
-                      handleInputChange(index, 'incmNameId', e.target.value)
-                    }
-                  />
-                </div>
-              )} */}
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-semibold text-black">
+                  Footer Banner Image
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Footer Banner Image "
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  value={entry.incmNameId}
+                  onChange={(e) =>
+                    handleInputChange(index, 'incmNameId', e.target.value)
+                  }
+                />
+              </div>
 
               {selType === 'Festival' || selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
@@ -237,19 +230,13 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     </p>
                   </div>
                 )}
-                {/* {selType === 'Festival' ||
-                selType === 'Quate-Banner' ||
-                selType === 'ThankYou-Banner' ||
-                selType === 'Wish-Banner' ? null : (
-                  <div className="flex flex-col w-full gap-1 justify-center items-center">
-                    <Image src={entry?.incmNameId} className="w-[120px] " />
-                    <p className="text-xs font-semibold text-black">
-                      {selType === 'Achievements'
-                        ? `Upper Graphics Income`
-                        : `Income Name Graphic`}
-                    </p>
-                  </div>
-                )} */}
+
+                <div className="flex flex-col w-full gap-1 justify-center items-center">
+                  <Image src={entry?.incmNameId} className="w-[120px] " />
+                  <p className="text-xs font-semibold text-black">
+                    Footer Graphics Image
+                  </p>
+                </div>
               </div>
             </div>
           </div>
