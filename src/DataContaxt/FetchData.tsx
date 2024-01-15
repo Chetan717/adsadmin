@@ -30,9 +30,9 @@ export default function DataSupplierContext({
   const [tempLoading, setTempLoading] = useState(false);
   const [compLoading, setCompLoading] = useState(false);
   const [grpLoading, setGrpLoading] = useState(false);
-  const [compLimit, setCompLimit] = useState(10);
-  const [tempLimit, setTempLimit] = useState(20);
-  const [genLimit, setGenLimit] = useState(20);
+  const [compLimit, setCompLimit] = useState(20);
+  const [tempLimit, setTempLimit] = useState(100);
+  const [genLimit, setGenLimit] = useState(100);
   const [grpLimit, setGrpLimit] = useState(10);
 
   const apiId = 'vihnyda2gi';
