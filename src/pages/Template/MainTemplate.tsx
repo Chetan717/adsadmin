@@ -11,7 +11,7 @@ import EditTemplate from './Comp/EditTemp';
 export default function MainTemplate() {
   const TemplateType = [
     // 'Festival',
-    // 'Quate-Banner',
+    'Today_Trending',
     'Achievements',
     'Rank-Promotion',
     'Wish-Banner',

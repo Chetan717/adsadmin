@@ -56,9 +56,11 @@ export default function ListOfTemplate({
   });
 
   const totalData = genTemplateData?.TotalCount;
+  console.log(totalData + 4);
+
   const HandleLoadMore = (totalData, setGenLimit, genLimit) => {
     try {
-      if (totalData > genLimit) {
+      if (Number(totalData + 4) > Number(genLimit)) {
         setGenLimit(genLimit + 10);
       }
     } catch (error) {}
@@ -153,7 +155,9 @@ export default function ListOfTemplate({
           </Button>
         ) : (
           <Button
-            onPress={() => HandleLoadMore(totalData, setGenLimit, genLimit)}
+            onPress={() =>
+              HandleLoadMore(genTemplateData?.TotalCount, setGenLimit, genLimit)
+            }
             size={`md`}
             className="bg-black text-white font-semibold"
           >
