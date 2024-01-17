@@ -1,6 +1,12 @@
 import React from 'react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Card, CardHeader, CardBody, Image, Button } from '@nextui-org/react';
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from '@nextui-org/react';
 import axios from 'axios';
 import EditCompany from './Edit';
 
@@ -76,13 +82,26 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                       </small>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Button
-                        size="sm"
-                        className="text-white w-[100px] text-black text-xs "
-                        onClick={() => HandleDelete(id, compLimit)}
-                      >
-                        delete
+                   
+
+                      <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant={`light`} color="danger">
+                        Delete
                       </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Action event example">
+                      <DropdownItem
+                        key="delete"
+                        className="text-danger"
+                        color="danger"
+                        onClick={() => HandleDelete(id, compLimit)}
+                        >
+                        Confirm Delete
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                      
                       <EditCompany
                         id={id}
                         companydata={displayData}

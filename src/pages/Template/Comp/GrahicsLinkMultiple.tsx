@@ -77,7 +77,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
     <div className="flex flex-col gap-3 w-full justify-start items-start">
       {formData?.map((entry, index) => (
         <div
-          key={index}
+          key={index+2}
           className="flex flex-row w-full justify-center items-center gap-3"
         >
           <div className="flex w-full justify-center items-center  flex-row border  rounded-lg border-black p-2 gap-3">

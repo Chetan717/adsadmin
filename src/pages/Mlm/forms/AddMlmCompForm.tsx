@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Image,
   useDisclosure,
 } from '@nextui-org/react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
@@ -24,6 +25,7 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
   const [companyData, setCompanyData] = useState({
     companyName: '',
     companyAddress: '',
+    logo:'',
     Active: true,
     Launched: true,
     designations: [{ id: 1, value: '' }],
@@ -129,7 +131,24 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                         }
                       />
                     </div>
+                
                   </div>
+                  <div className='w-3/4'>
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Company Logo Url
+                      </label>
+                    <div className='flex flex-row gap-3 justify-center items-center'>
+                    <textarea
+                        placeholder="Logo Url"
+                        className="w-3/4 rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        value={companyData.logo}
+                        onChange={(e) =>
+                          handleInputChange('logo', e.target.value)
+                        }
+                      />
+                      <Image src={`${companyData?.logo}`} className='w-[100px] h-[100px]'/>
+                    </div>
+                    </div>
                   <div className="flex w-full flex-row justify-start items-center">
                     <div className="flex w-full flex-col justify-start items-center">
                       <label className="mb-3 block text-black font-semibold dark:text-white">

@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Button, ScrollShadow, Spinner } from '@nextui-org/react';
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from '@nextui-org/react';
 import ShowGraphics from './ShowGraphics';
 import axios from 'axios';
 import EditTemp from './EditTemp';
@@ -123,13 +129,25 @@ export default function ListOfTemplate({
                     </div>
 
                     <div className="hidden items-center flex flex-row gap-2 justify-center p-2.5 sm:flex xl:p-5">
-                      <Button
-                        size="sm"
-                        onClick={() => handleDelete(id, genLimit)}
-                        className="bg-black dark:bg-white dark:text-black text-white text-xs"
-                      >
-                        delete
+                     
+                      <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant={`light`} color="danger">
+                        Delete
                       </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Action event example">
+                      <DropdownItem
+                        key="delete"
+                        className="text-danger"
+                        color="danger"
+                        onClick={() => handleDelete(id, genLimit)}
+                        >
+                        Confirm Delete
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+
                       <Button
                         size="sm"
                         onClick={() => hangoEdit(displayData, id)}

@@ -9,6 +9,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Image,
 } from '@nextui-org/react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 
@@ -17,6 +18,7 @@ interface EditCompanyProps {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   companydata: {
     companyName: string;
+    logo: string;
     companyAddress: string;
     Active: boolean;
     Launched: boolean;
@@ -140,6 +142,25 @@ const EditCompany: React.FC<EditCompanyProps> = ({
                         onChange={(e) =>
                           handleInputChange('companyAddress', e.target.value)
                         }
+                      />
+                    </div>
+                  </div>
+                  <div className="w-3/4">
+                    <label className="mb-3 block text-black font-semibold dark:text-white">
+                      Company Logo Url
+                    </label>
+                    <div className="flex flex-row gap-3 justify-center items-center">
+                      <textarea
+                        placeholder="Logo Url"
+                        className="w-3/4 rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        value={companyData.logo}
+                        onChange={(e) =>
+                          handleInputChange('logo', e.target.value)
+                        }
+                      />
+                      <Image
+                        src={`${companyData?.logo}`}
+                        className="w-[100px] h-[100px]"
                       />
                     </div>
                   </div>

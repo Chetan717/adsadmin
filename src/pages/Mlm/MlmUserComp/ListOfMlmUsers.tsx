@@ -46,7 +46,7 @@ const ListOfMlmUsers: React.FC<AddmlmProps> = () => {
     try {
       axios
         .delete(
-          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlmUser/?MLM_USER_ID=${id}`,
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlmUser?MLM_USER_ID=${id}`,
         )
         .then((res) => {
           console.log(res.data);

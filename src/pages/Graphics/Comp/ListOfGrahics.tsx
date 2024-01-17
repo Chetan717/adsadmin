@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Card, CardHeader, CardBody, Image, Button } from '@nextui-org/react';
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from '@nextui-org/react';
 import axios from 'axios';
 import EditGraphics from './EditGraphics';
 import Filters from './Filters';
@@ -94,13 +100,27 @@ const GraphicsList: React.FC<AddmlmProps> = ({
                       </small>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Button
-                        size="sm"
-                        className="text-white w-[100px] text-black text-xs "
-                        onClick={() => HandleDelete(id)}
-                      >
-                        delete
+                     
+
+                      <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant={`light`} color="danger">
+                        Delete
                       </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Action event example">
+                      <DropdownItem
+                        key="delete"
+                        className="text-danger"
+                        color="danger"
+                        onClick={() => HandleDelete(id)}
+                        >
+                        Confirm Delete
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                      
+
                       <EditGraphics
                         loading={loading}
                         setLoading={setLoading}

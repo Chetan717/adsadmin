@@ -134,7 +134,7 @@ const MainPayments: React.FC = () => {
 
                 <div className="hidden items-center flex flex-row gap-2 justify-center p-2.5 sm:flex ">
                   <p className="text-black font-bold">
-                    ₹{displayData?.amount}/-
+                    ₹{displayData?.amount/100}/-
                   </p>
                 </div>
               </div>
