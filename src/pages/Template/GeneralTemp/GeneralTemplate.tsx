@@ -23,7 +23,7 @@ export default function GeneralTemplate() {
             <div className="flex flex-row gap-3 justify-start items-center">
               <Filters setSelectTemp={setSelectTemp} selectTemp={selectTemp} />
               <div className="flex flex-col gap-2">
-                <div className="h-2"></div>
+                <div className="h-4"></div>
                 <Button
                   size={`lg`}
                   className="bg-black dark:bg-white text-white font-semibold dark:text-black "

@@ -11,6 +11,7 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Chip,
 } from '@nextui-org/react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import ShowGraphics from './ShowGraphics';
@@ -75,7 +76,15 @@ export default function ListOfTemplate({
   };
 
   return (
-    <div className="flex flex-col justify-start w-full items-start">
+    <div className="flex flex-col gap-4 justify-start w-full items-start">
+      <div className="flex flex-row gap-6 mt-2 justify-start w-full items-start">
+        <Chip color="warning" variant="dot">
+          Total Template : {genTemplateData?.TotalCount}
+        </Chip>
+        <Chip color="warning" variant="dot">
+          Total Fetch Template : {genTemplateData?.LimitedData?.length}
+        </Chip>
+      </div>
       <div className="flex flex-col gap-4 justify-center w-full items-center w-full">
         <Table>
           <TableHeader>
@@ -93,32 +102,27 @@ export default function ListOfTemplate({
               return (
                 <TableRow key={index}>
                   <TableCell>
-                      <div className="flex-shrink-0">
-                        <img
-                          src={displayData?.ShowCase}
-                          className="w-15 h-15"
-                          alt="Brand"
-                        />
-                      </div>
-                    
+                    <div className="flex-shrink-0">
+                      <img
+                        src={displayData?.ShowCase}
+                        className="w-15 h-15"
+                        alt="Brand"
+                      />
+                    </div>
                   </TableCell>
 
                   <TableCell>
-                      <p className="text-black dark:text-white">
-                        {displayData?.Type}
-                      </p>
+                    <p className="text-black dark:text-white">
+                      {displayData?.Type}
+                    </p>
                   </TableCell>
                   <TableCell>
-                    
-                      <p className="text-meta-3">{displayData?.SubType}</p>
-                
+                    <p className="text-meta-3">{displayData?.SubType}</p>
                   </TableCell>
                   <TableCell>
-                  
-                      <p className="text-black dark:text-white">
-                        {displayData?.APPTYPE}
-                      </p>
-                  
+                    <p className="text-black dark:text-white">
+                      {displayData?.APPTYPE}
+                    </p>
                   </TableCell>
                   <TableCell>
                     <div className="hidden items-center flex flex-row gap-2 justify-center sm:flex">

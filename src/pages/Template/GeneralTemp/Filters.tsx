@@ -27,7 +27,7 @@ export default function Filters({ setSelectTemp, selectTemp }) {
           <select
             value={selectTemp}
             onChange={(e) => setSelectTemp(e.target.value)}
-            className="w-full rounded-lg bg-black text-white border-black border-[1.5px] p-2"
+            className="w-full rounded-lg bg-black text-white border-black border-[1.5px] p-3"
           >
             {typeGenaral?.map((i, index) => {
               return (

@@ -77,7 +77,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
     <div className="flex flex-col gap-3 w-full justify-start items-start">
       {formData?.map((entry, index) => (
         <div
-          key={index+2}
+          key={index + 2}
           className="flex flex-row w-full justify-center items-center gap-3"
         >
           <div className="flex w-full justify-center items-center  flex-row border  rounded-lg border-black p-2 gap-3">
@@ -133,7 +133,8 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               {selType === 'Festival' ||
               selType === 'Quate-Banner' ||
               selType === 'ThankYou-Banner' ||
-              selType === 'Today_Trending' ? null : (
+              selType === 'Today_Trending' ||
+              selType === 'Meeting' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     {selType === 'Achievements'
@@ -152,20 +153,22 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )}
 
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-black">
-                  Footer Banner Image
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="Footer Banner Image "
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  value={entry.incmNameId}
-                  onChange={(e) =>
-                    handleInputChange(index, 'incmNameId', e.target.value)
-                  }
-                />
-              </div>
+              {selType === 'Meeting' ? null : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Footer Banner Image
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Footer Banner Image "
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.incmNameId}
+                    onChange={(e) =>
+                      handleInputChange(index, 'incmNameId', e.target.value)
+                    }
+                  />
+                </div>
+              )}
 
               {selType === 'Festival' || selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">

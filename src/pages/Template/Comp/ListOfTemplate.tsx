@@ -13,6 +13,7 @@ import {
   DropdownMenu,
   DropdownItem,
   ScrollShadow,
+  Chip,
 } from '@nextui-org/react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import ShowGraphics from './ShowGraphics';
@@ -79,7 +80,11 @@ export default function ListOfTemplate({
   };
   return (
     <>
-      <div className="flex flex-col justify-start w-full items-start">
+      <div className="flex flex-col gap-3 justify-start w-full items-start">
+    <div className="flex flex-row mt-2 gap-6 justify-start w-full items-start">
+    <Chip color="warning" variant="dot">Total MLM Template : {templateData?.TotalCount}</Chip>
+      <Chip color="warning" variant="dot">Total Fetch Template : {templateData?.LimitedData?.Items?.length}</Chip>
+    </div>
         <div className="flex flex-col gap-4 justify-center w-full items-center w-full">
           <Table>
             <TableHeader>
