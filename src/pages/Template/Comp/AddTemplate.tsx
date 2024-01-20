@@ -114,8 +114,8 @@ export default function AddTemplate({
           >
             {/* Options for bannerId */}
             {TemplateType?.map((option: any) => (
-              <option key={option} value={option}>
-                {option}
+              <option key={option?.value} value={option?.value}>
+                {option?.name}
               </option>
             ))}
           </select>

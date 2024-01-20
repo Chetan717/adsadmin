@@ -10,21 +10,20 @@ import EditTemplate from './Comp/EditTemp';
 
 export default function MainTemplate() {
   const TemplateType = [
-    // 'Festival',
-    'Today_Trending',
-    'Achievements',
-    'Rank-Promotion',
-    'Wish-Banner',
-    'Income-Banner',
-    'BonPromotion-Banner',
-    'General-Banner',
-    'ThankYou-Banner',
-    'Meeting',
+    { name: 'Today Trending', value: 'Today_Trending' },
+    { name: 'Welcome-Banner', value: 'Welcome-Banner' },
+    { name: 'Closing-Banner', value: 'Closing-Banner' },
+    { name: 'Rank-Promotion', value: 'Rank-Promotion' },
+    { name: 'Achievements', value: 'Achievements' },
+    { name: 'Bonanza Promotion', value: 'BonPromotion-Banner' },
+    { name: 'Aniversary/Birthday', value: 'Wish-Banner' },
+    { name: 'ThankYou Message', value: 'ThankYou-Banner' },
+    { name: 'Income-Banner', value: 'Income-Banner' },
+    { name: 'Meeting', value: 'Meeting' },
   ];
-
   const { GetAllCompanyTemplate } = DataSupplier();
   const [selectComp, setSelectComp] = useState('');
-  const [selectTemp, setSelectTemp] = useState(TemplateType[0]);
+  const [selectTemp, setSelectTemp] = useState(TemplateType[0]?.value);
   const [swich, setSwich] = useState('');
   const [dataEdit, setDataEdit] = useState({});
   const [load, setLoad] = useState(false);

@@ -35,11 +35,11 @@ const coreRoutes = [
     title: 'mlmcompany',
     component: MlmCompany,
   },
-  {
-    path: '/mlm/mlmuser',
-    title: 'mlmuser',
-    component: Mlmuser,
-  },
+  // {
+  //   path: '/mlm/mlmuser',
+  //   title: 'mlmuser',
+  //   component: Mlmuser,
+  // },
   {
     path: '/temp/Template',
     title: 'Template',

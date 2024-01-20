@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MultiInputForm from '../CommonForms/OneOrMoreInput';
+import { Tabs, Tab, Card, CardBody } from '@nextui-org/react';
 
 import axios from 'axios';
 import {
@@ -25,11 +26,11 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
   const [companyData, setCompanyData] = useState({
     companyName: '',
     companyAddress: '',
-    logo:'',
+    logo: '',
     Active: true,
     Launched: true,
     designations: [{ id: 1, value: '' }],
-    logos: [{ id: 1, value: '' }],
+    logos: [{ id: 1, value: '', Type: '' }],
   });
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -81,6 +82,8 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     }
   };
 
+  const [activeTab, setActiveTab] = useState(true);
+
   return (
     <>
       <Button
@@ -131,14 +134,13 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                         }
                       />
                     </div>
-                
                   </div>
-                  <div className='w-3/4'>
-                      <label className="mb-3 block text-black font-semibold dark:text-white">
-                        Company Logo Url
-                      </label>
-                    <div className='flex flex-row gap-3 justify-center items-center'>
-                    <textarea
+                  <div className="w-3/4">
+                    <label className="mb-3 block text-black font-semibold dark:text-white">
+                      Company Logo Url
+                    </label>
+                    <div className="flex flex-row gap-3 justify-center items-center">
+                      <textarea
                         placeholder="Logo Url"
                         className="w-3/4 rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         value={companyData.logo}
@@ -146,35 +148,62 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                           handleInputChange('logo', e.target.value)
                         }
                       />
-                      <Image src={`${companyData?.logo}`} className='w-[100px] h-[100px]'/>
+                      <Image
+                        src={`${companyData?.logo}`}
+                        className="w-[100px] h-[100px]"
+                      />
                     </div>
+                  </div>
+                  <div className="flex w-full flex-col gap-4 justify-start items-center">
+                    <div className="flex  flex-row gap-5 justify-center items-center">
+                      <p
+                        onClick={() => setActiveTab(true)}
+                        className={
+                          activeTab === true
+                            ? `bg-black cursor-pointer text-white rounded-lg  font-bold text-sm p-2`
+                            : `border border-black  cursor-pointer rounded-lg  text-black font-bold text-sm p-2`
+                        }
+                      >
+                        Add Designations
+                      </p>{' '}
+                      <p
+                        onClick={() => setActiveTab(false)}
+                        className={
+                          activeTab === false
+                            ? `bg-black text-white cursor-pointer rounded-lg  font-bold text-sm p-2`
+                            : `border border-  cursor-pointer  rounded-lg text-black font-bold text-sm p-2`
+                        }
+                      >
+                        Add Logos & Topuplines
+                      </p>
                     </div>
-                  <div className="flex w-full flex-row justify-start items-center">
-                    <div className="flex w-full flex-col justify-start items-center">
-                      <label className="mb-3 block text-black font-semibold dark:text-white">
-                        Add Company Designations
-                      </label>
-                      <div className="flex justify-start w-3/4 items-start">
-                        <MultiInputForm
-                          setInputs={handleDesignationsChange}
-                          inputs={companyData.designations}
-                          namebtn={`Designations`}
-                        />
+                    {activeTab === true ? (
+                      <div className="flex w-full flex-col justify-start items-center">
+                        <label className="mb-3 block text-black font-semibold dark:text-white">
+                          Add Company Designations
+                        </label>
+                        <div className="flex justify-start w-3/4 items-start">
+                          <MultiInputForm
+                            setInputs={handleDesignationsChange}
+                            inputs={companyData.designations}
+                            namebtn={`Designations`}
+                          />
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="flex w-full flex-col justify-start items-center">
-                      <label className="mb-3 block text-black font-semibold dark:text-white">
-                        Add Company Designations
-                      </label>
-                      <div className="flex justify-start w-3/4 items-start">
-                        <MultiInputForm
-                          setInputs={handleLogosChange}
-                          inputs={companyData.logos}
-                          namebtn={`Logos`}
-                        />
+                    ) : (
+                      <div className="flex w-full flex-col justify-start items-center">
+                        <label className="mb-3 block text-black font-semibold dark:text-white">
+                          Add Logos And Topuplines
+                        </label>
+                        <div className="flex justify-start w-3/4 items-start">
+                          <MultiInputForm
+                            setInputs={handleLogosChange}
+                            inputs={companyData.logos}
+                            namebtn={`Logos`}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </ModalBody>

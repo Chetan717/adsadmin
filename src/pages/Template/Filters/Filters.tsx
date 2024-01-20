@@ -14,7 +14,7 @@ export default function Filters({ setSelectTemp, selectTemp, TemplateType }) {
             className="w-full rounded-lg bg-black text-white border-black border-[1.5px] p-2"
           >
             {TemplateType?.map((i: any) => {
-              return <option value={i}>{i}</option>;
+              return <option value={i?.value}>{i?.name}</option>;
             })}
           </select>
         </div>

@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react';
-import { DataSupplier } from '../../../DataContaxt/FetchData';
-import { Button, ScrollShadow, Spinner } from '@nextui-org/react';
 import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Pagination,
+  Button,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  ScrollShadow,
 } from '@nextui-org/react';
+import { DataSupplier } from '../../../DataContaxt/FetchData';
 import ShowGraphics from './ShowGraphics';
 import axios from 'axios';
 import EditTemp from './EditTemp';
@@ -31,7 +39,7 @@ export default function ListOfTemplate({
     GetAllCompanyTemplate(selectComp);
   }, [selectComp, tempLimit]);
 
-  const handleDelete = (id: any) => {
+  const handleDelete = (id) => {
     try {
       axios
         .delete(
@@ -47,137 +55,118 @@ export default function ListOfTemplate({
     }
   };
 
-  const hangoEdit = (data: any, id: any) => {
+  const hangoEdit = (data, id) => {
     setDataEdit({ data, id });
     setSwich('update');
   };
 
-  const filteredGrp = templateData?.LimitedData?.Items?.filter((i: any) => {
+  const filteredGrp = templateData?.LimitedData?.Items?.filter((i) => {
     if (i?.attributeToBeUpdated) {
-      // If attributeToBeUpdated exists, filter based on its properties
       return i.attributeToBeUpdated.Type === `${selectTemp}`;
     } else {
-      // If attributeToBeUpdated doesn't exist, filter based on GraphicsType
       return i?.Type === `${selectTemp}`;
     }
   });
 
-  const totalData = templateData?.TotalCount;
-
-  const HandleLoadMore = (totalData, setTempLimit, tempLimit) => {
+  const handleLoadMore = (templateData) => {
     try {
-      if (totalData > tempLimit) {
-        setTempLimit(tempLimit + 10);
+      if (Number(templateData?.TotalCount) + 20 > tempLimit) {
+        setTempLimit(tempLimit + 20);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
-
   return (
     <>
       <div className="flex flex-col justify-start w-full items-start">
         <div className="flex flex-col gap-4 justify-center w-full items-center w-full">
-          {/* <div className="grid grid-cols-3 w-full rounded-xl border rounded-lg  dark:bg-white sm:grid-cols-5">
-            <div className="p-2.5 xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Company
-              </h5>
-            </div>
-            <div className="p-2.5 text-center xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Type
-              </h5>
-            </div>
-            <div className="p-2.5 text-center xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Sub Type
-              </h5>
-            </div>
-            <div className="hidden p-2.5 text-center sm:block xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Category
-              </h5>
-            </div>
-            <div className="hidden p-2.5 text-center sm:block xl:p-5">
-              <h5 className="text-sm font-medium text-black dark:text-black uppercase ">
-                Action
-              </h5>
-            </div>
-          </div> */}
-          <ScrollShadow
-            hideScrollBar
-            className="w-full h-full flex flex-col gap-3"
-          >
-            {filteredGrp?.map((i: any, index: any) => {
-              const displayData = i.attributeToBeUpdated || i;
-              const id = i?.id; // Use attributeToBeUpdated if present, otherwise use the item itself
+          <Table>
+            <TableHeader>
+              <TableColumn>Showcase</TableColumn>
+              <TableColumn>Company</TableColumn>
+              <TableColumn>Type</TableColumn>
+              <TableColumn>Sub Type</TableColumn>
+              <TableColumn>Category</TableColumn>
+              <TableColumn></TableColumn>
+            </TableHeader>
+            <TableBody>
+              {filteredGrp?.map((i, index) => {
+                const displayData = i.attributeToBeUpdated || i;
+                const id = i?.id;
 
-              return (
-                <div
-                  key={index}
-                  className="grid grid-cols-4 border border-black rounded-lg sm:grid-cols-6"
-                >
-                  <div className="flex items-center gap-3 p-2.5 xl:p-5">
-                    <div className="flex-shrink-0">
-                      <img
-                        src={displayData?.ShowCase}
-                        className="w-15 h-15"
-                        alt="Brand"
-                      />
-                    </div>
-                    <p className="hidden text-black text-xs font-semibold dark:text-white sm:block">
-                      {displayData?.Company}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-center p-2.5 xl:p-5">
-                    <p className="text-black dark:text-white">
-                      {displayData?.Type}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-center p-2.5 xl:p-5">
-                    <p className="text-meta-3">{displayData?.SubType}</p>
-                  </div>
-
-                  <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-                    <p className="text-black dark:text-white">
-                      {displayData?.APPTYPE}
-                    </p>
-                  </div>
-
-                  <div className="hidden items-center flex flex-row gap-2 justify-center p-2.5 sm:flex xl:p-5">
-                   
-                    <Dropdown>
-                    <DropdownTrigger>
-                      <Button variant={`light`} color="danger">
-                        Delete
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu aria-label="Action event example">
-                      <DropdownItem
-                        key="delete"
-                        className="text-danger"
-                        color="danger"
-                        onClick={() => handleDelete(id)}
+                return (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <div className="flex-shrink-0">
+                          <img
+                            src={displayData?.ShowCase}
+                            className="w-15 h-15"
+                            alt="Brand"
+                          />
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <p className="hidden text-black text-xs font-semibold sm:block">
+                          {displayData?.Company}
+                        </p>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center justify-center">
+                        <p className="text-black dark:text-white">
+                          {displayData?.Type}
+                        </p>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center justify-center">
+                        <p className="text-meta-3">{displayData?.SubType}</p>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="hidden items-center justify-center sm:flex">
+                        <p className="text-black dark:text-white">
+                          {displayData?.APPTYPE}
+                        </p>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="hidden items-center flex flex-row gap-2 justify-center sm:flex">
+                        <Dropdown>
+                          <DropdownTrigger>
+                            <Button variant={`light`} color="danger">
+                              Delete
+                            </Button>
+                          </DropdownTrigger>
+                          <DropdownMenu aria-label="Action event example">
+                            <DropdownItem
+                              key="delete"
+                              className="text-danger"
+                              color="danger"
+                              onClick={() => handleDelete(id)}
+                            >
+                              Confirm Delete
+                            </DropdownItem>
+                          </DropdownMenu>
+                        </Dropdown>
+                        <Button
+                          size="sm"
+                          onClick={() => hangoEdit(displayData, id)}
+                          className="bg-black dark:bg-white dark:text-black text-white text-xs"
                         >
-                        Confirm Delete
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-
-                    <Button
-                      size="sm"
-                      onClick={() => hangoEdit(displayData, id)}
-                      className="bg-black dark:bg-white dark:text-black text-white text-xs"
-                    >
-                      edit
-                    </Button>
-                    {/* <EditTemp Temp={displayData} id={id} /> */}
-                  </div>
-                </div>
-              );
-            })}
-          </ScrollShadow>
+                          edit
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
           {tempLoading === true ? (
             <Button
               isLoading={true}
@@ -188,7 +177,7 @@ export default function ListOfTemplate({
             </Button>
           ) : (
             <Button
-              onPress={() => HandleLoadMore(totalData, setTempLimit, tempLimit)}
+              onPress={() => handleLoadMore(templateData)}
               size={`md`}
               className="bg-black text-white font-semibold"
             >

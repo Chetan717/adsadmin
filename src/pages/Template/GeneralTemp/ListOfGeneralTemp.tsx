@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
-import { DataSupplier } from '../../../DataContaxt/FetchData';
-import { Button, ScrollShadow, Spinner } from '@nextui-org/react';
 import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Button,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
 } from '@nextui-org/react';
+import { DataSupplier } from '../../../DataContaxt/FetchData';
 import ShowGraphics from './ShowGraphics';
 import axios from 'axios';
 import EditTemp from './EditTemp';
@@ -26,11 +32,12 @@ export default function ListOfTemplate({
     genLimit,
     setGenLimit,
   } = DataSupplier();
+
   useEffect(() => {
     GetAllGeneralTemplate(genLimit);
   }, [genLimit]);
 
-  const handleDelete = (id: any, genLimit: any) => {
+  const handleDelete = (id, genLimit) => {
     try {
       axios
         .delete(
@@ -46,53 +53,46 @@ export default function ListOfTemplate({
     }
   };
 
-  const hangoEdit = (data: any, id: any) => {
+  const hangoEdit = (data, id) => {
     setDataEdit({ data, id });
     setSwich('Edit');
   };
 
-  const filteredGrp = genTemplateData?.LimitedData?.filter((i: any) => {
+  const filteredGrp = genTemplateData?.LimitedData?.filter((i) => {
     if (i?.attributeToBeUpdated) {
-      // If attributeToBeUpdated exists, filter based on its properties
       return i.attributeToBeUpdated.Type === `${selectTemp}`;
     } else {
-      // If attributeToBeUpdated doesn't exist, filter based on GraphicsType
       return i?.Type === `${selectTemp}`;
     }
   });
 
-  const totalData = genTemplateData?.TotalCount;
-  console.log(totalData + 4);
-
   const HandleLoadMore = (totalData, setGenLimit, genLimit) => {
     try {
-      if (Number(totalData + 4) > Number(genLimit)) {
-        setGenLimit(genLimit + 10);
+      if (Number(totalData + 20) > Number(genLimit)) {
+        setGenLimit(genLimit + 40);
       }
     } catch (error) {}
   };
 
   return (
-    <>
-      <div className="flex flex-col gap-5 justify-center w-full items-center">
-        <div className="flex flex-col w-full">
-          <ScrollShadow
-            hideScrollBar
-            className="w-full h-full flex flex-col gap-3"
-          >
-            {genTempLoading === true ? (
-              <Spinner />
-            ) : (
-              filteredGrp?.map((i: any, index: any) => {
-                const displayData = i.attributeToBeUpdated || i;
-                const id = i?.id; // Use attributeToBeUpdated if present, otherwise use the item itself
+    <div className="flex flex-col justify-start w-full items-start">
+      <div className="flex flex-col gap-4 justify-center w-full items-center w-full">
+        <Table>
+          <TableHeader>
+            <TableColumn>Showcase</TableColumn>
+            <TableColumn>Type</TableColumn>
+            <TableColumn>Sub Type</TableColumn>
+            <TableColumn>Category</TableColumn>
+            <TableColumn></TableColumn>
+          </TableHeader>
+          <TableBody>
+            {filteredGrp?.map((i, index) => {
+              const displayData = i.attributeToBeUpdated || i;
+              const id = i?.id;
 
-                return (
-                  <div
-                    key={index}
-                    className="grid grid-cols-4 border border-black rounded-lg sm:grid-cols-6"
-                  >
-                    <div className="flex items-center gap-3 p-2.5 xl:p-5">
+              return (
+                <TableRow key={index}>
+                  <TableCell>
                       <div className="flex-shrink-0">
                         <img
                           src={displayData?.ShowCase}
@@ -100,54 +100,45 @@ export default function ListOfTemplate({
                           alt="Brand"
                         />
                       </div>
-                      <p className="hidden text-black text-xs font-semibold dark:text-white sm:block">
-                        {displayData?.Company}
-                      </p>
-                    </div>
+                    
+                  </TableCell>
 
-                    {selectTemp === 'Festival' ? (
-                      <div className="flex items-center justify-center p-2.5 xl:p-5">
-                        <p className="text-black dark:text-white">
-                          {displayData?.Date}
-                        </p>
-                      </div>
-                    ) : null}
-                    <div className="flex items-center justify-center p-2.5 xl:p-5">
+                  <TableCell>
                       <p className="text-black dark:text-white">
                         {displayData?.Type}
                       </p>
-                    </div>
-
-                    <div className="flex items-center justify-center p-2.5 xl:p-5">
+                  </TableCell>
+                  <TableCell>
+                    
                       <p className="text-meta-3">{displayData?.SubType}</p>
-                    </div>
-
-                    <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+                
+                  </TableCell>
+                  <TableCell>
+                  
                       <p className="text-black dark:text-white">
                         {displayData?.APPTYPE}
                       </p>
-                    </div>
-
-                    <div className="hidden items-center flex flex-row gap-2 justify-center p-2.5 sm:flex xl:p-5">
-                     
+                  
+                  </TableCell>
+                  <TableCell>
+                    <div className="hidden items-center flex flex-row gap-2 justify-center sm:flex">
                       <Dropdown>
-                    <DropdownTrigger>
-                      <Button variant={`light`} color="danger">
-                        Delete
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu aria-label="Action event example">
-                      <DropdownItem
-                        key="delete"
-                        className="text-danger"
-                        color="danger"
-                        onClick={() => handleDelete(id, genLimit)}
-                        >
-                        Confirm Delete
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-
+                        <DropdownTrigger>
+                          <Button variant={`light`} color="danger">
+                            Delete
+                          </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu aria-label="Action event example">
+                          <DropdownItem
+                            key="delete"
+                            className="text-danger"
+                            color="danger"
+                            onClick={() => handleDelete(id, genLimit)}
+                          >
+                            Confirm Delete
+                          </DropdownItem>
+                        </DropdownMenu>
+                      </Dropdown>
                       <Button
                         size="sm"
                         onClick={() => hangoEdit(displayData, id)}
@@ -155,14 +146,13 @@ export default function ListOfTemplate({
                       >
                         edit
                       </Button>
-                      {/* <EditTemp Temp={displayData} id={id} /> */}
                     </div>
-                  </div>
-                );
-              })
-            )}
-          </ScrollShadow>
-        </div>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
         {genTempLoading === true ? (
           <Button
             isLoading={true}
@@ -183,6 +173,6 @@ export default function ListOfTemplate({
           </Button>
         )}
       </div>
-    </>
+    </div>
   );
 }

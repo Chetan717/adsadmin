@@ -23,7 +23,7 @@ interface EditCompanyProps {
     Active: boolean;
     Launched: boolean;
     designations: Array<{ id: number; value: string }>;
-    logos: Array<{ id: number; value: string }>;
+    logos: Array<{ id: number; value: string ,Type:string}>;
   };
   id: any;
 }
@@ -92,6 +92,8 @@ const EditCompany: React.FC<EditCompanyProps> = ({
       console.log(error, 'error');
     }
   };
+
+  const [activeTab, setActiveTab] = useState(true);
 
   return (
     <>
@@ -164,32 +166,56 @@ const EditCompany: React.FC<EditCompanyProps> = ({
                       />
                     </div>
                   </div>
-                  <div className="flex w-full flex-row justify-start items-start">
-                    <div className="flex w-full flex-col justify-start items-start">
-                      <label className="mb-3 block text-black font-semibold dark:text-white">
-                        Add Company Designations
-                      </label>
-                      <div className="flex justify-start w-3/4 items-start">
-                        <MultiInputForm
-                          setInputs={handleDesignationsChange}
-                          inputs={companyData?.designations || []}
-                          namebtn={`Designations`}
-                        />
-                      </div>
+                  <div className="flex w-full flex-col gap-4 justify-start items-center">
+                    <div className="flex  flex-row gap-5 justify-center items-center">
+                      <p
+                        onClick={() => setActiveTab(true)}
+                        className={
+                          activeTab === true
+                            ? `bg-black cursor-pointer text-white rounded-lg  font-bold text-sm p-2`
+                            : `border border-black  cursor-pointer rounded-lg  text-black font-bold text-sm p-2`
+                        }
+                      >
+                        Add Designations
+                      </p>{' '}
+                      <p
+                        onClick={() => setActiveTab(false)}
+                        className={
+                          activeTab === false
+                            ? `bg-black text-white cursor-pointer rounded-lg  font-bold text-sm p-2`
+                            : `border border-  cursor-pointer  rounded-lg text-black font-bold text-sm p-2`
+                        }
+                      >
+                        Add Logos & Topuplines
+                      </p>
                     </div>
-
-                    <div className="flex w-full flex-col justify-start items-start">
-                      <label className="mb-3 block text-black font-semibold dark:text-white">
-                        Add Company logos & Topupline
-                      </label>
-                      <div className="flex justify-start w-3/4 items-start">
-                        <MultiInputForm
-                          setInputs={handleLogosChange}
-                          inputs={companyData?.logos || []}
-                          namebtn={`Logos`}
-                        />
+                    {activeTab === true ? (
+                      <div className="flex w-full flex-col justify-start items-center">
+                        <label className="mb-3 block text-black font-semibold dark:text-white">
+                          Add Company Designations
+                        </label>
+                        <div className="flex justify-start w-3/4 items-start">
+                          <MultiInputForm
+                            setInputs={handleDesignationsChange}
+                            inputs={companyData.designations}
+                            namebtn={`Designations`}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="flex w-full flex-col justify-start items-center">
+                        <label className="mb-3 block text-black font-semibold dark:text-white">
+                          Add Logos And Topuplines
+                        </label>
+                        <div className="flex justify-start w-3/4 items-start">
+                          <MultiInputForm
+                            setInputs={handleLogosChange}
+                            inputs={companyData.logos}
+                            namebtn={`Logos`}
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </ModalBody>
