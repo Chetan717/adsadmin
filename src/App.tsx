@@ -9,13 +9,15 @@ import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
 import routes from './routes';
 import MainMlm from './pages/Mlm/MainMlm';
+import { DataSupplier } from './DataContaxt/FetchData';
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
-
+  const { admin, GetAdmin } = DataSupplier();
   useEffect(() => {
+    GetAdmin();
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
@@ -28,29 +30,32 @@ function App() {
         reverseOrder={false}
         containerClassName="overflow-auto"
       />
-        <NextUIProvider>
-      <Routes>
-
-        <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/auth/signup" element={<SignUp />} />
-        <Route element={<DefaultLayout />}>
-          <Route index element={<MainMlm />} />
-          {routes.map((routes, index) => {
-            const { path, component: Component } = routes;
-            return (
-              <Route
-                key={index}
-                path={path}
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <Component />
-                  </Suspense>
-                }
-              />
-            );
-          })}
-        </Route>
-      </Routes>
+      <NextUIProvider>
+        {admin && admin?.name === 'adminadsmaker' ? (
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route index element={<MainMlm />} />
+              {routes?.map((routes, index) => {
+                const { path, component: Component } = routes;
+                return (
+                  <Route
+                    key={index}
+                    path={path}
+                    element={
+                      <Suspense fallback={<Loader />}>
+                        <Component />
+                      </Suspense>
+                    }
+                  />
+                );
+              })}
+            </Route>
+          </Routes>
+        ) : (
+          <Routes>
+            <Route index element={<SignIn />} />
+          </Routes>
+        )}
       </NextUIProvider>
     </>
   );

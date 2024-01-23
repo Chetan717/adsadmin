@@ -35,6 +35,7 @@ export default function DataSupplierContext({
   const [genLimit, setGenLimit] = useState(20);
   const [grpLimit, setGrpLimit] = useState(10);
 
+  const [admin, setAdmin] = useState('');
   const apiId = 'vihnyda2gi';
   const API_KEY = 'ADS360KEY';
 
@@ -53,18 +54,12 @@ export default function DataSupplierContext({
             compLimit,
           )}`,
         )
-        .then(
-          (res) => setCompanyData(res?.data),
-          //  console.log(res)
-        )
-        .catch((err) => console.log(err))
+        .then((res) => setCompanyData(res?.data))
+        .catch((err) => err)
         .finally(() => {
-          console.log('done');
           setCompLoading(false);
         });
-    } catch (error) {
-      console.log(error, 'error');
-    }
+    } catch (error) {}
   };
   const GetAllGraphics = () => {
     setGrpLoading(true);
@@ -75,20 +70,13 @@ export default function DataSupplierContext({
         .get(
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/GrpAll/?API_KEY=${ApiKey}`,
         )
-        .then(
-          (res) => setGraphData(res?.data),
-          //  console.log(res)
-        )
-        .catch((err) => console.log(err))
+        .then((res) => setGraphData(res?.data))
+        .catch((err) => err)
         .finally(() => {
-          console.log('done');
           setGrpLoading(false);
         });
-    } catch (error) {
-      console.log(error, 'error');
-    }
+    } catch (error) {}
   };
-
 
   //   setTempLoading(true);
   //   try {
@@ -167,7 +155,13 @@ export default function DataSupplierContext({
     }
   };
 
-
+  const GetAdmin = async () => {
+    try {
+      const userData: any = localStorage?.getItem('user');
+      const DataAdmin = JSON?.parse(userData);
+      setAdmin(DataAdmin);
+    } catch (error) {}
+  };
   return (
     <>
       <DataProvider.Provider
@@ -177,7 +171,8 @@ export default function DataSupplierContext({
           compLimit,
           setCompLimit,
           templateData,
-          mlmUser, setMlmUser,
+          mlmUser,
+          setMlmUser,
           GetAllCompanyTemplate,
           tempLimit,
           setTempLimit,
@@ -197,6 +192,9 @@ export default function DataSupplierContext({
           setGenLimit,
           genTempLoading,
           genTemplateData,
+          admin,
+          setAdmin,
+          GetAdmin,
         }}
       >
         {children}

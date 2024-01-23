@@ -64,14 +64,14 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
         suggestionImage: '',
         nameImageUrl: '',
         bannerId: '',
-        position: 'left',
+        position: selType === 'Achievements' ? 'right' : 'left',
         incmNameId: '',
         active: false,
       },
     ]);
   };
 
-  console.log(selType, 'gfgh');
+  console.log(formData, 'gfgh');
 
   return (
     <div className="flex flex-col gap-3 w-full justify-start items-start">
