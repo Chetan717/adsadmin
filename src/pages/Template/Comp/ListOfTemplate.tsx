@@ -128,8 +128,9 @@ export default function ListOfTemplate({
                 return (
                   <TableRow key={index}>
                     <TableCell>
-                      <div className="flex items-center gap-3">
-                        <div className="flex-shrink-0">
+                      <div className="flex items-center  gap-3">
+                        <div className="flex h-full  flex-row justify-center items-center gap-2">
+                          <p className='bg-black rounded-full text-white p-2'>{index+1}</p>
                           <img
                             src={displayData?.ShowCase}
                             className="w-15 h-15"
