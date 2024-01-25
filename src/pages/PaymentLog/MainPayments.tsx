@@ -26,7 +26,6 @@ const MainPayments: React.FC = () => {
 
   const [dateOfPay, setDateOfPay] = useState(`${currentDate}`);
 
-  console.log(dateOfPay);
   
   useEffect(() => {
     GetAllPay(apiId, API_KEY, payLimit, dateOfPay);
@@ -51,7 +50,6 @@ const MainPayments: React.FC = () => {
         .finally(() => {
           setLoading(false);
 
-          console.log('done');
         });
     } catch (error) {
       console.log(error, 'error');
@@ -68,7 +66,6 @@ const MainPayments: React.FC = () => {
     } catch (error) {}
   };
 
-  console.log(pay);
 
   return (
     <>

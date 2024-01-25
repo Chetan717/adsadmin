@@ -25,7 +25,6 @@ interface EditmlmProps {
 }
 
 const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
-  console.log(DataOfPlan);
 
   useEffect(() => {
     setPlanData(DataOfPlan);
@@ -64,7 +63,6 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
       console.log('Please fill in all required fields.');
       return;
     }
-    console.log(id);
 
     const DataToUpdate = {
       PlanName: planData.PlanName,

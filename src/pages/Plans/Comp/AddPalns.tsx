@@ -45,7 +45,6 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
       !planData.PlanName ||
       !planData.Type
     ) {
-      console.log('Please fill in all required fields.');
       return;
     }
 

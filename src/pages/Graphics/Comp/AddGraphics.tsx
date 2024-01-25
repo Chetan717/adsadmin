@@ -32,7 +32,6 @@ const AddGraphics: React.FC<AddmlmProps> = ({
     Active: true,
   });
 
-  console.log(graphicsData);
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
@@ -53,7 +52,6 @@ const AddGraphics: React.FC<AddmlmProps> = ({
   const handleSaveGraphics = () => {
     // Check if any required field is empty
     if (!graphicsData.GraphicName || !graphicsData.GraphicsType) {
-      console.log('Please fill in all required fields.');
       return;
     }
 
@@ -79,7 +77,6 @@ const AddGraphics: React.FC<AddmlmProps> = ({
           onClose();
         });
     } catch (error) {
-      console.log(error, 'error');
     }
   };
 

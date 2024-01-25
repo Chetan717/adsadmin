@@ -19,7 +19,6 @@ const MainSubscription: React.FC = () => {
 
   const currentDate = new Date();
 
-  console.log(sub);
 
   useEffect(() => {
     GetAllSubs(apiId, API_KEY, subLimit);
@@ -75,7 +74,6 @@ const MainSubscription: React.FC = () => {
     } catch (error) {}
   };
 
-  console.log(sub);
 
   return (
     <>

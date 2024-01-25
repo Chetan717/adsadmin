@@ -52,7 +52,6 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
 
   const handleSaveCompany = (id: any, genLimit: any) => {
     if (!selType || !selSubType || !showcase) {
-      console.log('Please fill in all required fields.');
       return;
     }
 
@@ -64,7 +63,7 @@ export default function EditGenTemplate({ dataEdit, setSwich }) {
             `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
             DataOfTemplate,
           )
-          .then((res) => console.log(res))
+          .then((res) => {})
           .catch((err) => console.log(err))
           .finally(() => {
             setTimeout(() => {

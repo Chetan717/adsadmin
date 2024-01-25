@@ -70,7 +70,6 @@ const EditCompany: React.FC<EditCompanyProps> = ({
   const handleSaveCompany = (id: any, compLimit: any) => {
     // Check if any required field is empty
     if (!companyData.companyName || !companyData.companyAddress) {
-      console.log('Please fill in all required fields.');
       return;
     }
 

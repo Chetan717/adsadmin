@@ -46,7 +46,7 @@ export default function ListOfTemplate({
         .delete(
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
         )
-        .then((res) => console.log(res))
+        .then((res) =>{})
         .catch((err) => console.log(err))
         .finally(() => {
           GetAllCompanyTemplate(selectComp);
@@ -78,13 +78,38 @@ export default function ListOfTemplate({
       console.error(error);
     }
   };
+  const customSort = (a, b) => {
+    const serialA = a.attributeToBeUpdated
+      ? a.attributeToBeUpdated.serial
+      : a.serial;
+    const serialB = b.attributeToBeUpdated
+      ? b.attributeToBeUpdated.serial
+      : b.serial;
+
+    // Check if serialA is a number or a string
+    const parsedSerialA =
+      typeof serialA === 'number' ? serialA : parseInt(serialA);
+    // Check if serialB is a number or a string
+    const parsedSerialB =
+      typeof serialB === 'number' ? serialB : parseInt(serialB);
+
+    return parsedSerialA - parsedSerialB;
+  };
+
+  // Sort the data based on the custom sort function
+  const sortedData = filteredGrp?.sort(customSort);
+
   return (
     <>
       <div className="flex flex-col gap-3 justify-start w-full items-start">
-    <div className="flex flex-row mt-2 gap-6 justify-start w-full items-start">
-    <Chip color="warning" variant="dot">Total MLM Template : {templateData?.TotalCount}</Chip>
-      <Chip color="warning" variant="dot">Total Fetch Template : {templateData?.LimitedData?.Items?.length}</Chip>
-    </div>
+        <div className="flex flex-row mt-2 gap-6 justify-start w-full items-start">
+          <Chip color="warning" variant="dot">
+            Total MLM Template : {templateData?.TotalCount}
+          </Chip>
+          <Chip color="warning" variant="dot">
+            Total Fetch Template : {templateData?.LimitedData?.Items?.length}
+          </Chip>
+        </div>
         <div className="flex flex-col gap-4 justify-center w-full items-center w-full">
           <Table>
             <TableHeader>
@@ -96,7 +121,7 @@ export default function ListOfTemplate({
               <TableColumn></TableColumn>
             </TableHeader>
             <TableBody>
-              {filteredGrp?.map((i, index) => {
+              {sortedData?.map((i, index) => {
                 const displayData = i.attributeToBeUpdated || i;
                 const id = i?.id;
 

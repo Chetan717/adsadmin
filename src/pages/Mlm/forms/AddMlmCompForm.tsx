@@ -58,7 +58,6 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
   const handleSaveCompany = () => {
     // Check if any required field is empty
     if (!companyData.companyName || !companyData.companyAddress) {
-      console.log('Please fill in all required fields.');
       return;
     }
 

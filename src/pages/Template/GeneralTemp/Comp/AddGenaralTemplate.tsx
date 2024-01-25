@@ -60,7 +60,6 @@ export default function AddGenaralTemplate({}) {
 
   const handleSaveCompany = () => {
     if (!selType || !selSubType || !showcase) {
-      console.log('Please fill in all required fields.');
       return;
     }
 

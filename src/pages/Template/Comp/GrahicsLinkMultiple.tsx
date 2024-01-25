@@ -71,7 +71,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
     ]);
   };
 
-  console.log(formData, 'gfgh');
 
   return (
     <div className="flex flex-col gap-3 w-full justify-start items-start">

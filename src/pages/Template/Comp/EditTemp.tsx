@@ -14,12 +14,6 @@ export default function EditTemplate({
   const { GetAllCompanyTemplate, apiId, tempLimit } = DataSupplier();
   const bannerIdOptions = [1, 3, 4, 5];
 
-  useEffect(() => {
-    setFormData(Data?.data?.GraphicsLink);
-    setSelType(Data?.data.Type);
-    setSelSubType(Data?.data.SubType);
-    setShowcase(Data?.data.ShowCase);
-  }, [Data]);
   // Options for incmNameId
   const incmNameIdOptions = [1, 3, 4, 5];
 
@@ -34,10 +28,20 @@ export default function EditTemplate({
     active: boolean;
   }
   const [selType, setSelType] = useState('');
+  const [serial, setSerial] = useState(0);
+
   const [showcase, setShowcase] = useState('');
   const [selSubType, setSelSubType] = useState('');
 
   const [formData, setFormData] = useState<FormData[]>([]);
+
+  useEffect(() => {
+    setFormData(Data?.data?.GraphicsLink);
+    setSelType(Data?.data.Type);
+    setSelSubType(Data?.data.SubType);
+    setShowcase(Data?.data.ShowCase);
+    setSerial(Data?.data?.serial);
+  }, [Data]);
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
@@ -62,11 +66,11 @@ export default function EditTemplate({
     GraphicsLink: formData,
     Active: true,
     Launched: true,
+    serial: serial,
   };
 
   const handleSaveCompany = (id: any, tempLimit: any) => {
     if (!selType || !selSubType || !showcase) {
-      console.log('Please fill in all required fields.');
       return;
     }
     setLoading(true);
@@ -77,7 +81,7 @@ export default function EditTemplate({
             `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
             DataOfTemplate,
           )
-          .then((res) => console.log(res))
+          .then((res) => {})
           .catch((err) => console.log(err))
           .finally(() => {
             setTimeout(() => {
@@ -88,7 +92,6 @@ export default function EditTemplate({
             }, 1000);
           });
       } catch (error) {
-        console.log(error, 'error');
       }
     }, 1000);
   };
@@ -136,6 +139,28 @@ export default function EditTemplate({
             value={showcase}
             onChange={(e) => setShowcase(e.target.value)}
           />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-semibold text-black">
+            Serial Number
+          </label>
+          <select
+            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+            value={serial}
+            onChange={(e: any) => setSerial(e.target.value)}
+          >
+            {/* Options for position */}
+            {[
+              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+              20,
+            ]?.map((i, index) => {
+              return (
+                <option key={index} value={i}>
+                  {i}
+                </option>
+              );
+            })}
+          </select>
         </div>
       </div>
       <div className="flex w-full flex-col gap-2  justify-start items-start">

@@ -27,7 +27,6 @@ export default function ListOfPlans({
             `https://${apiId}.execute-api.ap-south-1.amazonaws.com/DeletePlans?PLAN_ID=${id}&API_KEY=${API_KEY}`,
           )
           .then((res) => {
-            console.log(res?.data);
           })
           .catch((err) => {
             console.log(err);

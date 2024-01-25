@@ -12,7 +12,6 @@ import { Button, ScrollShadow, Spinner, Image } from '@nextui-org/react';
 import axios from 'axios';
 
 export default function ShowGraphics({ design }) {
-  console.log(design);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 

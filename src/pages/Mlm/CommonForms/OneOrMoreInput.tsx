@@ -40,7 +40,6 @@ const MultiInputForm: React.FC<MultiInputFormProps> = ({
     setInputs(updatedInputs);
   };
 
-  console.log(inputs);
 
   return (
     <div className="flex flex-col gap-2 w-full">

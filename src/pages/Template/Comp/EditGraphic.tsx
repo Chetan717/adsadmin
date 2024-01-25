@@ -12,7 +12,6 @@ import { Button, ScrollShadow, Spinner, Image } from '@nextui-org/react';
 import axios from 'axios';
 
 export default function EditGraphics({ design }) {
-  console.log(design);
   return (
     <>
       <div className="flex grid grid-cols-1 gap-2 ">

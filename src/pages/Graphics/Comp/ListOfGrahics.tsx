@@ -48,13 +48,11 @@ const GraphicsList: React.FC<AddmlmProps> = ({
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
         )
         .then((res) => {
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
         })
         .finally(() => {
-          console.log('done');
           setTimeout(() => {
             GetAllGraphics();
             setLoading(false);

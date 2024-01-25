@@ -29,7 +29,6 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
         )
         .then((res) => {
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

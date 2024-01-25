@@ -40,7 +40,6 @@ const EditGraphics: React.FC<AddmlmProps> = ({
     setGraphicsData(dataAll);
   }, [dataAll]);
 
-  console.log(graphicsData,"edit");
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
@@ -61,7 +60,6 @@ const EditGraphics: React.FC<AddmlmProps> = ({
   const handleSaveGraphics = (id: any) => {
     // Check if any required field is empty
     if (!graphicsData.GraphicName || !graphicsData.GraphicsType) {
-      console.log('Please fill in all required fields.');
       return;
     }
 
@@ -88,7 +86,6 @@ const EditGraphics: React.FC<AddmlmProps> = ({
           }, 1500);
         });
     } catch (error) {
-      console.log(error, 'error');
     }
   };
 
