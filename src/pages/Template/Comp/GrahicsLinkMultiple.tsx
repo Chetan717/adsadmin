@@ -149,7 +149,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )}
 
-              {/* {selType === 'Meeting' ? null : (
+              {selType === 'Meeting' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Footer Banner Image
@@ -164,7 +164,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     }
                   />
                 </div>
-              )} */}
+              )}
 
               {selType === 'Festival' || selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
