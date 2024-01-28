@@ -183,12 +183,12 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
                         {/* Options for bannerId */}
                         {[
                           { name: 'MLM', value: 'MLM' },
-                          { name: 'GENARAL', value: 'Genaral' },
+                          // { name: 'GENARAL', value: 'Genaral' },
                           { name: 'POLITICS', value: 'Politics' },
-                          {
-                            name: 'BOTH_MLM_AND_POLITICS',
-                            value: 'Both_Mlm_And_Politics',
-                          },
+                          // {
+                          //   name: 'BOTH_MLM_AND_POLITICS',
+                          //   value: 'Both_Mlm_And_Politics',
+                          // },
                         ]?.map((option: any) => (
                           <option
                             key={option.value + option.name}

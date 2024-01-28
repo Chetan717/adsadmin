@@ -157,7 +157,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                         {/* Options for bannerId */}
                         {[
                           { name: 'MLM', value: 'MLM' },
-                          { name: 'GENARAL', value: 'Genaral' },
+                          // { name: 'GENARAL', value: 'Genaral' },
                           { name: 'POLITICS', value: 'Politics' },
                         ]?.map((option: any) => (
                           <option

@@ -71,7 +71,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
     ]);
   };
 
-
   return (
     <div className="flex flex-col gap-3 w-full justify-start items-start">
       {formData?.map((entry, index) => (
@@ -109,14 +108,12 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   }
                 />
               </div>
-              {/* {selType === 'Festival' ||
-              selType === 'Quate-Banner' ||
-              selType === 'ThankYou-Banner' ? null : (
+              {selType === 'Achievements' ? (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     {selType === 'Achievements'
-                      ? 'Name Graphics For Achivement'
-                      : `${selType} Graphic Name`}
+                      ? ' Graphics For Achivement'
+                      : `${selType} Graphic`}
                   </label>
                   <textarea
                     rows={3}
@@ -128,7 +125,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     }
                   />
                 </div>
-              )} */}
+              ) : null}
               {selType === 'Festival' ||
               selType === 'Quate-Banner' ||
               selType === 'ThankYou-Banner' ||
@@ -152,7 +149,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )}
 
-              {selType === 'Meeting' ? null : (
+              {/* {selType === 'Meeting' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Footer Banner Image
@@ -167,7 +164,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     }
                   />
                 </div>
-              )}
+              )} */}
 
               {selType === 'Festival' || selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
@@ -211,16 +208,14 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     Background Image
                   </p>
                 </div>
-                {/* {selType === 'Festival' ||
-                selType === 'Quate-Banner' ||
-                selType === 'ThankYou-Banner' ? null : (
+                {selType === 'Achievements' ? (
                   <div className="flex flex-col w-full gap-1 justify-center items-center">
                     <Image src={entry?.nameImageUrl} className="w-[120px] " />
                     <p className="text-xs font-semibold text-black">
-                      {selSubType} Graphics Name
+                      {selSubType} Graphics
                     </p>
                   </div>
-                )} */}
+                ) : null}
                 {selType === 'Festival' ||
                 selType === 'Quate-Banner' ||
                 selType === 'ThankYou-Banner' ||
