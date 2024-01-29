@@ -14,6 +14,7 @@ export default function MainTemplate() {
     { name: 'Welcome-Banner', value: 'Welcome-Banner' },
     { name: 'Closing-Banner', value: 'Closing-Banner' },
     { name: 'Rank-Promotion', value: 'Rank-Promotion' },
+    { name: 'Rank-PromotionB', value: 'Rank-PromotionB' },
     { name: 'Achievements', value: 'Achievements' },
     { name: 'Bonanza Promotion', value: 'BonPromotion-Banner' },
     { name: 'Aniversary/Birthday', value: 'Wish-Banner' },

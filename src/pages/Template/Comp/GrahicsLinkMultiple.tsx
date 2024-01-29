@@ -128,7 +128,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               ) : null}
               {selType === 'Festival' ||
               selType === 'Quate-Banner' ||
-              selType === 'ThankYou-Banner' ||
               selType === 'Today_Trending' ||
               selType === 'Meeting' ? null : (
                 <div className="flex flex-col gap-1">
@@ -218,7 +217,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 ) : null}
                 {selType === 'Festival' ||
                 selType === 'Quate-Banner' ||
-                selType === 'ThankYou-Banner' ||
                 selType === 'Today_Trending' ? null : (
                   <div className="flex flex-col gap-1 w-full justify-center items-center">
                     <Image src={entry?.bannerId} className="w-[120px] " />
