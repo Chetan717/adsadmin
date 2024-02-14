@@ -41,6 +41,7 @@ export default function EditTemplate({
     setFormData(Data?.data?.GraphicsLink);
     setSelType(Data?.data.Type);
     setSelSubType(Data?.data.SubType);
+    setShowcaseFr(Data?.data.ShowCaseForm);
     setShowcase(Data?.data.ShowCase);
     setSerial(Data?.data?.serial);
   }, [Data]);
