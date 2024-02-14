@@ -31,6 +31,8 @@ export default function EditTemplate({
   const [serial, setSerial] = useState(0);
 
   const [showcase, setShowcase] = useState('');
+  const [showcaseFr, setShowcaseFr] = useState('');
+
   const [selSubType, setSelSubType] = useState('');
 
   const [formData, setFormData] = useState<FormData[]>([]);
@@ -61,6 +63,7 @@ export default function EditTemplate({
     Type: selType,
     SubType: selSubType,
     ShowCase: showcase,
+    ShowCaseForm: showcaseFr,
     APPTYPE: 'mlm',
     Company: selectComp,
     GraphicsLink: formData,
@@ -91,8 +94,7 @@ export default function EditTemplate({
               setSwich('temp');
             }, 1000);
           });
-      } catch (error) {
-      }
+      } catch (error) {}
     }, 1000);
   };
   return (
@@ -138,6 +140,18 @@ export default function EditTemplate({
             className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             value={showcase}
             onChange={(e) => setShowcase(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-semibold text-black">
+            Form Showcase Image Url
+          </label>
+          <input
+            type="text"
+            placeholder="Form Showcase Image Url"
+            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+            value={showcaseFr}
+            onChange={(e) => setShowcaseFr(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-1">
