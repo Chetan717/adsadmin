@@ -27,12 +27,12 @@ const EditGraphics: React.FC<AddmlmProps> = ({
   dataAll,
   id,
 }) => {
-  const { GetAllGraphics,apiId } = DataSupplier();
+  const { GetAllGraphics, apiId } = DataSupplier();
 
   const [graphicsData, setGraphicsData] = useState({
     GraphicName: '',
     GraphicsType: '',
-    GraphicsLinks: [{ id: 1, value: '' }],
+    GraphicsLinks: [],
     Active: true,
   });
 
@@ -40,7 +40,8 @@ const EditGraphics: React.FC<AddmlmProps> = ({
     setGraphicsData(dataAll);
   }, [dataAll]);
 
-
+  console.log(graphicsData);
+  
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   const handleInputChange = (field: any, value: any) => {
@@ -59,6 +60,8 @@ const EditGraphics: React.FC<AddmlmProps> = ({
 
   const handleSaveGraphics = (id: any) => {
     // Check if any required field is empty
+    console.log(id);
+
     if (!graphicsData.GraphicName || !graphicsData.GraphicsType) {
       return;
     }
@@ -76,17 +79,10 @@ const EditGraphics: React.FC<AddmlmProps> = ({
           setTimeout(() => {
             setLoading(false);
             GetAllGraphics();
-            setGraphicsData({
-              GraphicName: '',
-              GraphicsType: '',
-              GraphicsLinks: [{ id: 1, value: '' }],
-              Active: true,
-            });
             onClose();
           }, 1500);
         });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   return (

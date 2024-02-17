@@ -27,7 +27,7 @@ const MultiGraphicsInputForm: React.FC<MultiInputFormProps> = ({
   const handleAddInput = () => {
     // Check if all previous input fields are filled before adding a new one
     if (inputs.every((input) => input.value.trim() !== '')) {
-      const newId = inputs.length + 1;
+      const newId = Date.now(); // Get a unique ID based on current timestamp
       setInputs([...inputs, { id: newId, value: '' }]);
     }
   };
@@ -40,7 +40,7 @@ const MultiGraphicsInputForm: React.FC<MultiInputFormProps> = ({
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-full">
       {inputs.map((input) => (
-        <div className="flex flex-row gap-2 w-full" key={input.id}>
+        <div className="flex flex-row gap-2 w-full" key={input?.id}>
           <textarea
             rows={2}
             cols={2}

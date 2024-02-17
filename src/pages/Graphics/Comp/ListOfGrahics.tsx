@@ -23,31 +23,22 @@ const GraphicsList: React.FC<AddmlmProps> = ({
   grptype = { grptype },
   selType,
 }) => {
-  const { GetAllGraphics, graphData, apiId,} =
-    DataSupplier();
+  const { GetAllGraphics, graphData, apiId } = DataSupplier();
 
   useEffect(() => {
     GetAllGraphics();
   }, []);
 
-  // const HandleLoadMore = (totalData, setTempLimit, tempLimit) => {
-  //   try {
-  //     if (totalData > tempLimit) {
-  //       setTempLimit(tempLimit + 10);
-  //     } else {
-  //       setTempLimit(tempLimit);
-  //     }
-  //   } catch (error) {}
-  // };
-
   const HandleDelete = (id: any) => {
-    setLoading(true);
+    setLoading(true);    
     try {
       axios
         .delete(
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
         )
         .then((res) => {
+          console.log(res.data);
+          
         })
         .catch((err) => {
           console.log(err);
@@ -61,6 +52,8 @@ const GraphicsList: React.FC<AddmlmProps> = ({
     } catch (error) {}
   };
 
+  console.log(graphData);
+  
   const filteredGrp = graphData?.filter((i: any) => {
     if (i?.attributeToBeUpdated) {
       // If attributeToBeUpdated exists, filter based on its properties
@@ -98,26 +91,23 @@ const GraphicsList: React.FC<AddmlmProps> = ({
                       </small>
                     </div>
                     <div className="flex flex-col gap-2">
-                     
-
                       <Dropdown>
-                    <DropdownTrigger>
-                      <Button variant={`light`} color="danger">
-                        Delete
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu aria-label="Action event example">
-                      <DropdownItem
-                        key="delete"
-                        className="text-danger"
-                        color="danger"
-                        onClick={() => HandleDelete(id)}
-                        >
-                        Confirm Delete
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                      
+                        <DropdownTrigger>
+                          <Button variant={`light`} color="danger">
+                            Delete
+                          </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu aria-label="Action event example">
+                          <DropdownItem
+                            key="delete"
+                            className="text-danger"
+                            color="danger"
+                            onClick={() => HandleDelete(id)}
+                          >
+                            Confirm Delete
+                          </DropdownItem>
+                        </DropdownMenu>
+                      </Dropdown>
 
                       <EditGraphics
                         loading={loading}
@@ -138,3 +128,38 @@ const GraphicsList: React.FC<AddmlmProps> = ({
   );
 };
 export default GraphicsList;
+
+[
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238239/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/B_vyqtq7.webp",
+      "id": 1
+  },
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238239/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/A_mcy8aq.webp",
+      "id": 2
+  },
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238238/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/8_meaun5.webp",
+      "id": 3
+  },
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238238/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/7_v4izrs.webp",
+      "id": 4
+  },
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238237/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/6_rfaacr.webp",
+      "id": 5
+  },
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238236/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/5_lllln9.webp",
+      "id": 6
+  },
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238236/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/4_lrejck.webp",
+      "id": 7
+  },
+  {
+      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238235/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/3_hgrdll.webp",
+      "id": 8
+  }
+]

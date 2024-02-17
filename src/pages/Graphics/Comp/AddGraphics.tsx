@@ -71,7 +71,7 @@ const AddGraphics: React.FC<AddmlmProps> = ({
           setGraphicsData({
             GraphicName: '',
             GraphicsType: '',
-            GraphicsLinks: [{ id: 1, value: '' }],
+            GraphicsLinks: [{ id: 0, value: '' }],
             Active: true,
           });
           onClose();
