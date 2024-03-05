@@ -11,6 +11,7 @@ import EditTemplate from './Comp/EditTemp';
 export default function MainTemplate() {
   const TemplateType = [
     { name: 'Today Trending', value: 'Today_Trending' },
+    { name: 'Motivational Banner', value: 'Quate-Banner' },
     { name: 'Welcome-Banner', value: 'Welcome-Banner' },
     { name: 'Closing-Banner', value: 'Closing-Banner' },
     { name: 'Rank-Promotion', value: 'Rank-Promotion' },

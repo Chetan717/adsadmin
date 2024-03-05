@@ -17,7 +17,7 @@ export default function AddGenaralTemplate({}) {
 
   const typeGenaral = [
     { name: 'Festival', value: 'Festival' },
-    { name: 'Motivational Quate', value: 'Quate-Banner' },
+    { name: 'Motivational Quate', value: 'Quate-BannerHome' },
     { name: 'Today Trending', value: 'Today_Trend' },
     { name: 'Good Morning', value: 'Good_Morning' },
     { name: 'Health Tips', value: 'Health_Tip' },
