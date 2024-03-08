@@ -129,37 +129,3 @@ const GraphicsList: React.FC<AddmlmProps> = ({
 };
 export default GraphicsList;
 
-[
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238239/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/B_vyqtq7.webp",
-      "id": 1
-  },
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238239/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/A_mcy8aq.webp",
-      "id": 2
-  },
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238238/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/8_meaun5.webp",
-      "id": 3
-  },
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238238/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/7_v4izrs.webp",
-      "id": 4
-  },
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238237/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/6_rfaacr.webp",
-      "id": 5
-  },
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238236/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/5_lllln9.webp",
-      "id": 6
-  },
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238236/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/4_lrejck.webp",
-      "id": 7
-  },
-  {
-      "value": "https://res.cloudinary.com/dos9t1ojp/image/upload/v1707238235/ADSMAKER/MLM/VSTAAR%20PLUS/FOOTER/3_hgrdll.webp",
-      "id": 8
-  }
-]

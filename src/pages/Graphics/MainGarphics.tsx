@@ -11,6 +11,7 @@ const MainGraphics: React.FC = () => {
     'TopUplineFrames',
     'Gems',
     'Footers',
+    'AchiverFrame',
     'other',
   ];
   const [selType, setSelType] = useState(grptype[0]);
