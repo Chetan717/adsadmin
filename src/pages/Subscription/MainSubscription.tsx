@@ -19,7 +19,6 @@ const MainSubscription: React.FC = () => {
 
   const currentDate = new Date();
 
-
   useEffect(() => {
     GetAllSubs(apiId, API_KEY, subLimit);
   }, [subLimit]);
@@ -45,24 +44,24 @@ const MainSubscription: React.FC = () => {
     }
   };
 
-  // const HandleUpdate = (apiId: any, API_KEY: any, Status: any, id: any) => {
-  //   setLoading(true);
-  //   try {
-  //     axios
-  //       .put(
-  //         `https://${apiId}.execute-api.ap-south-1.amazonaws.com/UpdatePlans?PLAN_ID=${id}`,
-  //       )
-  //       .then((res) => console.log(res))
-  //       .catch((err) => console.log(err))
-  //       .finally(() => {
-  //         setLoading(false);
-  //         GetAllPlans(apiId, ApiKey);
-  //         onClose();
-  //       });
-  //   } catch (error) {
-  //     console.log(error, 'error');
-  //   }
-  // };
+  const HandleUpdate = (apiId: any, API_KEY: any, Status: any, id: any) => {
+    setLoading(true);
+    try {
+      axios
+        .put(
+          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/UpdatePlans?PLAN_ID=${id}`,
+        )
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setLoading(false);
+          GetAllPlans(apiId, ApiKey);
+          onClose();
+        });
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  };
 
   const totalData = sub?.TotalCount;
 
@@ -71,9 +70,8 @@ const MainSubscription: React.FC = () => {
       if (totalData > subLimit) {
         setSubLimit(subLimit + 10);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
-
 
   return (
     <>
@@ -113,7 +111,10 @@ const MainSubscription: React.FC = () => {
             const id = i?.id;
 
             return (
-              <div key={index} className="grid grid-cols-4  border border-gray-700 rounded-lg w-full ">
+              <div
+                key={index}
+                className="grid grid-cols-4  border border-gray-700 rounded-lg w-full "
+              >
                 <div className="flex items-center justify-center p-2.5 xl:p-5">
                   <p className="text-black text-xl font-bold">
                     {displayData?.UserName}
@@ -151,20 +152,39 @@ const MainSubscription: React.FC = () => {
                 <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
                   <p className="text-success text-sm font-bold">
                     {' '}
-                    ₹{displayData?.PaymentAmount /100}/-
+                    ₹{displayData?.PaymentAmount}/-
                   </p>
                 </div>
                 <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
                   {/* <p className="text-black "> {displayData?.Expire}</p> */}
 
-                  <Button
-                    size="lg"
-                    className="shadow-sm"
-                    variant={`bordered`}
-                    color={displayData?.Expire === false ? `success` : `danger`}
-                  >
-                    {displayData?.Expire === false ? `Active` : `Expired`}
-                  </Button>
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button
+                        variant={`solid`}
+                        color={
+                          displayData?.Active === true ? `success` : `danger`
+                        }
+                      >
+                        {displayData?.Active === true
+                          ? `Set Un-Active`
+                          : `Set Active`}
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Action event example">
+                      <DropdownItem
+                        key="delete"
+                        className="text-danger"
+                        color="danger"
+                        onClick={() => HandleUpdate(displayData?.SubsId)}
+                      >
+
+                        {displayData?.Active === true
+                          ? `Confirm Un-Activate`
+                          : `Confirm Activate`}
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </div>
               </div>
             );

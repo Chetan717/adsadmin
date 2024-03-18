@@ -72,7 +72,6 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
           <label className="bg-black text-white font-semibold p-2 rounded-full">
             {index + 1}
           </label>
-
           <div className="flex w-full justify-center items-center  flex-row border  rounded-lg border-black p-2 gap-3">
             <div className="grid grid-cols-2 gap-3 w-3/4 mt-5 justify-center items-center">
               <div className="flex flex-col gap-1">
