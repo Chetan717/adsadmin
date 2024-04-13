@@ -240,12 +240,13 @@ const SignIn = () => {
               {/* <form> */}
               <div className="mb-4">
                 <label className="mb-2.5 block font-medium text-black dark:text-white">
-                  Mobile no
+                  Mobile Number
                 </label>
                 <div className="relative">
                   <input
-                    type="email"
+                    type="number"
                     name="emailId"
+                    maxLength={12}
                     value={user?.emailId}
                     placeholder="Enter your Mobile No"
                     onChange={(e) => HandleChange(e)}
@@ -314,11 +315,10 @@ const SignIn = () => {
 
               <div className="mb-5">
                 {loading === true ? (
-                
-                  <button
-                   
-                    className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
-                  >  <Spinner color="white" size={`md`} /></button>
+                  <button className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90">
+                    {' '}
+                    <Spinner color="white" size={`md`} />
+                  </button>
                 ) : (
                   <input
                     type="submit"
