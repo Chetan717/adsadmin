@@ -44,11 +44,11 @@ const SignIn = () => {
       return { ...prev, [name]: '' };
     });
 
-    if (name === 'emailId' && !validateEmail(value)) {
-      setErrors((prev) => {
-        return { ...prev, emailId: 'Invalid email address' };
-      });
-    }
+    // if (name === 'emailId' && !validateEmail(value)) {
+    //   setErrors((prev) => {
+    //     return { ...prev, emailId: 'Invalid email address' };
+    //   });
+    // }
 
     if (name === 'password' && !validatePassword(value)) {
       setErrors((prev) => {
@@ -68,7 +68,7 @@ const SignIn = () => {
           `https://${String(
             apiId,
           )}.execute-api.ap-south-1.amazonaws.com/signinUser/?API_KEY=${API_KEY}`,
-          { emailId: `${user?.emailId}`, password: `${user?.password}` },
+          { mobileNo: `${user?.emailId}`, password: `${user?.password}` },
         )
         .then((res) => {
           if (res?.data?.data?.name === 'adminadsmaker') {
@@ -240,14 +240,14 @@ const SignIn = () => {
               {/* <form> */}
               <div className="mb-4">
                 <label className="mb-2.5 block font-medium text-black dark:text-white">
-                  Email
+                  Mobile no
                 </label>
                 <div className="relative">
                   <input
                     type="email"
                     name="emailId"
                     value={user?.emailId}
-                    placeholder="Enter your email"
+                    placeholder="Enter your Mobile No"
                     onChange={(e) => HandleChange(e)}
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
