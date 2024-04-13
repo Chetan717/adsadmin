@@ -19,6 +19,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
     PlanName: '',
     PlanAmount: '',
     Launch: true,
+    download: '',
     Description: '',
     Days: '',
     Type: '',
@@ -39,7 +40,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
   const handleSaveCompany = (apiId: any, planData: any) => {
     // Check if any required field is empty
     if (
-      !planData.Days ||
+      !planData.download ||
       !planData.Description ||
       !planData.PlanAmount ||
       !planData.PlanName ||
@@ -118,6 +119,21 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                         }
                       />
                     </div>
+                    <div>
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Downloads
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="No of Downloads"
+                        maxLength={4}
+                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        value={planData.download}
+                        onChange={(e) =>
+                          handleInputChange('download', e.target.value)
+                        }
+                      />
+                    </div>
                     <div className="flex flex-col gap-1">
                       <label className="text-[16px] font-semibold text-black">
                         Select Launch
@@ -156,9 +172,12 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                       >
                         {/* Options for bannerId */}
                         {[
-                          { name: 'MLM', value: 'MLM' },
-                          // { name: 'GENARAL', value: 'Genaral' },
-                          { name: 'POLITICS', value: 'Politics' },
+                          { name: 'Basic', value: 'Basic' },
+                          { name: 'Pro', value: 'Pro' },
+
+                          { name: 'Standard', value: 'Standard' },
+
+                          { name: 'Annual Plan', value: 'Annual Plan' },
                         ]?.map((option: any) => (
                           <option
                             key={option.value + option.name}
@@ -169,7 +188,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                         ))}
                       </select>
                     </div>
-                    <div className="flex flex-col gap-1">
+                    {/* <div className="flex flex-col gap-1">
                       <label className="text-[16px] font-semibold text-black">
                         Select Duration
                       </label>
@@ -180,7 +199,6 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                           handleInputChange('Days', e.target.value)
                         }
                       >
-                        {/* Options for bannerId */}
                         {[
                           { name: '1 Month', value: 30 },
                           { name: '3 Month', value: 91 },
@@ -197,7 +215,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                           </option>
                         ))}
                       </select>
-                    </div>
+                    </div> */}
                     <div className="">
                       <label className="mb-3 block text-black font-semibold dark:text-white">
                         Plan Description/Info

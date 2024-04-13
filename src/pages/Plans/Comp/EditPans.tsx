@@ -16,6 +16,7 @@ interface EditmlmProps {
     PlanName: String;
     PlanAmount: String;
     Launch: Boolean;
+    download:String;
     Description: String;
     Days: String;
     Type: String;
@@ -25,7 +26,6 @@ interface EditmlmProps {
 }
 
 const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
-
   useEffect(() => {
     setPlanData(DataOfPlan);
   }, []);
@@ -33,6 +33,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
   const [planData, setPlanData] = useState({
     PlanName: '',
     PlanAmount: '',
+    download: '',
     Launch: true,
     Description: '',
     Days: '',
@@ -50,11 +51,13 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
       [field]: value,
     }));
   };
+console.log(planData);
 
   const handleSaveCompany = (apiId: any, planData: any, id: any) => {
     // Check if any required field is empty
     if (
-      !planData.Days ||
+      !planData.download ||
+      // !planData.Days ||
       !planData.Description ||
       !planData.PlanAmount ||
       !planData.PlanName ||
@@ -68,6 +71,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
       PlanName: planData.PlanName,
       PlanAmount: planData.PlanAmount,
       Launch: planData.Launch,
+      download: planData.download,
       Description: planData.Description,
       Days: planData.Days,
       Type: planData.Type,
@@ -144,6 +148,21 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
                         }
                       />
                     </div>
+                    <div>
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Downloads
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="No of Downloads"
+                        maxLength={4}
+                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        value={planData.download}
+                        onChange={(e) =>
+                          handleInputChange('download', e.target.value)
+                        }
+                      />
+                    </div>
                     <div className="flex flex-col gap-1">
                       <label className="text-[16px] font-semibold text-black">
                         Select Launch
@@ -182,13 +201,12 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
                       >
                         {/* Options for bannerId */}
                         {[
-                          { name: 'MLM', value: 'MLM' },
-                          // { name: 'GENARAL', value: 'Genaral' },
-                          { name: 'POLITICS', value: 'Politics' },
-                          // {
-                          //   name: 'BOTH_MLM_AND_POLITICS',
-                          //   value: 'Both_Mlm_And_Politics',
-                          // },
+                          { name: 'Basic', value: 'Basic' },
+                          { name: 'Pro', value: 'Pro' },
+
+                          { name: 'Standard', value: 'Standard' },
+
+                          { name: 'Annual Plan', value: 'Annual Plan' },
                         ]?.map((option: any) => (
                           <option
                             key={option.value + option.name}
@@ -199,7 +217,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
                         ))}
                       </select>
                     </div>
-                    <div className="flex flex-col gap-1">
+                    {/* <div className="flex flex-col gap-1">
                       <label className="text-[16px] font-semibold text-black">
                         Select Duration
                       </label>
@@ -210,7 +228,6 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
                           handleInputChange('Days', e.target.value)
                         }
                       >
-                        {/* Options for bannerId */}
                         {[
                           { name: '1 Month', value: 30 },
                           { name: '3 Month', value: 91 },
@@ -227,7 +244,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
                           </option>
                         ))}
                       </select>
-                    </div>
+                    </div> */}
                     <div className="">
                       <label className="mb-3 block text-black font-semibold dark:text-white">
                         Plan Description/Info

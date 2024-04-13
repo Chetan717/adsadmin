@@ -49,7 +49,7 @@ export default function ListOfPlans({
               <Card className="py-4 w-[300px]">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                   <p className="text-medium uppercase font-bold">
-                    {itm?.PlanName}
+                    {displayData?.PlanName}
                   </p>
 
                   <h4 className="font-bold text-large">
@@ -63,11 +63,11 @@ export default function ListOfPlans({
 
                   <div className="flex flex-row gap-2">
                     <small className="text-black text-tiny">
-                      No Of Days :{' '}
+                      No Of Downloads :{' '}
                     </small>
                     <h4 className="font-bold text-tiny">
                       {' '}
-                      {displayData?.Days} Days
+                      {displayData?.download}
                     </h4>
                   </div>
                   <div className="flex flex-row gap-2">
