@@ -151,7 +151,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )}
 
-              {selType === 'ThankYou-Banner' ? (
+              {selType === 'ThankYou-Banner' || selType === 'ThankYou-Banner-B' ? (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Footer Banner Image
@@ -232,7 +232,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   </div>
                 )}
 
-                {selType === 'ThankYou-Banner' ? (
+                {selType === 'ThankYou-Banner'||selType === 'ThankYou-Banner-B' ? (
                   <div className="flex flex-col w-full gap-1 justify-center items-center">
                     <Image src={entry?.incmNameId} className="w-[120px] " />
                     <p className="text-xs font-semibold text-black">

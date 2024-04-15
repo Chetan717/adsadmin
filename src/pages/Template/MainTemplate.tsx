@@ -22,8 +22,10 @@ export default function MainTemplate() {
     { name: 'Bonanza Promotion', value: 'BonPromotion-Banner' },
     { name: 'Aniversary/Birthday', value: 'Wish-Banner' },
     { name: 'ThankYou Message', value: 'ThankYou-Banner' },
+    { name: 'ThankYou Message-B', value: 'ThankYou-Banner-B' },
     { name: 'Income-Banner', value: 'Income-Banner' },
     { name: 'Meeting', value: 'Meeting' },
+    { name: 'Product', value: 'Product' },
   ];
   const { GetAllCompanyTemplate } = DataSupplier();
   const [selectComp, setSelectComp] = useState('');
