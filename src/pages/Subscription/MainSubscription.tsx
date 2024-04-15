@@ -19,49 +19,49 @@ const MainSubscription: React.FC = () => {
 
   const currentDate = new Date();
 
-  useEffect(() => {
-    GetAllSubs(apiId, API_KEY, subLimit);
-  }, [subLimit]);
+  // useEffect(() => {
+  //   GetAllSubs(apiId, API_KEY, subLimit);
+  // }, [subLimit]);
 
-  const GetAllSubs = (apiId: any, API_KEY: any, subLimit: any) => {
-    try {
-      setLoading(true);
-      axios
-        .get(
-          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/getAllSub?API_KEY=${API_KEY}&limit=${Number(
-            subLimit,
-          )}`,
-        )
-        .then((res) => setSub(res?.data))
-        .catch((err) => console.log(err))
-        .finally(() => {
-          setLoading(false);
+  // const GetAllSubs = (apiId: any, API_KEY: any, subLimit: any) => {
+  //   try {
+  //     setLoading(true);
+  //     axios
+  //       .get(
+  //         `https://${apiId}.execute-api.ap-south-1.amazonaws.com/getAllSub?API_KEY=${API_KEY}&limit=${Number(
+  //           subLimit,
+  //         )}`,
+  //       )
+  //       .then((res) => setSub(res?.data))
+  //       .catch((err) => console.log(err))
+  //       .finally(() => {
+  //         setLoading(false);
 
-          console.log('done');
-        });
-    } catch (error) {
-      console.log(error, 'error');
-    }
-  };
+  //         console.log('done');
+  //       });
+  //   } catch (error) {
+  //     console.log(error, 'error');
+  //   }
+  // };
 
-  const HandleUpdate = (apiId: any, API_KEY: any, Status: any, id: any) => {
-    setLoading(true);
-    try {
-      axios
-        .put(
-          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/UpdatePlans?PLAN_ID=${id}`,
-        )
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err))
-        .finally(() => {
-          setLoading(false);
-          GetAllPlans(apiId, ApiKey);
-          onClose();
-        });
-    } catch (error) {
-      console.log(error, 'error');
-    }
-  };
+  // const HandleUpdate = (apiId: any, API_KEY: any, Status: any, id: any) => {
+  //   setLoading(true);
+  //   try {
+  //     axios
+  //       .put(
+  //         `https://${apiId}.execute-api.ap-south-1.amazonaws.com/UpdatePlans?PLAN_ID=${id}`,
+  //       )
+  //       .then((res) => console.log(res))
+  //       .catch((err) => console.log(err))
+  //       .finally(() => {
+  //         setLoading(false);
+  //         GetAllPlans(apiId, ApiKey);
+  //         onClose();
+  //       });
+  //   } catch (error) {
+  //     console.log(error, 'error');
+  //   }
+  // };
 
   const totalData = sub?.TotalCount;
 
@@ -75,7 +75,7 @@ const MainSubscription: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-12  w-full justify-between items-center ">
+      {/* <div className="flex flex-col gap-12  w-full justify-between items-center ">
         <div className="grid grid-cols-4  fixed bg-black  border border-black rounded-lg w-3/4 ">
           <div className="flex items-center justify-center p-2.5 xl:p-5">
             <p className="text-white">UserName</p>
@@ -156,7 +156,6 @@ const MainSubscription: React.FC = () => {
                   </p>
                 </div>
                 <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-                  {/* <p className="text-black "> {displayData?.Expire}</p> */}
 
                   <Dropdown>
                     <DropdownTrigger>
@@ -208,7 +207,7 @@ const MainSubscription: React.FC = () => {
             Load More
           </Button>
         )}
-      </div>
+      </div> */}
     </>
   );
 };

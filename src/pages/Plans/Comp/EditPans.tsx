@@ -217,7 +217,7 @@ console.log(planData);
                         ))}
                       </select>
                     </div>
-                    {/* <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1">
                       <label className="text-[16px] font-semibold text-black">
                         Select Duration
                       </label>
@@ -244,7 +244,7 @@ console.log(planData);
                           </option>
                         ))}
                       </select>
-                    </div> */}
+                    </div>
                     <div className="">
                       <label className="mb-3 block text-black font-semibold dark:text-white">
                         Plan Description/Info
