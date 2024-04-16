@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Button, ScrollShadow } from '@nextui-org/react';
-
+import ShowGraphics from './ShowGraphics';
+import EditGraphics from './EditGraphic';
+import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Image } from '@nextui-org/react';
 interface FormData {
   id: any;
   url: string;
   suggestionImage: string;
-  incmNameId: string;
+  nameImageUrl: string;
+  bannerId: string;
   position: 'left' | 'right';
-
+  incmNameId: string;
   active: boolean;
 }
 
@@ -16,15 +19,19 @@ interface propGraphic {
   formData: FormData[];
   setFormData: React.Dispatch<React.SetStateAction<FormData[]>>;
   bannerIdOptions: any[];
-  incmNameId: any[];
+  incmNameIdOptions: any[];
   error: string | null;
   selSubType: string | null;
   selType: string | null;
 }
 
-const GenarlMultipleGraphics: React.FC<propGraphic> = ({
+const GraphicsLinkSingle: React.FC<propGraphic> = ({
   formData,
   setFormData,
+  bannerIdOptions,
+  incmNameIdOptions,
+  selSubType,
+  error,
   selType,
 }) => {
   const handleInputChange = (
@@ -55,8 +62,10 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
         id: new Date(),
         url: '',
         suggestionImage: '',
+        nameImageUrl: '',
+        bannerId: '',
+        position: selType === 'Achievements' ? 'right' : 'left',
         incmNameId: '',
-        position: 'left',
         active: false,
       },
     ]);
@@ -66,7 +75,7 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
     <div className="flex flex-col gap-3 w-full justify-start items-start">
       {formData?.map((entry, index) => (
         <div
-          key={index}
+          key={index + 2}
           className="flex flex-row w-full justify-center items-center gap-3"
         >
           <label className="bg-black text-white font-semibold p-2 rounded-full">
@@ -102,23 +111,64 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
                   }
                 />
               </div>
+              {selType === 'Achievements-B' || selType === 'Achievements' ? (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    {selType === 'Achievements-B' || selType === 'Achievements'
+                      ? ' Badge/Graphics For Achivement'
+                      : `${selType} Graphic`}
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Name Image Url"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.nameImageUrl}
+                    onChange={(e) =>
+                      handleInputChange(index, 'nameImageUrl', e.target.value)
+                    }
+                  />
+                </div>
+              ) : null}
+              {selType === 'Festival' ||
+              selType === 'Quate-Banner' ||
+              selType === 'Today_Trending' ||
+              selType === 'Meeting' ? null : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    {selType === 'Achievements' || selType === 'Achievements-B'
+                      ? 'Add Frame For Middle Image'
+                      : 'Add Badge For Image'}
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Badge For Image.."
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.bannerId}
+                    onChange={(e) =>
+                      handleInputChange(index, 'bannerId', e.target.value)
+                    }
+                  />
+                </div>
+              )}
 
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-semibold text-black">
-                  Footer Banner Image
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="Footer Banner Image "
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  value={entry.incmNameId}
-                  onChange={(e) =>
-                    handleInputChange(index, 'incmNameId', e.target.value)
-                  }
-                />
-              </div>
+              {selType === 'ThankYou-Banner' || selType === 'ThankYou-Banner-B' ? (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Footer Banner Image
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Footer Banner Image "
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.incmNameId}
+                    onChange={(e) =>
+                      handleInputChange(index, 'incmNameId', e.target.value)
+                    }
+                  />
+                </div>
+              ) : null}
 
-              {selType === 'Festival' ? null : (
+              {selType === 'Festival' || selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Image Placement
@@ -160,12 +210,36 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
                     Background Image
                   </p>
                 </div>
-              </div>
-              <div className="flex flex-col w-full gap-1 justify-center items-center">
-                <Image src={entry?.incmNameId} className="w-[120px] " />
-                <p className="text-xs font-semibold text-black">
-                  Footer Graphics Image
-                </p>
+                {selType === 'Achievements-B' || selType === 'Achievements' ? (
+                  <div className="flex flex-col w-full gap-1 justify-center items-center">
+                    <Image src={entry?.nameImageUrl} className="w-[120px] " />
+                    <p className="text-xs font-semibold text-black">
+                      {selSubType} Graphics
+                    </p>
+                  </div>
+                ) : null}
+                {selType === 'Festival' ||
+                selType === 'Quate-Banner' ||
+                selType === 'Today_Trending' ? null : (
+                  <div className="flex flex-col gap-1 w-full justify-center items-center">
+                    <Image src={entry?.bannerId} className="w-[120px] " />
+                    <p className="text-xs font-semibold text-black">
+                      {selType === 'Achievements' ||
+                      selType === 'Achievements-B'
+                        ? 'Frame For Image'
+                        : 'Badge For Image'}
+                    </p>
+                  </div>
+                )}
+
+                {selType === 'ThankYou-Banner'||selType === 'ThankYou-Banner-B' ? (
+                  <div className="flex flex-col w-full gap-1 justify-center items-center">
+                    <Image src={entry?.incmNameId} className="w-[120px] " />
+                    <p className="text-xs font-semibold text-black">
+                      Footer Graphics Image
+                    </p>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
@@ -182,4 +256,4 @@ const GenarlMultipleGraphics: React.FC<propGraphic> = ({
   );
 };
 
-export default GenarlMultipleGraphics;
+export default GraphicsLinkSingle;

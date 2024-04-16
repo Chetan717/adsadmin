@@ -135,7 +135,7 @@ export default function DataSupplierContext({
     setGenTempLoading(true);
     try {
       // Set the API endpoint and query parameters
-      const endpoint = `https://${apiId}.execute-api.ap-south-1.amazonaws.com/TempGen?APPTYPEID=Genaral&limit=${limit}`;
+      const endpoint = `https://${apiId}.execute-api.ap-south-1.amazonaws.com/TempGen?APPTYPEID=Genaral&limit=${genLimit}`;
       // `https://${apiId}.execute-api.ap-south-1.amazonaws.com/TempGen/?APPTYPEID=${APPTYPE}&limit=${limit}`;
       axios
         .get(endpoint)

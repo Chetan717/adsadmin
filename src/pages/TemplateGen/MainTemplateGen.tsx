@@ -8,31 +8,30 @@ import ListOfTemplate from './Comp/ListOfTemplate';
 import { DataSupplier } from '../../DataContaxt/FetchData';
 import EditTemplate from './Comp/EditTemp';
 
-export default function MainTemplate() {
+export default function MainTemplateGen() {
   const TemplateType = [
     { name: 'Festival', value: 'Festival' },
-    { name: 'Today Trending', value: 'Today_Trending' },
-
+    // { name: 'Today Trending', value: 'Today_Trending' },
     { name: 'Motivational Banner', value: 'Quate-Banner' },
     { name: 'Welcome-Banner', value: 'Welcome-Banner' },
     { name: 'Closing-Banner', value: 'Closing-Banner' },
-    { name: 'Rank-Promotion', value: 'Rank-Promotion' },
-    { name: 'Rank-PromotionB', value: 'Rank-PromotionB' },
+    // { name: 'Rank-Promotion', value: 'Rank-Promotion' },
+    // { name: 'Rank-PromotionB', value: 'Rank-PromotionB' },
     { name: 'Achievements', value: 'Achievements' },
     { name: 'Achievements-B', value: 'Achievements-B' },
-    { name: 'Capping', value: 'Capping' },
+    // { name: 'Capping', value: 'Capping' },
     { name: 'Bonanza Promotion', value: 'BonPromotion-Banner' },
     { name: 'Aniversary/Birthday', value: 'Wish-Banner' },
     { name: 'ThankYou Message', value: 'ThankYou-Banner' },
-    { name: 'ThankYou Message-B', value: 'ThankYou-Banner-B' },
+    // { name: 'ThankYou Message-B', value: 'ThankYou-Banner-B' },
     { name: 'Income-Banner', value: 'Income-Banner' },
-    { name: 'Meeting', value: 'Meeting' },
+    // { name: 'Meeting', value: 'Meeting' },
     { name: 'Product', value: 'Product' },
   ];
   const { GetAllCompanyTemplate } = DataSupplier();
   const [selectComp, setSelectComp] = useState('');
   const [selectTemp, setSelectTemp] = useState(TemplateType[0]?.value);
-  const [swich, setSwich] = useState('');
+  const [swich, setSwich] = useState('temp');
   const [dataEdit, setDataEdit] = useState({});
   const [load, setLoad] = useState(false);
   const [loadGr, setLoadGr] = useState(false);
@@ -55,7 +54,7 @@ export default function MainTemplate() {
       ) : swich === 'temp' ? (
         <>
           <p
-            onClick={() => setSwich(' ')}
+            onClick={() => setSwich('temp')}
             className="text-sm hover:text-primary cursor-pointer font-bold text-black dark:text-white"
           >
             {`<`} Back To List Of Companies

@@ -20,7 +20,8 @@ export default function AddTemplate({
   setSelectTemp,
 }) {
   const [loading, setLoading] = useState(false);
-  const { GetAllCompanyTemplate, apiId } = DataSupplier();
+  const { GetAllCompanyTemplate, GetAllGeneralTemplate, apiId } =
+    DataSupplier();
   const bannerIdOptions = [1, 3, 4, 5];
   // Options for incmNameId
   const incmNameIdOptions = [1, 3, 4, 5];
@@ -29,6 +30,7 @@ export default function AddTemplate({
     id: number;
     url: string;
     suggestionImage: string;
+    Date: date,
     nameImageUrl: string;
     bannerId: number;
     position: 'left' | 'right';
@@ -37,7 +39,6 @@ export default function AddTemplate({
   }
   const [selType, setSelType] = useState(TemplateType[0]);
   const [serial, setSerial] = useState(1);
-  const [host, setHost] = useState("Host");
   const [showcase, setShowcase] = useState('');
   const [showcaseFr, setShowcaseFr] = useState('');
   const [selSubType, setSelSubType] = useState('');
@@ -48,6 +49,7 @@ export default function AddTemplate({
 
   const [savedData, setSavedData] = useState<FormData[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [date, setDate] = useState<string | null>(null);
 
   const validateForm = (): boolean => {
     const { url, suggestionImage, nameImageUrl } = formData;
@@ -64,8 +66,9 @@ export default function AddTemplate({
     SubType: selSubType,
     ShowCase: showcase,
     ShowCaseForm: showcaseFr,
-    APPTYPE: 'mlm',
-    Company: selectComp,
+    Date: date,
+    APPTYPE: 'Genaral',
+    Company: 'Genaral',
     GraphicsLink: formData,
     Active: true,
     Launched: true,
@@ -90,7 +93,7 @@ export default function AddTemplate({
           .catch((err) => console.log(err))
           .finally(() => {
             setTimeout(() => {
-              GetAllCompanyTemplate(selectComp);
+              GetAllGeneralTemplate(200);
               setLoading(false);
               onClose();
               setSwich('temp');
@@ -134,6 +137,20 @@ export default function AddTemplate({
             value={selSubType}
             onChange={(e) => setSelSubType(e.target.value)}
           />
+          {selType === 'Festival' ? (
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-black">
+                Date Of {selType}
+              </label>
+              <input
+                type="date"
+                placeholder="Date"
+                className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+          ) : null}
         </div>
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-black">
@@ -173,25 +190,6 @@ export default function AddTemplate({
               1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
               20,
             ]?.map((i, index) => {
-              return (
-                <option key={index} value={i}>
-                  {i}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Serial Number
-          </label>
-          <select
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={serial}
-            onChange={(e: any) => setSerial(e.target.value)}
-          >
-            {/* Options for position */}
-            {["Host","WithoutHost"]?.map((i, index) => {
               return (
                 <option key={index} value={i}>
                   {i}

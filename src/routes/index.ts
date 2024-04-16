@@ -14,10 +14,11 @@ const Buttons = lazy(() => import('../pages/UiElements/Buttons'));
 const MlmCompany = lazy(() => import('../pages/Mlm/MainMlm'));
 const Mlmuser = lazy(() => import('../pages/Mlm/MainMlmUser'));
 const MainTemplate = lazy(() => import('./../pages/Template/MainTemplate'));
-const MainGraphics = lazy(() => import('../pages/Graphics/MainGarphics'));
-const GeneralTemplate = lazy(
-  () => import('../pages/Template/GeneralTemp/GeneralTemplate'),
+const MainTemplateGen = lazy(
+  () => import('../pages/TemplateGen/MainTemplateGen'),
 );
+const MainGraphics = lazy(() => import('../pages/Graphics/MainGarphics'));
+
 
 const coreRoutes = [
   {
@@ -48,7 +49,7 @@ const coreRoutes = [
   {
     path: '/temp/GenaralTemp',
     title: 'Template',
-    component: GeneralTemplate,
+    component: MainTemplateGen,
   },
   {
     path: '/Grp',
