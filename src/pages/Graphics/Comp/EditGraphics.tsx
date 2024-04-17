@@ -60,7 +60,6 @@ const EditGraphics: React.FC<AddmlmProps> = ({
 
   const handleSaveGraphics = (id: any) => {
     // Check if any required field is empty
-    console.log(id);
 
     if (!graphicsData.GraphicName || !graphicsData.GraphicsType) {
       return;

@@ -39,7 +39,7 @@ export default function ListOfTemplate({
 
   useEffect(() => {
     GetAllGeneralTemplate(genLimit);
-  }, [selectTemp,genLimit]);
+  }, [selectTemp, genLimit]);
 
   const handleDelete = (id) => {
     try {
@@ -61,7 +61,7 @@ export default function ListOfTemplate({
     setDataEdit({ data, id });
     setSwich('update');
   };
-console.log(genTemplateData);
+  console.log(genTemplateData);
 
   const filteredGrp = genTemplateData?.LimitedData?.filter((i) => {
     if (i?.attributeToBeUpdated) {
@@ -72,12 +72,9 @@ console.log(genTemplateData);
   });
 
   const handleLoadMore = (genTemplateData) => {
-    console.log(genLimit);
-    
+
     try {
-      if (Number(genTemplateData?.TotalCount) < genLimit) {
-        setGenLimit(Number(genLimit) + 20);
-      }
+      setGenLimit(Number(genLimit) + 20);
     } catch (error) {
       console.error(error);
     }
@@ -111,8 +108,7 @@ console.log(genTemplateData);
             Total Genaral Template : {genTemplateData?.TotalCount}
           </Chip>
           <Chip color="warning" variant="dot">
-            Total Genaral Template :{' '}
-            {genTemplateData?.LimitedData?.length}
+            Total Genaral Template : {genTemplateData?.LimitedData?.length}
           </Chip>
         </div>
         <div className="flex flex-col gap-4 justify-center w-full items-center w-full">

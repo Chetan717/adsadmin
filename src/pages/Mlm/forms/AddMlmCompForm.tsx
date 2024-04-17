@@ -22,13 +22,14 @@ interface AddmlmProps {
 
 const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
   const { GetAllCompany, apiId } = DataSupplier();
+  const [launchedOption, setLaunchedOption] = useState(true);
 
   const [companyData, setCompanyData] = useState({
     companyName: '',
     companyAddress: '',
     logo: '',
     Active: true,
-    Launched: true,
+    Launched: launchedOption,
     designations: [{ id: 1, value: '' }],
     logos: [{ id: 1, value: '', Type: '' }],
   });
@@ -118,6 +119,22 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                           handleInputChange('companyName', e.target.value)
                         }
                       />
+                    </div>
+                    <div className="flex h-[50px] flex-col gap-1">
+                      <div className="flex row gap-2 p-10 items-center gap-2">
+                        <label>Show:</label>
+                        <input
+                          type="radio"
+                          checked={launchedOption === true}
+                          onChange={() => setLaunchedOption(true)}
+                        />
+                        <label>Hide:</label>
+                        <input
+                          type="radio"
+                          checked={launchedOption === false}
+                          onChange={() => setLaunchedOption(false)}
+                        />
+                      </div>
                     </div>
                     <div>
                       <label className="mb-3 block text-black font-semibold dark:text-white">

@@ -12,7 +12,6 @@ export default function MainTemplate() {
   const TemplateType = [
     { name: 'Festival', value: 'Festival' },
     { name: 'Today Trending', value: 'Today_Trending' },
-
     { name: 'Motivational Banner', value: 'Quate-Banner' },
     { name: 'Welcome-Banner', value: 'Welcome-Banner' },
     { name: 'Closing-Banner', value: 'Closing-Banner' },

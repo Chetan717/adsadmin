@@ -23,7 +23,7 @@ interface EditCompanyProps {
     Active: boolean;
     Launched: boolean;
     designations: Array<{ id: number; value: string }>;
-    logos: Array<{ id: number; value: string ,Type:string}>;
+    logos: Array<{ id: number; value: string; Type: string }>;
   };
   id: any;
 }
@@ -39,9 +39,13 @@ const EditCompany: React.FC<EditCompanyProps> = ({
   // Use useEffect to update the state when companydata changes
   useEffect(() => {
     setCompanyData(companydata);
+    if (companyData?.Launched !== undefined) {
+      setLaunchedOption(companyData?.Launched);
+    }
   }, [companydata]);
 
   const [companyData, setCompanyData] = useState(companydata);
+  const [launchedOption, setLaunchedOption] = useState(true);
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
@@ -78,7 +82,15 @@ const EditCompany: React.FC<EditCompanyProps> = ({
       axios
         .put(
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
-          companyData,
+          {
+            companyName: companyData?.companyName,
+            logo: companyData?.logo,
+            companyAddress: companyData?.companyAddress,
+            Active: companyData?.Active,
+            Launched: launchedOption,
+            designations: companyData.designations,
+            logos: companyData?.logos,
+          },
         )
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
@@ -130,6 +142,22 @@ const EditCompany: React.FC<EditCompanyProps> = ({
                           handleInputChange('companyName', e.target.value)
                         }
                       />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex row p-6 gap-2 items-center gap-2">
+                        <label>Show:</label>
+                        <input
+                          type="radio"
+                          checked={launchedOption === true}
+                          onChange={() => setLaunchedOption(true)}
+                        />
+                        <label>Hide:</label>
+                        <input
+                          type="radio"
+                          checked={launchedOption === false}
+                          onChange={() => setLaunchedOption(false)}
+                        />
+                      </div>
                     </div>
                     <div>
                       <label className="mb-3 block text-black font-semibold dark:text-white">

@@ -30,7 +30,7 @@ export default function AddTemplate({
     id: number;
     url: string;
     suggestionImage: string;
-    Date: date,
+    Date: date;
     nameImageUrl: string;
     bannerId: number;
     position: 'left' | 'right';
@@ -39,10 +39,11 @@ export default function AddTemplate({
   }
   const [selType, setSelType] = useState(TemplateType[0]);
   const [serial, setSerial] = useState(1);
+  const [show, setShow] = useState(true);
   const [showcase, setShowcase] = useState('');
   const [showcaseFr, setShowcaseFr] = useState('');
   const [selSubType, setSelSubType] = useState('');
-
+  const [launchedOption, setLaunchedOption] = useState(true);
   const [formData, setFormData] = useState<FormData[]>([]);
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -71,7 +72,7 @@ export default function AddTemplate({
     Company: 'Genaral',
     GraphicsLink: formData,
     Active: true,
-    Launched: true,
+    Launched: launchedOption,
     serial: serial,
   };
 
@@ -125,6 +126,22 @@ export default function AddTemplate({
             ))}
           </select>
         </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex row p-6 gap-2 items-center gap-2">
+            <label>Show:</label>
+            <input
+              type="radio"
+              checked={launchedOption === true}
+              onChange={() => setLaunchedOption(true)}
+            />
+            <label>Hide:</label>
+            <input
+              type="radio"
+              checked={launchedOption === false}
+              onChange={() => setLaunchedOption(false)}
+            />
+          </div>
+        </div>
 
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-black">
@@ -152,6 +169,7 @@ export default function AddTemplate({
             </div>
           ) : null}
         </div>
+
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-black">
             Showcase Image Url

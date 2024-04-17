@@ -30,6 +30,7 @@ export default function EditTemplate({
   }
   const [selType, setSelType] = useState('');
   const [serial, setSerial] = useState(0);
+  const [launchedOption, setLaunchedOption] = useState(true);
 
   const [showcase, setShowcase] = useState('');
   const [showcaseFr, setShowcaseFr] = useState('');
@@ -46,6 +47,7 @@ export default function EditTemplate({
     setShowcase(Data?.data.ShowCase);
     setSerial(Data?.data?.serial);
     setDate(Data?.data?.Date);
+    setLaunchedOption(Data?.data?.Launched);
   }, [Data]);
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -73,7 +75,7 @@ export default function EditTemplate({
     Date: date,
     GraphicsLink: formData,
     Active: true,
-    Launched: true,
+    Launched: launchedOption,
     serial: serial,
   };
 
@@ -134,6 +136,22 @@ export default function EditTemplate({
             value={selSubType}
             onChange={(e) => setSelSubType(e.target.value)}
           />
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex row p-6 gap-2 items-center gap-2">
+            <label>Show:</label>
+            <input
+              type="radio"
+              checked={launchedOption === true}
+              onChange={() => setLaunchedOption(true)}
+            />
+            <label>Hide:</label>
+            <input
+              type="radio"
+              checked={launchedOption === false}
+              onChange={() => setLaunchedOption(false)}
+            />
+          </div>
         </div>
         {selType === 'Festival' ? (
           <div className="flex flex-col gap-1">

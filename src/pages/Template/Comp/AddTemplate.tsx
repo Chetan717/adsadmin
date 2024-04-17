@@ -41,6 +41,7 @@ export default function AddTemplate({
   const [showcase, setShowcase] = useState('');
   const [showcaseFr, setShowcaseFr] = useState('');
   const [selSubType, setSelSubType] = useState('');
+  const [launchedOption, setLaunchedOption] = useState(true);
 
   const [formData, setFormData] = useState<FormData[]>([]);
 
@@ -68,7 +69,7 @@ export default function AddTemplate({
     Company: selectComp,
     GraphicsLink: formData,
     Active: true,
-    Launched: true,
+    Launched: launchedOption,
     serial: serial,
   };
 
@@ -134,6 +135,22 @@ export default function AddTemplate({
             value={selSubType}
             onChange={(e) => setSelSubType(e.target.value)}
           />
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex row p-6 gap-2 items-center gap-2">
+            <label>Show:</label>
+            <input
+              type="radio"
+              checked={launchedOption === true}
+              onChange={() => setLaunchedOption(true)}
+            />
+            <label>Hide:</label>
+            <input
+              type="radio"
+              checked={launchedOption === false}
+              onChange={() => setLaunchedOption(false)}
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-black">

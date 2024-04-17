@@ -32,6 +32,7 @@ export default function EditTemplate({
 
   const [showcase, setShowcase] = useState('');
   const [showcaseFr, setShowcaseFr] = useState('');
+  const [launchedOption, setLaunchedOption] = useState(true);
 
   const [selSubType, setSelSubType] = useState('');
 
@@ -44,6 +45,7 @@ export default function EditTemplate({
     setShowcaseFr(Data?.data.ShowCaseForm);
     setShowcase(Data?.data.ShowCase);
     setSerial(Data?.data?.serial);
+    setLaunchedOption(Data?.data?.Launched);
   }, [Data]);
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -69,7 +71,7 @@ export default function EditTemplate({
     Company: selectComp,
     GraphicsLink: formData,
     Active: true,
-    Launched: true,
+    Launched: launchedOption,
     serial: serial,
   };
 
@@ -130,6 +132,22 @@ export default function EditTemplate({
             value={selSubType}
             onChange={(e) => setSelSubType(e.target.value)}
           />
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex row p-6 gap-2 items-center gap-2">
+            <label>Show:</label>
+            <input
+              type="radio"
+              checked={launchedOption === true}
+              onChange={() => setLaunchedOption(true)}
+            />
+            <label>Hide:</label>
+            <input
+              type="radio"
+              checked={launchedOption === false}
+              onChange={() => setLaunchedOption(false)}
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-black">
