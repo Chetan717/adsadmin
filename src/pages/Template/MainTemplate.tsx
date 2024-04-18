@@ -10,7 +10,6 @@ import EditTemplate from './Comp/EditTemp';
 
 export default function MainTemplate() {
   const TemplateType = [
-    { name: 'Festival', value: 'Festival' },
     { name: 'Today Trending', value: 'Today_Trending' },
     { name: 'Motivational Banner', value: 'Quate-Banner' },
     { name: 'Welcome-Banner', value: 'Welcome-Banner' },
@@ -30,7 +29,7 @@ export default function MainTemplate() {
   ];
   const { GetAllCompanyTemplate } = DataSupplier();
   const [selectComp, setSelectComp] = useState('');
-  const [selectTemp, setSelectTemp] = useState(TemplateType[0]?.value);
+  const [selectTemp, setSelectTemp] = useState("Today_Trending");
   const [swich, setSwich] = useState('');
   const [dataEdit, setDataEdit] = useState({});
   const [load, setLoad] = useState(false);

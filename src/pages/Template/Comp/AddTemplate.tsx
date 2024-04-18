@@ -198,25 +198,7 @@ export default function AddTemplate({
             })}
           </select>
         </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-black">
-            Serial Number
-          </label>
-          <select
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            value={serial}
-            onChange={(e: any) => setSerial(e.target.value)}
-          >
-            {/* Options for position */}
-            {["Host","WithoutHost"]?.map((i, index) => {
-              return (
-                <option key={index} value={i}>
-                  {i}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+        
       </div>
       <div className="flex w-full flex-col gap-2  justify-start items-start">
         <label className="mb-3 text-lg block text-black text-start relative  font-semibold dark:text-white">
