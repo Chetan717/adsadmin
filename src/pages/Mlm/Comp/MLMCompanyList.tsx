@@ -28,8 +28,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
         .delete(
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
         )
-        .then((res) => {
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         })
@@ -70,7 +69,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                 >
                   <div className="flex flex-row gap-22 justify-center items-center">
                     <div className="flex flex-row justify-center items-start gap-8">
-                      <Image  width={70} src={displayData?.logo}   />
+                      <Image width={70} src={displayData?.logo} />
                       <div className="flex flex-col justify-center items-start gap-1">
                         <h4 className="font-bold text-large">
                           {displayData?.companyName}
@@ -78,6 +77,15 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                         <small className="text-">
                           {displayData?.companyAddress}
                         </small>
+                        <p
+                          className={
+                            displayData?.Launched === true
+                              ? `text-[#008000] font-semibold`
+                              : `text-[#ff0000] font-semibold`
+                          }
+                        >
+                          {displayData?.Launched === true ? `Show` : `Hide`}
+                        </p>
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">

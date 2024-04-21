@@ -11,6 +11,7 @@ import EditTemplate from './Comp/EditTemp';
 export default function MainTemplateGen() {
   const TemplateType = [
     { name: 'Festival', value: 'Festival' },
+    { name: 'Good Morning', value: 'Good-Morning' },
     { name: 'Today Trending', value: 'Today_TrendingGen' },
     { name: 'Motivational Banner', value: 'Quate-Banner' },
     { name: 'Welcome-Banner', value: 'Welcome-Banner' },

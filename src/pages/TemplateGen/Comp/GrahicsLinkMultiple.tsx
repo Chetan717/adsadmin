@@ -66,7 +66,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
         bannerId: '',
         position: selType === 'Achievements' ? 'right' : 'left',
         incmNameId: '',
-        active:"",
+        active: '',
       },
     ]);
   };
@@ -130,6 +130,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               ) : null}
               {selType === 'Festival' ||
+              selType === 'Good-Morning' ||
               selType === 'Quate-Banner' ||
               selType === 'Today_Trending' ||
               selType === 'Meeting' ||
@@ -170,7 +171,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   />
                 </div>
               ) : null} */}
-<div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-black">
                   Status
                 </label>
@@ -190,7 +191,9 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   </option>
                 </select>
               </div>
-              {selType === 'Festival' || selType === 'Achievements' ? null : (
+              {selType === 'Festival' ||
+              selType === 'Good-Morning' ||
+              selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Image Placement
@@ -208,7 +211,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   </select>
                 </div>
               )}
-              
 
               <Button
                 size="sm"
@@ -242,8 +244,11 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   </div>
                 ) : null}
                 {selType === 'Festival' ||
+                selType === 'Good-Morning' ||
                 selType === 'Quate-Banner' ||
-                selType === 'Today_Trending' || selType === 'ThankYou-Banner' || selType === 'ThankYou-Banner-B' ? null : (
+                selType === 'Today_Trending' ||
+                selType === 'ThankYou-Banner' ||
+                selType === 'ThankYou-Banner-B' ? null : (
                   <div className="flex flex-col gap-1 w-full justify-center items-center">
                     <Image src={entry?.bannerId} className="w-[120px] " />
                     <p className="text-xs font-semibold text-black">
