@@ -50,7 +50,7 @@ export default function ListOfTemplate({
         .then((res) => {})
         .catch((err) => console.log(err))
         .finally(() => {
-          GetAllGeneralTemplate(20);
+          GetAllGeneralTemplate(100);
         });
     } catch (error) {
       console.log(error, 'error');
