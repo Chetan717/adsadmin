@@ -27,7 +27,7 @@ export default function MainTemplateGen() {
     // { name: 'ThankYou Message-B', value: 'ThankYou-Banner-B' },
     { name: 'Income-Banner', value: 'Income-Banner' },
     // { name: 'Meeting', value: 'Meeting' },
-    { name: 'Product', value: 'Product' },
+    // { name: 'Product', value: 'Product' },
   ];
   const { GetAllCompanyTemplate } = DataSupplier();
   const [selectComp, setSelectComp] = useState('');
