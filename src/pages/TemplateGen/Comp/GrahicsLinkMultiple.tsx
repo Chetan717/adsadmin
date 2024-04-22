@@ -66,7 +66,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
         bannerId: '',
         position: selType === 'Achievements' ? 'right' : 'left',
         incmNameId: '',
-        active: '',
+        active: 'true',
       },
     ]);
   };

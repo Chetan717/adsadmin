@@ -33,11 +33,11 @@ export default function AddTemplate({
     bannerId: number;
     position: 'left' | 'right';
     incmNameId: number;
-    active: boolean;
+    active: string;
   }
   const [selType, setSelType] = useState(TemplateType[0]);
   const [serial, setSerial] = useState(1);
-  const [host, setHost] = useState("Host");
+  const [host, setHost] = useState('Host');
   const [showcase, setShowcase] = useState('');
   const [showcaseFr, setShowcaseFr] = useState('');
   const [selSubType, setSelSubType] = useState('');
@@ -198,7 +198,6 @@ export default function AddTemplate({
             })}
           </select>
         </div>
-        
       </div>
       <div className="flex w-full flex-col gap-2  justify-start items-start">
         <label className="mb-3 text-lg block text-black text-start relative  font-semibold dark:text-white">

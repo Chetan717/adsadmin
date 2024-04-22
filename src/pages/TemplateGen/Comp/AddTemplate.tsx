@@ -30,12 +30,12 @@ export default function AddTemplate({
     id: number;
     url: string;
     suggestionImage: string;
-    Date: date;
+    Date: String;
     nameImageUrl: string;
     bannerId: number;
     position: 'left' | 'right';
     incmNameId: number;
-    active: boolean;
+    active:string;
   }
   const [selType, setSelType] = useState(TemplateType[0]);
   const [serial, setSerial] = useState(1);
@@ -72,7 +72,7 @@ export default function AddTemplate({
     Company: 'Genaral',
     GraphicsLink: formData,
     Active: true,
-    Launched: launchedOption,
+    Launched: launchedOption || true,
     serial: serial,
   };
 
