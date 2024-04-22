@@ -131,7 +131,6 @@ export default function DataSupplierContext({
     };
   }, [apiId, API_KEY, tempLimit]);
 
-  console.log(templateData);
   
   const GetAllGeneralTemplate = (limit: any) => {
     setGenTempLoading(true);
