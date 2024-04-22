@@ -192,7 +192,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </select>
               </div>
               {selType === 'Festival' ||
-              selType === 'Good-Morning' ||
+              // selType === 'Good-Morning' ||
               selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">

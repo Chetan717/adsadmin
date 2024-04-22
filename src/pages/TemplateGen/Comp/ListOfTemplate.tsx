@@ -72,7 +72,6 @@ export default function ListOfTemplate({
   });
 
   const handleLoadMore = (genTemplateData) => {
-
     try {
       setGenLimit(Number(genLimit) + 20);
     } catch (error) {
@@ -115,6 +114,7 @@ export default function ListOfTemplate({
           <Table>
             <TableHeader>
               <TableColumn>Showcase</TableColumn>
+              <TableColumn>Status</TableColumn>
               <TableColumn>Company</TableColumn>
               <TableColumn>Type</TableColumn>
               <TableColumn>Sub Type</TableColumn>
@@ -140,6 +140,19 @@ export default function ListOfTemplate({
                             alt="Brand"
                           />
                         </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <p
+                          className={
+                            displayData?.Launched === true
+                              ? `text-[#008000] font-semibold`
+                              : `text-[#ff0000] font-semibold`
+                          }
+                        >
+                          {displayData?.Launched === true ? `Show` : `Hide`}
+                        </p>
                       </div>
                     </TableCell>
                     <TableCell>

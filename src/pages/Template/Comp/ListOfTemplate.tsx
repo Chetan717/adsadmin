@@ -46,7 +46,7 @@ export default function ListOfTemplate({
         .delete(
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
         )
-        .then((res) =>{})
+        .then((res) => {})
         .catch((err) => console.log(err))
         .finally(() => {
           GetAllCompanyTemplate(selectComp);
@@ -114,6 +114,7 @@ export default function ListOfTemplate({
           <Table>
             <TableHeader>
               <TableColumn>Showcase</TableColumn>
+              <TableColumn>Status</TableColumn>
               <TableColumn>Company</TableColumn>
               <TableColumn>Type</TableColumn>
               <TableColumn>Sub Type</TableColumn>
@@ -130,12 +131,29 @@ export default function ListOfTemplate({
                     <TableCell>
                       <div className="flex items-center  gap-3">
                         <div className="flex h-full  flex-row justify-center items-center gap-2">
-                          <p className='bg-black rounded-full text-white p-2'>{index+1}</p>
+                          <p className="bg-black rounded-full text-white p-2">
+                            {index + 1}
+                          </p>
                           <img
                             src={displayData?.ShowCase}
                             className="w-15 h-15"
                             alt="Brand"
                           />
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center  gap-3">
+                        <div className="flex h-full  flex-row justify-center items-center gap-2">
+                          <p
+                            className={
+                              displayData?.Launched === true
+                                ? `text-[#008000] font-semibold`
+                                : `text-[#ff0000] font-semibold`
+                            }
+                          >
+                            {displayData?.Launched === true ? `Show` : `Hide`}
+                          </p>
                         </div>
                       </div>
                     </TableCell>
