@@ -61,7 +61,6 @@ export default function ListOfTemplate({
     setDataEdit({ data, id });
     setSwich('update');
   };
-  console.log(genTemplateData);
 
   const filteredGrp = genTemplateData?.LimitedData?.filter((i) => {
     if (i?.attributeToBeUpdated) {

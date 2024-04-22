@@ -52,7 +52,6 @@ const GraphicsList: React.FC<AddmlmProps> = ({
     } catch (error) {}
   };
 
-  console.log(graphData);
   
   const filteredGrp = graphData?.filter((i: any) => {
     if (i?.attributeToBeUpdated) {

@@ -35,7 +35,8 @@ export default function AddTemplate({
     bannerId: number;
     position: 'left' | 'right';
     incmNameId: number;
-    active:string;
+    Filter: string;
+    active: string;
   }
   const [selType, setSelType] = useState(TemplateType[0]);
   const [serial, setSerial] = useState(1);
@@ -43,6 +44,7 @@ export default function AddTemplate({
   const [showcase, setShowcase] = useState('');
   const [showcaseFr, setShowcaseFr] = useState('');
   const [selSubType, setSelSubType] = useState('');
+  const [selFil, setSelFil] = useState('');
   const [launchedOption, setLaunchedOption] = useState(true);
   const [formData, setFormData] = useState<FormData[]>([]);
 
@@ -75,6 +77,8 @@ export default function AddTemplate({
     Launched: launchedOption || true,
     serial: serial,
   };
+
+
 
   const handleSaveCompany = () => {
     if (!selType || !selSubType || !showcase) {

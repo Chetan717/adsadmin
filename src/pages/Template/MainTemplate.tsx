@@ -11,25 +11,25 @@ import EditTemplate from './Comp/EditTemp';
 export default function MainTemplate() {
   const TemplateType = [
     { name: 'Today Trending', value: 'Today_Trending' },
-    { name: 'Motivational Banner', value: 'Quate-Banner' },
-    { name: 'Welcome-Banner', value: 'Welcome-Banner' },
-    { name: 'Closing-Banner', value: 'Closing-Banner' },
+    // { name: 'Motivational Banner', value: 'Quate-Banner' },
+    // { name: 'Welcome-Banner', value: 'Welcome-Banner' },
+    // { name: 'Closing-Banner', value: 'Closing-Banner' },
     { name: 'Rank-Promotion', value: 'Rank-Promotion' },
     { name: 'Rank-PromotionB', value: 'Rank-PromotionB' },
-    { name: 'Achievements', value: 'Achievements' },
-    { name: 'Achievements-B', value: 'Achievements-B' },
+    // { name: 'Achievements', value: 'Achievements' },
+    // { name: 'Achievements-B', value: 'Achievements-B' },
     { name: 'Capping', value: 'Capping' },
-    { name: 'Bonanza Promotion', value: 'BonPromotion-Banner' },
-    { name: 'Aniversary/Birthday', value: 'Wish-Banner' },
-    { name: 'ThankYou Message', value: 'ThankYou-Banner' },
+    // { name: 'Bonanza Promotion', value: 'BonPromotion-Banner' },
+    // { name: 'Aniversary/Birthday', value: 'Wish-Banner' },
+    // { name: 'ThankYou Message', value: 'ThankYou-Banner' },
     { name: 'ThankYou Message-B', value: 'ThankYou-Banner-B' },
-    { name: 'Income-Banner', value: 'Income-Banner' },
+    // { name: 'Income-Banner', value: 'Income-Banner' },
     { name: 'Meeting', value: 'Meeting' },
     { name: 'Product', value: 'Product' },
   ];
   const { GetAllCompanyTemplate } = DataSupplier();
   const [selectComp, setSelectComp] = useState('');
-  const [selectTemp, setSelectTemp] = useState("Today_Trending");
+  const [selectTemp, setSelectTemp] = useState('Today_Trending');
   const [swich, setSwich] = useState('');
   const [dataEdit, setDataEdit] = useState({});
   const [load, setLoad] = useState(false);

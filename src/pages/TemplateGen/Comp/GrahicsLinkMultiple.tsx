@@ -12,6 +12,7 @@ interface FormData {
   bannerId: string;
   position: 'left' | 'right';
   incmNameId: string;
+  Filter: string;
   active: string;
 }
 
@@ -66,6 +67,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
         bannerId: '',
         position: selType === 'Achievements' ? 'right' : 'left',
         incmNameId: '',
+        Filter: '',
         active: 'true',
       },
     ]);
@@ -191,6 +193,28 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   </option>
                 </select>
               </div>
+
+              {selType === 'Closing-Banner' ? (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Filter
+                  </label>
+                  <select
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.Filter}
+                    onChange={(e) =>
+                      handleInputChange(index, 'Filter', e.target.value)
+                    }
+                  >
+                    {/* Options for position */}
+                    <option value="SP">SP</option>
+                    <option value="BV">BV</option>
+                    <option value="SI">SI</option>
+                    <option value="PV">PV</option>
+                    <option value="IDCLOSED">IDCLOSED</option>
+                  </select>
+                </div>
+              ) : null}
               {selType === 'Festival' ||
               // selType === 'Good-Morning' ||
               selType === 'Achievements' ? null : (
