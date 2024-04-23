@@ -133,6 +133,8 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               ) : null}
               {selType === 'Festival' ||
               selType === 'Good-Morning' ||
+              selType === 'Greeting-Wishes' ||
+              selType === 'Health-Tips' ||
               selType === 'Quate-Banner' ||
               selType === 'Today_Trending' ||
               selType === 'Meeting' ||
