@@ -20,6 +20,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
     PlanAmount: '',
     Launch: true,
     download: '',
+    img: '',
     Description: '',
     Days: '',
     Type: '',
@@ -44,7 +45,8 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
       !planData.Description ||
       !planData.PlanAmount ||
       !planData.PlanName ||
-      !planData.Type
+      !planData.Type ||
+      !planData.img
     ) {
       return;
     }
@@ -215,6 +217,20 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                           </option>
                         ))}
                       </select>
+                    </div>
+                    <div className="">
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Plan Image Url
+                      </label>
+                      <textarea
+                        rows={8}
+                        placeholder="Plan Image"
+                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        value={planData?.img}
+                        onChange={(e) =>
+                          handleInputChange('img', e.target.value)
+                        }
+                      />
                     </div>
                     <div className="">
                       <label className="mb-3 block text-black font-semibold dark:text-white">

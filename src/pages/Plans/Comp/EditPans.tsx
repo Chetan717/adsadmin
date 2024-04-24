@@ -16,10 +16,11 @@ interface EditmlmProps {
     PlanName: String;
     PlanAmount: String;
     Launch: Boolean;
-    download:String;
+    download: String;
     Description: String;
     Days: String;
     Type: String;
+    img: string;
   };
   id: any;
   GetAllPlans: () => void;
@@ -38,6 +39,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
     Description: '',
     Days: '',
     Type: '',
+    img: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -51,7 +53,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
       [field]: value,
     }));
   };
-console.log(planData);
+  console.log(planData);
 
   const handleSaveCompany = (apiId: any, planData: any, id: any) => {
     // Check if any required field is empty
@@ -61,7 +63,8 @@ console.log(planData);
       !planData.Description ||
       !planData.PlanAmount ||
       !planData.PlanName ||
-      !planData.Type
+      !planData.Type ||
+      !planData.img
     ) {
       console.log('Please fill in all required fields.');
       return;
@@ -75,6 +78,7 @@ console.log(planData);
       Description: planData.Description,
       Days: planData.Days,
       Type: planData.Type,
+      img: planData?.img,
     };
 
     setLoading(true);
@@ -244,6 +248,20 @@ console.log(planData);
                           </option>
                         ))}
                       </select>
+                    </div>
+                    <div className="">
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Plan Image Url
+                      </label>
+                      <textarea
+                        rows={8}
+                        placeholder="Plan Image"
+                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        value={planData?.img}
+                        onChange={(e) =>
+                          handleInputChange('img', e.target.value)
+                        }
+                      />
                     </div>
                     <div className="">
                       <label className="mb-3 block text-black font-semibold dark:text-white">

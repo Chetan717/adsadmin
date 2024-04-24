@@ -136,7 +136,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               selType === 'Greeting-Wishes' ||
               selType === 'Health-Tips' ||
               selType === 'Quate-Banner' ||
-              selType === 'Today_Trending' ||
+              selType === 'Today_TrendingGen' ||
               selType === 'Meeting' ||
               selType === 'ThankYou-Banner' ||
               selType === 'ThankYou-Banner-B' ? null : (
@@ -249,14 +249,14 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
 
             <div className="flex flex-col  w-1/3  border border-black p-2 rounded-lg ">
               <div className="flex flex-col w-full gap-1 justify-center items-center">
-                <Image src={entry?.suggestionImage} className="w-[200px] " />
+                <Image src={entry?.suggestionImage} className="w-[120px] " />
                 <p className="text-xs font-semibold text-black">
                   Suggetion Image
                 </p>
               </div>
               <div className="flex  w-full  gap-3 rounded-lg p-2 grid grid-cols-2 justify-center items-center   ">
                 <div className="flex flex-col w-full gap-1 justify-center items-center">
-                  <Image src={entry?.url} className="w-[120px] " />
+                  <Image src={entry?.url} className="w-[100px] " />
                   <p className="text-xs font-semibold text-black">
                     Background Image
                   </p>
