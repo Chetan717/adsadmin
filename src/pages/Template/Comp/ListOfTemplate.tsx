@@ -69,11 +69,11 @@ export default function ListOfTemplate({
     }
   });
 
-  const handleLoadMore = (templateData) => {
+  const handleLoadMore = () => {
     try {
-      if (Number(templateData?.TotalCount) + 20 > tempLimit) {
+      // if (Number(templateData?.TotalCount) + 20 > tempLimit) {
         setTempLimit(tempLimit + 20);
-      }
+      // }
     } catch (error) {
       console.error(error);
     }
