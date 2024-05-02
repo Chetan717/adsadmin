@@ -78,8 +78,6 @@ export default function AddTemplate({
     serial: serial,
   };
 
-
-
   const handleSaveCompany = () => {
     if (!selType || !selSubType || !showcase) {
       return;
@@ -230,6 +228,7 @@ export default function AddTemplate({
             // handleSaveData={handleSaveData}
             error={error}
             formData={formData}
+            TemplateType={TemplateType}
             bannerIdOptions={bannerIdOptions}
             incmNameIdOptions={incmNameIdOptions}
             setFormData={setFormData}

@@ -13,6 +13,8 @@ export default function MainTemplateGen() {
     { name: 'Festival', value: 'Festival' },
     { name: 'Good Morning', value: 'Good-Morning' },
     { name: 'Greeting & Wishes', value: 'Greeting-Wishes' },
+    { name: 'Leader Quates', value: 'Leader Quates' },
+    { name: 'Devotional & Spiritual', value: 'Devotional & Spiritual' },
     { name: 'Health Tips', value: 'Health-Tips' },
     { name: 'Today Trending', value: 'Today_TrendingGen' },
     { name: 'Motivational Banner', value: 'Quate-Banner' },

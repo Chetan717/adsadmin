@@ -225,6 +225,7 @@ export default function EditTemplate({
             formData={formData}
             bannerIdOptions={bannerIdOptions}
             incmNameIdOptions={incmNameIdOptions}
+            TemplateType={TemplateType}
             setFormData={setFormData}
             selSubType={selSubType}
             selType={selType}
