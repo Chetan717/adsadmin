@@ -40,7 +40,6 @@ const EditGraphics: React.FC<AddmlmProps> = ({
     setGraphicsData(dataAll);
   }, [dataAll]);
 
-  console.log(graphicsData);
   
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
