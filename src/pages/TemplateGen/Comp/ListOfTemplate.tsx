@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableHeader,
@@ -20,6 +20,15 @@ import ShowGraphics from './ShowGraphics';
 import axios from 'axios';
 import EditTemp from './EditTemp';
 
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from '@nextui-org/react';
+
 export default function ListOfTemplate({
   selectComp,
   setDataEdit,
@@ -37,23 +46,28 @@ export default function ListOfTemplate({
     setGenLimit,
   } = DataSupplier();
 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   useEffect(() => {
     GetAllGeneralTemplate(genLimit);
   }, [selectTemp, genLimit]);
 
-  const handleDelete = (id) => {
-    try {
-      axios
-        .delete(
-          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
-        )
-        .then((res) => {})
-        .catch((err) => console.log(err))
-        .finally(() => {
-          GetAllGeneralTemplate(100);
-        });
-    } catch (error) {
-      console.log(error, 'error');
+  const [pass, setPass] = useState('');
+  const handleDelete = (id, pass) => {
+    if (pass === 'Adsmaker365@717') {
+      try {
+        axios
+          .delete(
+            `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
+          )
+          .then((res) => {})
+          .catch((err) => console.log(err))
+          .finally(() => {
+            GetAllGeneralTemplate(100);
+          });
+      } catch (error) {
+        console.log(error, 'error');
+      }
+    } else {
     }
   };
 
@@ -181,24 +195,58 @@ export default function ListOfTemplate({
                       </div>
                     </TableCell>
                     <TableCell>
+                   
                       <div className="hidden items-center flex flex-row gap-2 justify-center sm:flex">
-                        <Dropdown>
-                          <DropdownTrigger>
-                            <Button variant={`light`} color="danger">
-                              Delete
-                            </Button>
-                          </DropdownTrigger>
-                          <DropdownMenu aria-label="Action event example">
-                            <DropdownItem
-                              key="delete"
-                              className="text-danger"
-                              color="danger"
-                              onClick={() => handleDelete(id)}
-                            >
-                              Confirm Delete
-                            </DropdownItem>
-                          </DropdownMenu>
-                        </Dropdown>
+                        <Button size={`sm`} onPress={onOpen}>
+                          Delete
+                        </Button>
+                        <Modal
+                          isOpen={isOpen}
+                          onOpenChange={onOpenChange}
+                          isDismissable={false}
+                          isKeyboardDismissDisabled={true}
+                        >
+                          <ModalContent>
+                            {(onClose) => (
+                              <>
+                                <ModalHeader className="flex flex-col gap-1">
+                                  Enter Password & Delete
+                                </ModalHeader>
+                                <ModalBody>
+                                  <div className="flex flex-col gap-1">
+                                    <label className="text-xs font-semibold text-black">
+                                      Enter Password & Delete
+                                    </label>
+                                    <input
+                                      type="text"
+                                      placeholder="Password"
+                                      className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                      value={pass}
+                                      onChange={(e) => setPass(e.target.value)}
+                                    />
+                                  </div>
+                                </ModalBody>
+                                <ModalFooter>
+                                  <Button
+                                    color="danger"
+                                    variant="light"
+                                    onPress={onClose}
+                                  >
+                                    Close
+                                  </Button>
+                                  {pass === 'Adsmaker365@717' ? (
+                                    <Button
+                                      color="primary"
+                                      onPress={() => handleDelete(id, pass)}
+                                    >
+                                      Confirm Delete
+                                    </Button>
+                                  ) : null}
+                                </ModalFooter>
+                              </>
+                            )}
+                          </ModalContent>
+                        </Modal>
                         <Button
                           size="sm"
                           onClick={() => hangoEdit(displayData, id)}

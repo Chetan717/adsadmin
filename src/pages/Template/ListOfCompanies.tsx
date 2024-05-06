@@ -34,7 +34,9 @@ const ListOfCompanies: React.FC<list> = ({
           List Of Companies {`>`}
         </h1>
         <div className="grid grid-cols-3 justify-center items-center gap-6">
-          {companyData?.LimitedData?.Items?.map((i: any, index: any) => {
+          {companyData?.LimitedData?.Items?.sort(
+            (a, b) => a?.companyName?.localeCompare(b?.companyName),
+          )?.map((i: any, index: any) => {
             const displayData = i.attributeToBeUpdated || i;
             return (
               <Card

@@ -11,6 +11,7 @@ interface FormData {
   nameImageUrl: string;
   bannerId: string;
   position: 'left' | 'right';
+  Filter: string;
   incmNameId: string;
   active: string;
 }
@@ -49,6 +50,8 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
     });
   };
 
+  const [launchedOption, setLaunchedOption] = useState(true);
+
   const handleDelete = (index: number) => {
     setFormData((prevData: FormData[]) =>
       prevData.filter((_, i) => i !== index),
@@ -63,6 +66,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
         url: '',
         suggestionImage: '',
         nameImageUrl: '',
+        Filter: '',
         bannerId: '',
         position: selType === 'Achievements' ? 'right' : 'left',
         incmNameId: '',
@@ -70,7 +74,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
       },
     ]);
   };
-  
 
   return (
     <div className="flex flex-col gap-3 w-full justify-start items-start">
@@ -193,13 +196,13 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               {/* {selType === 'Meeting' ? ( */}
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-black">
-                  Status
+                  Filter
                 </label>
                 <select
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  value={entry.active}
+                  value={entry.Filter}
                   onChange={(e) =>
-                    handleInputChange(index, 'active', e.target.value)
+                    handleInputChange(index, 'Filter', e.target.value)
                   }
                 >
                   {/* Options for position */}
@@ -211,6 +214,22 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   </option>
                 </select>
               </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-xs font-semibold text-black">
+                  Status
+                </label>
+                <select
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  value={entry.active}
+                  onChange={(e) =>
+                    handleInputChange(index, 'active', e.target.value)
+                  }
+                >
+                  {/* Options for position */}
+                  <option value="true">Show</option>
+                  <option value="false">Hide</option>
+                </select>
+              </div>
               {/* ) : null} */}
 
               <Button
@@ -220,6 +239,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               >
                 Delete
               </Button>
+              
             </div>
 
             <div className="flex flex-col  w-1/3  border border-black p-2 rounded-lg ">
@@ -272,6 +292,9 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               </div>
             </div>
           </div>
+          <label className="bg-black text-white font-semibold p-2 rounded-full">
+            {index + 1}
+          </label>
         </div>
       ))}
 

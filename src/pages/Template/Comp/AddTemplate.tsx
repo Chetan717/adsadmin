@@ -32,6 +32,7 @@ export default function AddTemplate({
     nameImageUrl: string;
     bannerId: number;
     position: 'left' | 'right';
+    Filter: string;
     incmNameId: number;
     active: string;
   }
@@ -42,6 +43,7 @@ export default function AddTemplate({
   const [showcaseFr, setShowcaseFr] = useState('');
   const [selSubType, setSelSubType] = useState('');
   const [launchedOption, setLaunchedOption] = useState(true);
+  const [filters, setFilters] = useState(true);
 
   const [formData, setFormData] = useState<FormData[]>([]);
 
@@ -152,6 +154,7 @@ export default function AddTemplate({
             />
           </div>
         </div>
+
         <div className="flex flex-col gap-1">
           <label className="text-xs font-semibold text-black">
             Showcase Image Url

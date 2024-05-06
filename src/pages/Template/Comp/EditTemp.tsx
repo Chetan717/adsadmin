@@ -48,6 +48,9 @@ export default function EditTemplate({
     setLaunchedOption(Data?.data?.Launched);
   }, [Data]);
 
+  ;
+  
+
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   const [savedData, setSavedData] = useState<FormData[]>([]);

@@ -37,7 +37,7 @@ const GraphicsList: React.FC<AddmlmProps> = ({
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           
         })
         .catch((err) => {

@@ -57,7 +57,9 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
           </h1>
         </div>
         <div className="grid grid-cols-2 w-full justify-center items-center gap-10">
-          {companyData?.LimitedData?.Items?.map((i: any, index: number) => {
+          {companyData?.LimitedData?.Items?.sort(
+            (a, b) => a?.companyName?.localeCompare(b?.companyName),
+          )?.map((i: any, index: number) => {
             const displayData = i.attributeToBeUpdated || i;
             const id = i?.id;
             return (
