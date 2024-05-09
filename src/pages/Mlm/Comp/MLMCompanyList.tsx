@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Card, CardHeader, CardBody, Image, Button } from '@nextui-org/react';
 import {
@@ -6,6 +6,14 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+} from '@nextui-org/react';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
 } from '@nextui-org/react';
 import axios from 'axios';
 import EditCompany from './Edit';
@@ -20,34 +28,43 @@ interface AddmlmProps {
 const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
   const { companyData, GetAllCompany, apiId, compLimit, setCompLimit } =
     DataSupplier();
-
-  const HandleDelete = async (id: any, compLimit: Number) => {
-    setLoading(true);
-    try {
-      axios
-        .delete(
-          `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
-        )
-        .then((res) => {})
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          console.log('done');
-          GetAllCompany(compLimit);
-          setLoading(false);
-        });
-    } catch (error) {}
-  };
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+  const [pass, setPass] = useState('');
+  // const HandleDelete = async (id: any, compLimit: Number) => {
+  //   setLoading(true);
+  //   try {
+  //     axios
+  //       .delete(
+  //         `https://${apiId}.execute-api.ap-south-1.amazonaws.com/mlm/?MLM_COMP_ID=${id}`,
+  //       )
+  //       .then((res) => {
+  //         onClose();
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         onClose();
+  //       })
+  //       .finally(() => {
+  //         console.log('done');
+  //         GetAllCompany(compLimit);
+  //         setLoading(false);
+  //         onClose();
+  //       });
+  //   } catch (error) {
+  //     onClose();
+  //   }
+  // };
 
   const totalData = companyData?.TotalCount;
   const HandleLoadMore = (totalData, setCompLimit, compLimit) => {
     try {
-      if (totalData > compLimit) {
-        setCompLimit(compLimit + 10);
-      }
+      // if (totalData > compLimit) {
+      setCompLimit(compLimit + 20);
+      // }
     } catch (error) {}
   };
+  console.log(companyData?.LimitedData?.Items);
+
   return (
     <>
       <div className="flex flex-col gap-4 w-full justify-center items-center ">
@@ -69,9 +86,9 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                   // onClick={() => GotoListTemplate('temp', 'Herbar')}
                   className="overflow-visible py-2"
                 >
-                  <div className="flex flex-row gap-22 justify-center items-center">
+                  <div className="flex flex-row gap-22 justify-start items-start">
                     <div className="flex flex-row justify-center items-start gap-8">
-                      <Image width={70} src={displayData?.logo} />
+                      <Image width={100} src={displayData?.logo} />
                       <div className="flex flex-col justify-center items-start gap-1">
                         <h4 className="font-bold text-large">
                           {displayData?.companyName}
@@ -91,7 +108,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <Dropdown>
+                      {/* <Dropdown>
                         <DropdownTrigger>
                           <Button variant={`light`} color="danger">
                             Delete
@@ -107,7 +124,63 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                             Confirm Delete
                           </DropdownItem>
                         </DropdownMenu>
-                      </Dropdown>
+                      </Dropdown> */}
+
+                      {/* <Button
+                        size="sm"
+                        className=" bg-danger w-[100px] text-white font-semibold"
+                        onPress={onOpen}
+                      >
+                        Delete
+                      </Button> */}
+                      {/* 
+                      <Modal
+                        isOpen={isOpen}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                      >
+                        <ModalContent>
+                          {(onClose) => (
+                            <>
+                              <ModalHeader className="flex flex-col gap-1">
+                                Enter Password & Delete
+                              </ModalHeader>
+                              <ModalBody>
+                                <div className="flex flex-col gap-1">
+                                  <label className="text-xs font-semibold text-black">
+                                    Enter Password & Delete
+                                  </label>
+                                  <input
+                                    type="text"
+                                    placeholder="Password"
+                                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                    value={pass}
+                                    onChange={(e) => setPass(e.target.value)}
+                                  />
+                                </div>
+                              </ModalBody>
+                              <ModalFooter>
+                                <Button
+                                  color="danger"
+                                  variant="light"
+                                  onPress={onClose}
+                                >
+                                  Close
+                                </Button>
+                                {pass === '5586' ? (
+                                  <Button
+                                    color="primary"
+                                    onPress={() => HandleDelete(id, compLimit)}
+                                  >
+                                    Confirm Delete
+                                  </Button>
+                                ) : null}
+                              </ModalFooter>
+                            </>
+                          )}
+                        </ModalContent>
+                      </Modal> */}
 
                       <EditCompany
                         id={id}

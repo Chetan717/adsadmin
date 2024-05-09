@@ -4,6 +4,14 @@ import ShowGraphics from './ShowGraphics';
 import EditGraphics from './EditGraphic';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
 import { Image } from '@nextui-org/react';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from '@nextui-org/react';
 interface FormData {
   id: any;
   url: string;
@@ -38,6 +46,8 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
   error,
   selType,
 }) => {
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const [pass, setPass] = useState('');
   const handleInputChange = (
     index: number,
     field: keyof FormData,
@@ -57,6 +67,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
     setFormData((prevData: FormData[]) =>
       prevData.filter((_, i) => i !== index),
     );
+    onClose();
   };
 
   const handleAdd = () => {
@@ -128,40 +139,37 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               ) : null}
               {/* {selType === 'Today_TrendingGen' ? null : ( */}
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-black">
-                    Suggetion Image Url
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="Suggetion Image Url"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    value={entry.suggestionImage}
-                    onChange={(e) =>
-                      handleInputChange(
-                        index,
-                        'suggestionImage',
-                        e.target.value,
-                      )
-                    }
-                  />
-                </div>
-              {/* )} */}
-               {selType === 'Today_TrendingGen' ? null : (
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-semibold text-black">
-                  Background Image Url
+                  Suggetion Image Url
                 </label>
                 <textarea
                   rows={3}
-                  placeholder="Background Image Url"
+                  placeholder="Suggetion Image Url"
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  value={entry.url}
+                  value={entry.suggestionImage}
                   onChange={(e) =>
-                    handleInputChange(index, 'url', e.target.value)
+                    handleInputChange(index, 'suggestionImage', e.target.value)
                   }
                 />
-              </div> )}
+              </div>
+              {/* )} */}
+              {selType === 'Today_TrendingGen' ? null : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-black">
+                    Background Image Url
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="Background Image Url"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={entry.url}
+                    onChange={(e) =>
+                      handleInputChange(index, 'url', e.target.value)
+                    }
+                  />
+                </div>
+              )}
               {selType === 'Achievements-B' || selType === 'Achievements' ? (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
@@ -270,7 +278,8 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               ) : null}
               {selType === 'Festival' ||
               // selType === 'Good-Morning' ||
-              selType === 'Achievements' || selType === 'Today_TrendingGen'  ? null : (
+              selType === 'Achievements' ||
+              selType === 'Today_TrendingGen' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Image Placement
@@ -292,11 +301,54 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               <Button
                 size="sm"
                 className=" bg-danger w-[100px] text-white font-semibold"
-                onClick={() => handleDelete(index)}
+                onPress={onOpen}
               >
                 Delete
               </Button>
             </div>
+            <Modal
+              isOpen={isOpen}
+              onOpenChange={onOpenChange}
+              isDismissable={false}
+              isKeyboardDismissDisabled={true}
+            >
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1">
+                      Enter Password & Delete
+                    </ModalHeader>
+                    <ModalBody>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-xs font-semibold text-black">
+                          Enter Password & Delete
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Password"
+                          className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          value={pass}
+                          onChange={(e) => setPass(e.target.value)}
+                        />
+                      </div>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="danger" variant="light" onPress={onClose}>
+                        Close
+                      </Button>
+                      {pass === '5586' ? (
+                        <Button
+                          color="primary"
+                          onPress={() => handleDelete(index)}
+                        >
+                          Confirm Delete
+                        </Button>
+                      ) : null}
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
 
             <div className="flex flex-col  w-1/3  border border-black p-2 rounded-lg ">
               <div className="flex flex-col w-full gap-1 justify-center items-center">

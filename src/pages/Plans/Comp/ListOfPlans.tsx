@@ -18,26 +18,26 @@ export default function ListOfPlans({
 }) {
   const { apiId, API_KEY } = DataSupplier();
 
-  const HandleDelete = async (id: any, apiId: any, API_KEY: any) => {
-    setLoading(true);
-    try {
-      setTimeout(() => {
-        axios
-          .delete(
-            `https://${apiId}.execute-api.ap-south-1.amazonaws.com/DeletePlans?PLAN_ID=${id}&API_KEY=${API_KEY}`,
-          )
-          .then((res) => {
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-          .finally(() => {
-            GetAllPlans(apiId, API_KEY);
-            setLoading(false);
-          });
-      }, 1000);
-    } catch (error) {}
-  };
+  // const HandleDelete = async (id: any, apiId: any, API_KEY: any) => {
+  //   setLoading(true);
+  //   try {
+  //     setTimeout(() => {
+  //       axios
+  //         .delete(
+  //           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/DeletePlans?PLAN_ID=${id}&API_KEY=${API_KEY}`,
+  //         )
+  //         .then((res) => {
+  //         })
+  //         .catch((err) => {
+  //           console.log(err);
+  //         })
+  //         .finally(() => {
+  //           GetAllPlans(apiId, API_KEY);
+  //           setLoading(false);
+  //         });
+  //     }, 1000);
+  //   } catch (error) {}
+  // };
 
   return (
     <>
@@ -83,7 +83,7 @@ export default function ListOfPlans({
                       DataOfPlan={displayData}
                       id={itm?.id}
                     />
-                    <Dropdown>
+                    {/* <Dropdown>
                       <DropdownTrigger>
                         <Button
                           isLoading={loading}
@@ -104,7 +104,7 @@ export default function ListOfPlans({
                           Confirm Delete Plan
                         </DropdownItem>
                       </DropdownMenu>
-                    </Dropdown>
+                    </Dropdown> */}
                   </div>
                 </CardBody>
               </Card>
