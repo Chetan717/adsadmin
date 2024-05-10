@@ -46,7 +46,7 @@ export default function ListOfTemplate({
     setGenLimit,
   } = DataSupplier();
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange ,onClose} = useDisclosure();
   useEffect(() => {
     GetAllGeneralTemplate(genLimit);
   }, [selectTemp, genLimit]);
@@ -59,18 +59,26 @@ export default function ListOfTemplate({
           .delete(
             `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
           )
-          .then((res) => {})
+          .then((res) => {
+            setPass("")
+          })
           .catch((err) => console.log(err))
           .finally(() => {
             GetAllGeneralTemplate(100);
+            setPass("")
           });
       } catch (error) {
         console.log(error, 'error');
+        setPass("")
       }
     } else {
     }
   };
 
+  const closeFn = () =>{
+    onClose()
+    setPass("")
+  }
   const hangoEdit = (data, id) => {
     setDataEdit({ data, id });
     setSwich('update');
@@ -230,7 +238,7 @@ export default function ListOfTemplate({
                                   <Button
                                     color="danger"
                                     variant="light"
-                                    onPress={onClose}
+                                    onPress={closeFn}
                                   >
                                     Close
                                   </Button>

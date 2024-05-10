@@ -47,7 +47,7 @@ export default function ListOfTemplate({
     GetAllCompanyTemplate(selectComp);
   }, [selectComp, tempLimit]);
   const [pass, setPass] = useState('');
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
 
   const handleDelete = (id,pass) => {
     if (pass === '5688') {
@@ -56,18 +56,26 @@ export default function ListOfTemplate({
           .delete(
             `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
           )
-          .then((res) => {})
+          .then((res) => {
+            setPass("")
+          })
           .catch((err) => console.log(err))
           .finally(() => {
             GetAllCompanyTemplate(selectComp);
+            setPass('')
           });
       } catch (error) {
         console.log(error, 'error');
+        setPass("")
       }
     } else {
     }
   };
 
+  const closeFn = () =>{
+    onClose()
+    setPass("")
+  }
   const hangoEdit = (data, id) => {
     setDataEdit({ data, id });
     setSwich('update');
@@ -230,7 +238,7 @@ export default function ListOfTemplate({
                                   <Button
                                     color="danger"
                                     variant="light"
-                                    onPress={onClose}
+                                    onPress={closeFn}
                                   >
                                     Close
                                   </Button>
