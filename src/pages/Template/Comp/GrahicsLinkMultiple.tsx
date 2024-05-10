@@ -62,11 +62,12 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
   const [launchedOption, setLaunchedOption] = useState(true);
   const [pass, setPass] = useState('');
   const handleDelete = (index: number) => {
-    if (pass === '5586') {
+    if (pass === '5688') {
       setFormData((prevData: FormData[]) =>
         prevData.filter((_, i) => i !== index),
       );
       onClose();
+      setPass("")
     } else {
     }
   };
@@ -294,7 +295,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                         >
                           Close
                         </Button>
-                        {pass === '5586' ? (
+                        {pass === '5688' ? (
                           <Button
                             color="primary"
                             onPress={() => handleDelete(index)}

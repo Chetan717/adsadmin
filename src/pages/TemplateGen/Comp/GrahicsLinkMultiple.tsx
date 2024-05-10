@@ -68,6 +68,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
       prevData.filter((_, i) => i !== index),
     );
     onClose();
+    setPass("")
   };
 
   const handleAdd = () => {
@@ -336,7 +337,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                       <Button color="danger" variant="light" onPress={onClose}>
                         Close
                       </Button>
-                      {pass === '5586' ? (
+                      {pass === '5688' ? (
                         <Button
                           color="primary"
                           onPress={() => handleDelete(index)}

@@ -53,7 +53,7 @@ export default function ListOfTemplate({
 
   const [pass, setPass] = useState('');
   const handleDelete = (id, pass) => {
-    if (pass === 'Adsmaker365@717') {
+    if (pass === '5688') {
       try {
         axios
           .delete(
@@ -234,7 +234,7 @@ export default function ListOfTemplate({
                                   >
                                     Close
                                   </Button>
-                                  {pass === 'Adsmaker365@717' ? (
+                                  {pass === '5688' ? (
                                     <Button
                                       color="primary"
                                       onPress={() => handleDelete(id, pass)}

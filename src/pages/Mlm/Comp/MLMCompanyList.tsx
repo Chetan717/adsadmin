@@ -168,7 +168,7 @@ const MLMCompanyList: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
                                 >
                                   Close
                                 </Button>
-                                {pass === '5586' ? (
+                                {pass === '5688' ? (
                                   <Button
                                     color="primary"
                                     onPress={() => HandleDelete(id, compLimit)}
