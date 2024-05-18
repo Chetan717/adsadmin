@@ -68,7 +68,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
       prevData.filter((_, i) => i !== index),
     );
     onClose();
-    setPass("")
+    setPass('');
   };
 
   const handleAdd = () => {
@@ -299,13 +299,28 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
               )}
 
-              <Button
-                size="sm"
-                className=" bg-danger w-[100px] text-white font-semibold"
-                onPress={onOpen}
-              >
-                Delete
-              </Button>
+              {pass === '5688' ? (
+                <Button
+                  size="sm"
+                  className=" bg-danger w-[100px] text-white font-semibold"
+                  onPress={() => handleDelete(index)}
+                >
+                  Delete
+                </Button>
+              ) : (
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-bold text-black">
+                    Enter Password to Delete
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Password"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
+                  />
+                </div>
+              )}
             </div>
             <Modal
               isOpen={isOpen}

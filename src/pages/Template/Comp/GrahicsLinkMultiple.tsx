@@ -253,15 +253,30 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 </div>
                 {/* ) : null} */}
 
+                {pass === '5688' ? (
                 <Button
                   size="sm"
                   className=" bg-danger w-[100px] text-white font-semibold"
-                  onPress={onOpen}
+                  onPress={() => handleDelete(index)}
                 >
                   Delete
                 </Button>
+              ) : (
+                <div className="flex flex-col gap-1 ">
+                  <label className="text-xs font-bold text-black">
+                    Enter Password to Delete
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Password"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
+                  />
+                </div>
+              )}
               </div>
-              <Modal
+              {/* <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 isDismissable={false}
@@ -307,7 +322,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     </>
                   )}
                 </ModalContent>
-              </Modal>
+              </Modal> */}
 
               <div className="flex flex-col  w-1/3  border border-black p-2 rounded-lg ">
                 <div className="flex flex-col w-full gap-1 justify-center items-center">
