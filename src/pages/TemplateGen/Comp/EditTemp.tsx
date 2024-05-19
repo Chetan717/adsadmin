@@ -95,7 +95,7 @@ export default function EditTemplate({
           .catch((err) => console.log(err))
           .finally(() => {
             setTimeout(() => {
-              GetAllGeneralTemplate(100);
+              GetAllGeneralTemplate(200);
               setLoading(false);
               onClose();
               setSwich('temp');

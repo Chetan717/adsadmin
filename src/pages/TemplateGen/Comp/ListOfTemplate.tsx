@@ -48,32 +48,11 @@ export default function ListOfTemplate({
 
   const { isOpen, onOpen, onOpenChange ,onClose} = useDisclosure();
   useEffect(() => {
-    GetAllGeneralTemplate(genLimit);
+    GetAllGeneralTemplate(200);
   }, [selectTemp, genLimit]);
 
   const [pass, setPass] = useState('');
-  const handleDelete = (id, pass) => {
-    if (pass === '5688') {
-      try {
-        axios
-          .delete(
-            `https://${apiId}.execute-api.ap-south-1.amazonaws.com/temp/?TEMP_ID=${id}`,
-          )
-          .then((res) => {
-            setPass("")
-          })
-          .catch((err) => console.log(err))
-          .finally(() => {
-            GetAllGeneralTemplate(100);
-            setPass("")
-          });
-      } catch (error) {
-        console.log(error, 'error');
-        setPass("")
-      }
-    } else {
-    }
-  };
+
 
   const closeFn = () =>{
     onClose()
@@ -205,56 +184,8 @@ export default function ListOfTemplate({
                     <TableCell>
                    
                       <div className="hidden items-center flex flex-row gap-2 justify-center sm:flex">
-                        <Button size={`sm`} onPress={onOpen}>
-                          Delete
-                        </Button>
-                        <Modal
-                          isOpen={isOpen}
-                          onOpenChange={onOpenChange}
-                          isDismissable={false}
-                          isKeyboardDismissDisabled={true}
-                        >
-                          <ModalContent>
-                            {(onClose) => (
-                              <>
-                                <ModalHeader className="flex flex-col gap-1">
-                                  Enter Password & Delete
-                                </ModalHeader>
-                                <ModalBody>
-                                  <div className="flex flex-col gap-1">
-                                    <label className="text-xs font-semibold text-black">
-                                      Enter Password & Delete
-                                    </label>
-                                    <input
-                                      type="text"
-                                      placeholder="Password"
-                                      className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                      value={pass}
-                                      onChange={(e) => setPass(e.target.value)}
-                                    />
-                                  </div>
-                                </ModalBody>
-                                <ModalFooter>
-                                  <Button
-                                    color="danger"
-                                    variant="light"
-                                    onPress={closeFn}
-                                  >
-                                    Close
-                                  </Button>
-                                  {pass === '5688' ? (
-                                    <Button
-                                      color="primary"
-                                      onPress={() => handleDelete(id, pass)}
-                                    >
-                                      Confirm Delete
-                                    </Button>
-                                  ) : null}
-                                </ModalFooter>
-                              </>
-                            )}
-                          </ModalContent>
-                        </Modal>
+                      
+                       
                         <Button
                           size="sm"
                           onClick={() => hangoEdit(displayData, id)}
