@@ -278,10 +278,9 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   </select>
                 </div>
               ) : null}
-              {selType === 'Festival' ||
+              {
               // selType === 'Good-Morning' ||
-              selType === 'Achievements' ||
-              selType === 'Today_TrendingGen' ? null : (
+              selType === 'Achievements' ? null : (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     Image Placement

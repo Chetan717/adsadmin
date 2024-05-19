@@ -66,7 +66,6 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
       setFormData((prevData: FormData[]) =>
         prevData.filter((_, i) => i !== index),
       );
-   
   };
 
   const handleAdd = () => {
