@@ -92,7 +92,9 @@ export default function AddTemplate({
             `https://${apiId}.execute-api.ap-south-1.amazonaws.com/CreateTemp/?API_KEY=${ApiKey}`,
             DataOfTemplate,
           )
-          .then((res) => {})
+          .then((res) => {
+            console.log(res.data)
+          })
           .catch((err) => console.log(err))
           .finally(() => {
             setTimeout(() => {

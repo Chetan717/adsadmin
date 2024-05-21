@@ -61,7 +61,7 @@ export default function ListOfTemplate({
     setSwich('update');
   };
 
-  const filteredGrp = templateData?.LimitedData?.Items?.filter((i) => {
+  const filteredGrp = templateData?.LimitedData?.filter((i) => {
     if (i?.attributeToBeUpdated) {
       return i.attributeToBeUpdated.Type === `${selectTemp}`;
     } else {
@@ -107,7 +107,7 @@ export default function ListOfTemplate({
             Total MLM Template : {templateData?.TotalCount}
           </Chip>
           <Chip color="warning" variant="dot">
-            Total Fetch Template : {templateData?.LimitedData?.Items?.length}
+            Total Fetch Template : {templateData?.LimitedData?.length}
           </Chip>
         </div>
         <div className="flex flex-col gap-4 justify-center w-full items-center w-full">

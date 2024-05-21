@@ -63,6 +63,9 @@ export default function ListOfTemplate({
     setSwich('update');
   };
 
+  
+  
+
   const filteredGrp = genTemplateData?.LimitedData?.filter((i) => {
     if (i?.attributeToBeUpdated) {
       return i.attributeToBeUpdated.Type === `${selectTemp}`;
@@ -71,6 +74,8 @@ export default function ListOfTemplate({
     }
   });
 
+  console.log(genTemplateData);
+  
   const handleLoadMore = (genTemplateData) => {
     try {
       setGenLimit(Number(genLimit) + 20);
@@ -80,11 +85,11 @@ export default function ListOfTemplate({
   };
   const customSort = (a, b) => {
     const serialA = a.attributeToBeUpdated
-      ? a.attributeToBeUpdated.serial
-      : a.serial;
+      ? a.attributeToBeUpdated?.serial
+      : a?.serial;
     const serialB = b.attributeToBeUpdated
-      ? b.attributeToBeUpdated.serial
-      : b.serial;
+      ? b.attributeToBeUpdated?.serial
+      : b?.serial;
 
     // Check if serialA is a number or a string
     const parsedSerialA =
