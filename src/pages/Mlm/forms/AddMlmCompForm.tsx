@@ -70,7 +70,7 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/CreateMlm/?API_KEY=${ApiKey}`,
           companyData,
         )
-        .then((res) => console.log(res))
+        .then((res) => console.log(""))
         .catch((err) => console.log(err))
         .finally(() => {
           setLoading(false);

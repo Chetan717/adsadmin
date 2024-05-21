@@ -92,7 +92,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
             logos: companyData?.logos,
           },
         )
-        .then((res) => console.log(res))
+        .then((res) => console.log(""))
         .catch((err) => console.log(err))
         .finally(() => {
           setLoading(false);

@@ -63,7 +63,7 @@ const AddGraphics: React.FC<AddmlmProps> = ({
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/CreateGRP/?API_KEY=${ApiKey}`,
           graphicsData,
         )
-        .then((res) => console.log(res))
+        .then((res) => console.log("hjgj"))
         .catch((err) => console.log(err))
         .finally(() => {
           setLoading(false);

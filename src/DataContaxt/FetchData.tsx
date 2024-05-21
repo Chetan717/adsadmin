@@ -156,9 +156,6 @@ export default function DataSupplierContext({
     }
   };
 
-  console.log(templateData);
-  
-
   const GetAdmin = async () => {
     try {
       const userData: any = localStorage?.getItem('user');

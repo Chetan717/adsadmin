@@ -89,7 +89,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/UpdatePlans?PLAN_ID=${id}`,
           DataToUpdate,
         )
-        .then((res) => console.log(res))
+        .then((res) => console.log(""))
         .catch((err) => console.log(err))
         .finally(() => {
           setLoading(false);

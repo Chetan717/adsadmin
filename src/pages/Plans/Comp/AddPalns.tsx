@@ -59,7 +59,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/AddPlans?API_KEY=${ApiKey}`,
           planData,
         )
-        .then((res) => console.log(res))
+        .then((res) => console.log(""))
         .catch((err) => console.log(err))
         .finally(() => {
           GetAllPlans(apiId, ApiKey);

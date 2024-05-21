@@ -51,7 +51,7 @@ const MainSubscription: React.FC = () => {
   //       .put(
   //         `https://${apiId}.execute-api.ap-south-1.amazonaws.com/UpdatePlans?PLAN_ID=${id}`,
   //       )
-  //       .then((res) => console.log(res))
+  //       .then((res) => console.log(""))
   //       .catch((err) => console.log(err))
   //       .finally(() => {
   //         setLoading(false);

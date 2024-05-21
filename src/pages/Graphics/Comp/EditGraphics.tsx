@@ -71,7 +71,7 @@ const EditGraphics: React.FC<AddmlmProps> = ({
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/Grp/?ID=${id}`,
           graphicsData,
         )
-        .then((res) => console.log(res))
+        .then((res) => console.log(""))
         .catch((err) => console.log(err))
         .finally(() => {
           setTimeout(() => {
