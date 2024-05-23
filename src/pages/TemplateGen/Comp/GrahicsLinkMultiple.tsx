@@ -172,7 +172,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   />
                 </div>
               )}
-              {selType === 'Achievements-B' || selType === 'Achievements' ? (
+              {selType === 'Achievements-B' || selType === 'Achievements' || selType === 'Income-Banner' ? (
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-semibold text-black">
                     {selType === 'Achievements-B' || selType === 'Achievements'
@@ -340,7 +340,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     Background Image
                   </p>
                 </div>
-                {selType === 'Achievements-B' || selType === 'Achievements' ? (
+                {selType === 'Achievements-B' || selType === 'Achievements' || selType === 'Income-Banner' ? (
                   <div className="flex flex-col w-full gap-1 justify-center items-center">
                     <Image src={entry?.nameImageUrl} className="w-[120px] " />
                     <p className="text-xs font-semibold text-black">
@@ -348,6 +348,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                     </p>
                   </div>
                 ) : null}
+                
                 {selType === 'Festival' ||
                 selType === 'Good-Morning' ||
                 selType === 'Quate-Banner' ||
@@ -359,6 +360,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                   <div className="flex flex-col gap-1 w-full justify-center items-center">
                     <Image src={entry?.bannerId} className="w-[120px] " />
                     <p className="text-xs font-semibold text-black">
+
                       {selType === 'Achievements' ||
                       selType === 'Achievements-B'
                         ? 'Frame For Image'
