@@ -62,7 +62,6 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     if (!companyData.companyName || !companyData.companyAddress) {
       return;
     }
-console.log(companyData);
 
     setLoading(true);
     try {
@@ -85,7 +84,7 @@ console.log(companyData);
   };
 
   const [activeTab, setActiveTab] = useState(true);
-console.log(companyData);
+
 
   return (
     <>
