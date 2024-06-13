@@ -19,6 +19,7 @@ interface EditCompanyProps {
   companydata: {
     companyName: string;
     logo: string;
+    RMBG:string;
     companyAddress: string;
     Active: boolean;
     Launched: boolean;
@@ -85,6 +86,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
           {
             companyName: companyData?.companyName,
             logo: companyData?.logo,
+            RMBG: companyData?.RMBG,
             companyAddress: companyData?.companyAddress,
             Active: companyData?.Active,
             Launched: launchedOption,
@@ -140,6 +142,20 @@ const EditCompany: React.FC<EditCompanyProps> = ({
                         value={companyData.companyName}
                         onChange={(e) =>
                           handleInputChange('companyName', e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-3 block text-black font-semibold dark:text-white">
+                        Remove Background key
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="RMBG..."
+                        className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        value={companyData.RMBG}
+                        onChange={(e) =>
+                          handleInputChange('RMBG', e.target.value)
                         }
                       />
                     </div>
