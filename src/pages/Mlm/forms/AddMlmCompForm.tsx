@@ -29,7 +29,7 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     companyAddress: '',
     logo: '',
     Active: true,
-    RMBG:'',
+    RMBG: '',
     Launched: launchedOption,
     designations: [{ id: 1, value: '' }],
     logos: [{ id: 1, value: '', Type: '' }],
@@ -57,6 +57,7 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
     }));
   };
 
+
   const handleSaveCompany = () => {
     // Check if any required field is empty
     if (!companyData.companyName || !companyData.companyAddress) {
@@ -69,9 +70,18 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
       axios
         .put(
           `https://${apiId}.execute-api.ap-south-1.amazonaws.com/CreateMlm/?API_KEY=${ApiKey}`,
-          companyData,
+          {
+            companyName: companyData?.companyName,
+            companyAddress: companyData?.companyAddress,
+            logo: companyData?.logo,
+            Active: companyData?.Active,
+            RMBG: companyData?.designations,
+            Launched: launchedOption,
+            designations: companyData?.designations,
+            logos: companyData?.logos,
+          },
         )
-        .then((res) => console.log(""))
+        .then((res) => console.log(''))
         .catch((err) => console.log(err))
         .finally(() => {
           setLoading(false);
@@ -84,7 +94,6 @@ const AddMlmCompForm: React.FC<AddmlmProps> = ({ loading, setLoading }) => {
   };
 
   const [activeTab, setActiveTab] = useState(true);
-
 
   return (
     <>

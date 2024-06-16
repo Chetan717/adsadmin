@@ -6,28 +6,12 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Pagination,
   Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  ScrollShadow,
   Chip,
 } from '@nextui-org/react';
 import { DataSupplier } from '../../../DataContaxt/FetchData';
-import ShowGraphics from './ShowGraphics';
-import axios from 'axios';
 import EditTemp from './EditTemp';
-
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  useDisclosure,
-} from '@nextui-org/react';
+import { useDisclosure } from '@nextui-org/react';
 
 export default function ListOfTemplate({
   selectComp,
@@ -39,43 +23,57 @@ export default function ListOfTemplate({
   const {
     genTemplateData,
     tempLoading,
-    GetAllCompanyTemplate,
     GetAllGeneralTemplate,
     apiId,
     genLimit,
     setGenLimit,
   } = DataSupplier();
 
-  const { isOpen, onOpen, onOpenChange ,onClose} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   useEffect(() => {
     GetAllGeneralTemplate(200);
   }, [selectTemp, genLimit]);
 
   const [pass, setPass] = useState('');
+  const [selectedDate, setSelectedDate] = useState('');
 
+  const closeFn = () => {
+    onClose();
+    setPass('');
+  };
 
-  const closeFn = () =>{
-    onClose()
-    setPass("")
-  }
   const hangoEdit = (data, id) => {
     setDataEdit({ data, id });
     setSwich('update');
   };
 
-  
-  
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
 
-  const filteredGrp = genTemplateData?.LimitedData?.filter((i) => {
-    if (i?.attributeToBeUpdated) {
-      return i.attributeToBeUpdated.Type === `${selectTemp}`;
-    } else {
-      return i?.Type === `${selectTemp}`;
-    }
-  });
+  console.log(selectedDate, selectTemp);
 
-  console.log(genTemplateData);
-  
+  const filteredGrp =
+    selectTemp === 'Festival'
+      ? genTemplateData?.LimitedData?.filter((i) => {
+          const itemDate = i.Date || i.attributeToBeUpdated?.Date;
+          const dateCondition = selectedDate ? itemDate === selectedDate : true;
+          if (i?.attributeToBeUpdated) {
+            return (
+              i.attributeToBeUpdated.Type === `${selectTemp}` && dateCondition
+            );
+          } else {
+            return i?.Type === `${selectTemp}` && dateCondition;
+          }
+        })
+      : genTemplateData?.LimitedData?.filter((i) => {
+          if (i?.attributeToBeUpdated) {
+            return i.attributeToBeUpdated.Type === `${selectTemp}`;
+          } else {
+            return i?.Type === `${selectTemp}`;
+          }
+        });
+
   const handleLoadMore = (genTemplateData) => {
     try {
       setGenLimit(Number(genLimit) + 20);
@@ -83,6 +81,7 @@ export default function ListOfTemplate({
       console.error(error);
     }
   };
+
   const customSort = (a, b) => {
     const serialA = a.attributeToBeUpdated
       ? a.attributeToBeUpdated?.serial
@@ -91,17 +90,14 @@ export default function ListOfTemplate({
       ? b.attributeToBeUpdated?.serial
       : b?.serial;
 
-    // Check if serialA is a number or a string
     const parsedSerialA =
       typeof serialA === 'number' ? serialA : parseInt(serialA);
-    // Check if serialB is a number or a string
     const parsedSerialB =
       typeof serialB === 'number' ? serialB : parseInt(serialB);
 
     return parsedSerialA - parsedSerialB;
   };
 
-  // Sort the data based on the custom sort function
   const sortedData = filteredGrp?.sort(customSort);
 
   return (
@@ -109,12 +105,24 @@ export default function ListOfTemplate({
       <div className="flex flex-col gap-3 justify-start w-full items-start">
         <div className="flex flex-row mt-2 gap-6 justify-start w-full items-start">
           <Chip color="warning" variant="dot">
-            Total Genaral Template : {genTemplateData?.TotalCount}
+            Total General Template : {genTemplateData?.TotalCount}
           </Chip>
           <Chip color="warning" variant="dot">
-            Total Genaral Template : {genTemplateData?.LimitedData?.length}
+            Total General Template : {genTemplateData?.LimitedData?.length}
           </Chip>
         </div>
+        {selectTemp === 'Festival' ? (
+          <div className="flex flex-row gap-4 justify-start w-full items-center">
+            <label htmlFor="datePicker">Filter by Date:</label>
+            <input
+              type="date"
+              id="datePicker"
+              value={selectedDate}
+              onChange={handleDateChange}
+              className="border p-2 rounded"
+            />
+          </div>
+        ) : null}
         <div className="flex flex-col gap-4 justify-center w-full items-center w-full">
           <Table>
             <TableHeader>
@@ -134,8 +142,8 @@ export default function ListOfTemplate({
                 return (
                   <TableRow key={index}>
                     <TableCell>
-                      <div className="flex items-center  gap-3">
-                        <div className="flex h-full  flex-row justify-center items-center gap-2">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-full flex-row justify-center items-center gap-2">
                           <p className="bg-black rounded-full text-white p-2">
                             {index + 1}
                           </p>
@@ -187,10 +195,7 @@ export default function ListOfTemplate({
                       </div>
                     </TableCell>
                     <TableCell>
-                   
                       <div className="hidden items-center flex flex-row gap-2 justify-center sm:flex">
-                      
-                       
                         <Button
                           size="sm"
                           onClick={() => hangoEdit(displayData, id)}

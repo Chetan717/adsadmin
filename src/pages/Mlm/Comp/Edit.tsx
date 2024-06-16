@@ -19,7 +19,7 @@ interface EditCompanyProps {
   companydata: {
     companyName: string;
     logo: string;
-    RMBG:string;
+    RMBG: string;
     companyAddress: string;
     Active: boolean;
     Launched: boolean;
@@ -40,13 +40,12 @@ const EditCompany: React.FC<EditCompanyProps> = ({
   // Use useEffect to update the state when companydata changes
   useEffect(() => {
     setCompanyData(companydata);
-    if (companyData?.Launched !== undefined) {
-      setLaunchedOption(companyData?.Launched);
-    }
+
+    setLaunchedOption(companyData?.Launched);
   }, [companydata]);
 
   const [companyData, setCompanyData] = useState(companydata);
-  const [launchedOption, setLaunchedOption] = useState(true);
+  const [launchedOption, setLaunchedOption] = useState(companyData?.Launched);
 
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
@@ -94,7 +93,7 @@ const EditCompany: React.FC<EditCompanyProps> = ({
             logos: companyData?.logos,
           },
         )
-        .then((res) => console.log(""))
+        .then((res) => console.log(''))
         .catch((err) => console.log(err))
         .finally(() => {
           setLoading(false);
