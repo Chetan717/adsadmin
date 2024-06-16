@@ -13,6 +13,7 @@ export default function MainTemplateGen() {
     { name: 'Festival', value: 'Festival' },
     { name: 'Good Morning', value: 'Good-Morning' },
     { name: 'Greeting & Wishes', value: 'Greeting-Wishes' },
+    { name: 'Sport', value: 'Sport' },
     { name: 'Leader Quates', value: 'Leader Quates' },
     { name: 'Devotional & Spiritual', value: 'Devotional & Spiritual' },
     { name: 'Health Tips', value: 'Health-Tips' },
@@ -30,7 +31,7 @@ export default function MainTemplateGen() {
     { name: 'ThankYou Message', value: 'ThankYou-Banner' },
     // { name: 'ThankYou Message-B', value: 'ThankYou-Banner-B' },
     { name: 'Income-Banner', value: 'Income-Banner' },
-    // { name: 'Meeting', value: 'Meeting' },
+    
     // { name: 'Product', value: 'Product' },
   ];
   const { GetAllCompanyTemplate } = DataSupplier();

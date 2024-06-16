@@ -193,6 +193,7 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
               {selType === 'Festival' ||
               selType === 'Good-Morning' ||
               selType === 'Greeting-Wishes' ||
+              selType === 'Sport' ||
               selType === 'Health-Tips' ||
               selType === 'Quate-Banner' ||
               selType === 'Leader Quates' ||
@@ -351,7 +352,9 @@ const GraphicsLinkSingle: React.FC<propGraphic> = ({
                 
                 {selType === 'Festival' ||
                 selType === 'Good-Morning' ||
+                selType === 'Sport' ||
                 selType === 'Quate-Banner' ||
+                
                 selType === 'Leader Quates' ||
                 selType === 'Devotional & Spiritual' ||
                 selType === 'Today_Trending' ||
