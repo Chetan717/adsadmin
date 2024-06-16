@@ -35,7 +35,8 @@ export default function ListOfTemplate({
   }, [selectTemp, genLimit]);
 
   const [pass, setPass] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
+  const currentDate = new Date().toISOString().split('T')[0];
+  const [selectedDate, setSelectedDate] = useState(`${currentDate}`);
 
   const closeFn = () => {
     onClose();
@@ -57,13 +58,14 @@ export default function ListOfTemplate({
     selectTemp === 'Festival'
       ? genTemplateData?.LimitedData?.filter((i) => {
           const itemDate = i.Date || i.attributeToBeUpdated?.Date;
-          const dateCondition = selectedDate ? itemDate === selectedDate : true;
+
           if (i?.attributeToBeUpdated) {
             return (
-              i.attributeToBeUpdated.Type === `${selectTemp}` && dateCondition
+              i.attributeToBeUpdated.Type === `${selectTemp}` &&
+              i?.attributeToBeUpdated?.Date === selectedDate
             );
           } else {
-            return i?.Type === `${selectTemp}` && dateCondition;
+            return i?.Type === `${selectTemp}` && i?.Date === selectedDate;
           }
         })
       : genTemplateData?.LimitedData?.filter((i) => {

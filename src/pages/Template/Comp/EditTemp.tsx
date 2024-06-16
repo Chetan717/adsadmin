@@ -188,7 +188,7 @@ export default function EditTemplate({
             {/* Options for position */}
             {[
               1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-              20,
+              20,21,22,23,24,25,26,27,28,29,30
             ]?.map((i, index) => {
               return (
                 <option key={index} value={i}>
@@ -197,23 +197,6 @@ export default function EditTemplate({
               );
             })}
           </select>
-        </div>
-      </div>
-      <div className="flex w-full flex-col gap-2  justify-start items-start">
-        <label className="mb-3 text-lg block text-black text-start relative  font-semibold dark:text-white">
-          Add Template And Their Graphics
-        </label>
-        <div className="flex flex-row gap-1 justify-center w-full items-center">
-          <GraphicsLinkMultiple
-            // handleSaveData={handleSaveData}
-            error={error}
-            formData={formData}
-            bannerIdOptions={bannerIdOptions}
-            incmNameIdOptions={incmNameIdOptions}
-            setFormData={setFormData}
-            selSubType={selSubType}
-            selType={selType}
-          />
         </div>
       </div>
       {loading === true ? (
@@ -233,6 +216,24 @@ export default function EditTemplate({
           Save Template
         </Button>
       )}
+      <div className="flex w-full flex-col gap-2  justify-start items-start">
+        <label className="mb-3 text-lg block text-black text-start relative  font-semibold dark:text-white">
+          Add Template And Their Graphics
+        </label>
+        <div className="flex flex-row gap-1 justify-center w-full items-center">
+          <GraphicsLinkMultiple
+            // handleSaveData={handleSaveData}
+            error={error}
+            formData={formData}
+            bannerIdOptions={bannerIdOptions}
+            incmNameIdOptions={incmNameIdOptions}
+            setFormData={setFormData}
+            selSubType={selSubType}
+            selType={selType}
+          />
+        </div>
+      </div>
+    
     </div>
   );
 }
