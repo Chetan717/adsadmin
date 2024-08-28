@@ -18,7 +18,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
   const [planData, setPlanData] = useState({
     PlanName: '',
     PlanAmount: '',
-    Launch: true,
+    Launch: "",
     download: '',
     img: '',
     Description: '',
@@ -138,7 +138,7 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                     </div>
                     <div className="flex flex-col gap-1">
                       <label className="text-[16px] font-semibold text-black">
-                        Select Launch
+                        Select Time option
                       </label>
                       <select
                         className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -149,8 +149,8 @@ const AddPalns: React.FC<AddmlmProps> = ({ GetAllPlans }) => {
                       >
                         {/* Options for bannerId */}
                         {[
-                          { name: 'Launched', value: true },
-                          { name: 'UnLuanched', value: false },
+                          { name: 'Time', value: "Time" },
+                          { name: 'NO-Time', value: "NO-Time" },
                         ]?.map((option: any) => (
                           <option
                             key={option.value + option.name}

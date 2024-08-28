@@ -15,7 +15,7 @@ interface EditmlmProps {
     id: any;
     PlanName: String;
     PlanAmount: String;
-    Launch: Boolean;
+    Launch: String;
     download: String;
     Description: String;
     Days: String;
@@ -35,7 +35,7 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
     PlanName: '',
     PlanAmount: '',
     download: '',
-    Launch: true,
+    Launch: "",
     Description: '',
     Days: '',
     Type: '',
@@ -180,8 +180,8 @@ const EditPlans: React.FC<EditmlmProps> = ({ DataOfPlan, GetAllPlans, id }) => {
                       >
                         {/* Options for bannerId */}
                         {[
-                          { name: 'Launched', value: true },
-                          { name: 'UnLuanched', value: false },
+                           { name: 'Time', value: "Time" },
+                           { name: 'NO-Time', value: "NO-Time" },
                         ]?.map((option: any) => (
                           <option
                             key={option.value + option.name}
